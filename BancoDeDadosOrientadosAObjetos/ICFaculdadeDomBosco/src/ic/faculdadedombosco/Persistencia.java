@@ -5,6 +5,9 @@
 
 package ic.faculdadedombosco;
 
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+
 /**
  *
  * @author Anderson
@@ -24,6 +27,14 @@ public class Persistencia {
     }
 
     public void AbrirConexao(){
+        ObjectContainer db = Db4o.openFile("facdombosco.dbo");
+        try{
+
+        }
+        finally{
+            db.close();
+        }
+
 
     }
 

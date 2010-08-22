@@ -11,6 +11,10 @@
 
 package ic.faculdadedombosco.visao.gui;
 
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import ic.faculdadedombosco.Equipamento;
+import ic.faculdadedombosco.Persistencia;
 import java.awt.Dimension;
 
 /**
@@ -48,7 +52,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         bPesquisar = new javax.swing.JButton();
         bSalvar = new javax.swing.JButton();
         cbStatus = new javax.swing.JComboBox();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jcbRede = new javax.swing.JCheckBox();
 
         setClosable(true);
         setResizable(true);
@@ -71,6 +75,11 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         bPesquisar.setText("Pesquisar");
 
         bSalvar.setText("Salvar");
+        bSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvarActionPerformed(evt);
+            }
+        });
 
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Ativo", "Inativo", "Reserva", "Emprestado", "Manutenção" }));
 
@@ -99,7 +108,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
                             .addGroup(pDadosEquipamentosLayout.createSequentialGroup()
                                 .addComponent(lUtilizaRede, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox1)))
+                                .addComponent(jcbRede)))
                         .addGap(2, 2, 2))
                     .addComponent(tfDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                     .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -120,7 +129,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
                     .addComponent(lStatus)
                     .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lUtilizaRede)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jcbRede))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bPesquisar)
@@ -142,18 +151,39 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pDadosEquipamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
+       ObjectContainer db = Db4o.openFile("facdombosco.dbo");
+       
+       Equipamento equip = new Equipamento();
+
+       equip.setCd_equipamento(1);
+       equip.setDs_equipamento(tfDescricao.getText());
+       equip.setIn_cabo_rede('N');
+
+       try{
+           db.set(equip);
+           System.out.println("Inserido: "+ equip);
+       }
+       catch(Exception ex){
+           System.out.println("Erro: "+ex);
+       }
+       finally{
+           db.close();
+       }
+    }//GEN-LAST:event_bSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bPesquisar;
     private javax.swing.JButton bSalvar;
     private javax.swing.JComboBox cbStatus;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jcbRede;
     private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lDescricao;
     private javax.swing.JLabel lStatus;
