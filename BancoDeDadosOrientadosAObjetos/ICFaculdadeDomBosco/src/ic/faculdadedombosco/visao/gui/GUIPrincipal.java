@@ -160,6 +160,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuRelatorio.setText("Relatório");
 
         itemDeMenuRelatorioDeAgendamento.setText("Agendamento");
+        itemDeMenuRelatorioDeAgendamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemDeMenuRelatorioDeAgendamentoActionPerformed(evt);
+            }
+        });
         menuRelatorio.add(itemDeMenuRelatorioDeAgendamento);
 
         itemDeMenuRelatorioDeEquipamento.setText("Equipamento");
@@ -310,6 +315,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
         //ldiasemana_hora.setText(horaatual);
 }//GEN-LAST:event_itemDeMenuSobreActionPerformed
 
+    private void itemDeMenuRelatorioDeAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeAgendamentoActionPerformed
+        if((guirelatagend == null) || (!guirelatagend.isVisible())){
+            guirelatagend = new GUIRelatorioAgendamento();
+            desktopPane.add(guirelatagend);
+            guirelatagend.setPosicao();
+            guirelatagend.setVisible(true);
+        }
+    }//GEN-LAST:event_itemDeMenuRelatorioDeAgendamentoActionPerformed
+
     public void Calendario(){
         if((guicalendar == null) || (!guicalendar.isVisible())){
             guicalendar = new GUICalendario();
@@ -352,4 +366,5 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private GUIVinUsuRec guivinusurec;
     private GUISobre guisobre;
     private GUICalendario guicalendar;
+    private GUIRelatorioAgendamento guirelatagend;
 }

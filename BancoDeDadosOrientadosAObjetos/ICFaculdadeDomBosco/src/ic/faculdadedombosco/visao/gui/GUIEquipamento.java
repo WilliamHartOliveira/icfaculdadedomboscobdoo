@@ -11,6 +11,7 @@
 
 package ic.faculdadedombosco.visao.gui;
 
+
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import ic.faculdadedombosco.Equipamento;
@@ -22,6 +23,8 @@ import java.awt.Dimension;
  * @author Anderson
  */
 public class GUIEquipamento extends javax.swing.JInternalFrame {
+
+    Equipamento equip;
 
     /** Creates new form GUICadastroEquipamento */
     public GUIEquipamento() {
@@ -158,24 +161,18 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
-       ObjectContainer db = Db4o.openFile("facdombosco.dbo");
+
+        equip = new Equipamento();
+
+        Persistencia pers = new Persistencia();
+        pers.AbrirConexao();
        
-       Equipamento equip = new Equipamento();
+        equip.setCd_equipamento(Integer.parseInt(tfCodigo.getText()));
+        equip.setDs_equipamento(tfDescricao.getText());
+        equip.setSt_equipamento(cbStatus.getSelectedIndex());
+        equip.setIn_cabo_rede(jcbRede.);
 
-       equip.setCd_equipamento(1);
-       equip.setDs_equipamento(tfDescricao.getText());
-       equip.setIn_cabo_rede('N');
-
-       try{
-           db.set(equip);
-           System.out.println("Inserido: "+ equip);
-       }
-       catch(Exception ex){
-           System.out.println("Erro: "+ex);
-       }
-       finally{
-           db.close();
-       }
+    
     }//GEN-LAST:event_bSalvarActionPerformed
 
 
