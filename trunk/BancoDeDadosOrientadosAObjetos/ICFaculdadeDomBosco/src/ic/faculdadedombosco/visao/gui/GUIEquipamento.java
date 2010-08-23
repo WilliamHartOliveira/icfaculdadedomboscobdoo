@@ -170,7 +170,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         equip.setCd_equipamento(Integer.parseInt(tfCodigo.getText()));
         equip.setDs_equipamento(tfDescricao.getText());
         equip.setSt_equipamento(cbStatus.getSelectedIndex());
-        equip.setIn_cabo_rede(jcbRede.);
+        //equip.setIn_cabo_rede(jcbRede.);
 
     
     }//GEN-LAST:event_bSalvarActionPerformed
