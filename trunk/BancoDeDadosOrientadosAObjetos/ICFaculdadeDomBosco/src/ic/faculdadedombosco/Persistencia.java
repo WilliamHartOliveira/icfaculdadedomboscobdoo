@@ -14,8 +14,10 @@ import com.db4o.ObjectContainer;
  */
 public class Persistencia {
 
-    public void Salvar(){
+    ObjectContainer db;
 
+    public void Salvar(){
+       //db.set(obj);
     }
 
     public void Excluir(){
@@ -27,18 +29,21 @@ public class Persistencia {
     }
 
     public void AbrirConexao(){
-        ObjectContainer db = Db4o.openFile("facdombosco.dbo");
-        try{
 
+        db = Db4o.openFile("facdombosco.dbo");
+        
+        try{
+            System.out.println("Conexão aberta...");
+        }
+        catch(Exception ex){
+            System.out.println("Erro em abrir conexão: "+ex);
         }
         finally{
             db.close();
         }
-
-
     }
 
     public void FecharConexao(){
-
+       db.close();
     }
 }

@@ -13,8 +13,17 @@ public class Equipamento {
 
     private int cd_equipamento;
     private String ds_equipamento;
+    private int st_equipamento;
     private char in_cabo_rede;
 
+    public int getSt_equipamento() {
+        return st_equipamento;
+    }
+
+    public void setSt_equipamento(int st_equipamento) {
+        this.st_equipamento = st_equipamento;
+    }
+    
     public int getCd_equipamento() {
         return cd_equipamento;
     }
