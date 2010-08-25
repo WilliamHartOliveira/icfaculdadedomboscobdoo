@@ -11,6 +11,7 @@
 
 package ic.faculdadedombosco.visao.gui;
 
+import ic.faculdadedombosco.Persistencia;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
@@ -22,10 +23,13 @@ import javax.swing.JOptionPane;
  */
 public class GUIPrincipal extends javax.swing.JFrame {
 
+    //Persistencia pers = new Persistencia();
+
     /** Creates new form GUIPrincipal */
     public GUIPrincipal() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //pers.AbrirConexao();
     }
 
     /** This method is called from within the constructor to
@@ -238,6 +242,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemDeMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuSairActionPerformed
+        //pers.FecharConexao();
         System.exit(0);
     }//GEN-LAST:event_itemDeMenuSairActionPerformed
 

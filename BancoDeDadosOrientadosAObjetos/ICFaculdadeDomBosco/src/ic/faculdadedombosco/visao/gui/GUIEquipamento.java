@@ -25,6 +25,7 @@ import java.awt.Dimension;
 public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     Equipamento equip;
+    Persistencia pers;
 
     /** Creates new form GUICadastroEquipamento */
     public GUIEquipamento() {
@@ -164,15 +165,13 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
         equip = new Equipamento();
 
-        Persistencia pers = new Persistencia();
-        pers.AbrirConexao();
-       
         equip.setCd_equipamento(Integer.parseInt(tfCodigo.getText()));
         equip.setDs_equipamento(tfDescricao.getText());
         equip.setSt_equipamento(cbStatus.getSelectedIndex());
         //equip.setIn_cabo_rede(jcbRede.);
 
-    
+        //pers.Salvar(equip);
+            
     }//GEN-LAST:event_bSalvarActionPerformed
 
 
