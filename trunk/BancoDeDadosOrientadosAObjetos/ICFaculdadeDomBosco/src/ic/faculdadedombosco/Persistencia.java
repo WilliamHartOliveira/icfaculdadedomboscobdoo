@@ -16,8 +16,8 @@ public class Persistencia {
 
     ObjectContainer db;
 
-    public void Salvar(){
-       //db.set(obj);
+    public void Salvar(Equipamento equip){
+       //db.set(equip);
     }
 
     public void Excluir(){
