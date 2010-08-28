@@ -11,9 +11,6 @@
 
 package ic.faculdadedombosco.visao.gui;
 
-import ic.faculdadedombosco.Persistencia;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -265,7 +262,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemDeMenuRecursoActionPerformed
 
     private void itemDeMenuGradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuGradeDisciplinaActionPerformed
-        JOptionPane.showMessageDialog(null, "Módulo em construção...", "Atenção!!!", JOptionPane.INFORMATION_MESSAGE);
+        if((guigradedisciplina == null) || (!guigradedisciplina.isVisible())){
+            guigradedisciplina = new GUIGradeDisciplina();
+            desktopPane.add(guigradedisciplina);
+            guigradedisciplina.setPosicao();
+            guigradedisciplina.setVisible(true);
+        }
     }//GEN-LAST:event_itemDeMenuGradeDisciplinaActionPerformed
 
     private void itemDeMenuAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuAgendamentoActionPerformed
@@ -372,4 +374,5 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private GUISobre guisobre;
     private GUICalendario guicalendar;
     private GUIRelatorioAgendamento guirelatagend;
+    private GUIGradeDisciplina guigradedisciplina;
 }

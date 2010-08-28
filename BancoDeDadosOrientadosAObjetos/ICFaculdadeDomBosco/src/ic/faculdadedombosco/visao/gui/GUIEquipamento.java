@@ -12,8 +12,6 @@
 package ic.faculdadedombosco.visao.gui;
 
 
-import com.db4o.Db4o;
-import com.db4o.ObjectContainer;
 import ic.faculdadedombosco.Equipamento;
 import ic.faculdadedombosco.Persistencia;
 import java.awt.Dimension;
@@ -155,7 +153,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pDadosEquipamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,12 +163,12 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
         equip = new Equipamento();
 
-        equip.setCd_equipamento(Integer.parseInt(tfCodigo.getText()));
+        equip.setCd_equipamento(tfCodigo.getText());
         equip.setDs_equipamento(tfDescricao.getText());
-        equip.setSt_equipamento(cbStatus.getSelectedIndex());
-        //equip.setIn_cabo_rede(jcbRede.);
+       // equip.setSt_equipamento(cbStatus.getSelectedIndex());
+        
 
-        //pers.Salvar(equip);
+        pers.Salvar(equip);
             
     }//GEN-LAST:event_bSalvarActionPerformed
 
