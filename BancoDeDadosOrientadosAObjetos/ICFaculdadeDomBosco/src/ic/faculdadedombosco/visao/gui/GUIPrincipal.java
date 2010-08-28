@@ -280,7 +280,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemDeMenuAgendamentoActionPerformed
 
     private void itemDeMenuRelatorioDeEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeEquipamentoActionPerformed
-        JOptionPane.showMessageDialog(null, "Módulo em construção...", "Atenção!!!", JOptionPane.INFORMATION_MESSAGE);
+
+         JOptionPane.showMessageDialog(null, "Módulo em construção...", "Atenção!!!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_itemDeMenuRelatorioDeEquipamentoActionPerformed
 
     private void itemDeMenuRelatorioDeGradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeGradeDisciplinaActionPerformed
@@ -375,4 +376,5 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private GUICalendario guicalendar;
     private GUIRelatorioAgendamento guirelatagend;
     private GUIGradeDisciplina guigradedisciplina;
+   
 }
