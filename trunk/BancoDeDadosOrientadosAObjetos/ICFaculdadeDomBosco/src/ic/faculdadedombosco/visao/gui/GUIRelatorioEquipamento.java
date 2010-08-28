@@ -11,6 +11,8 @@
 
 package ic.faculdadedombosco.visao.gui;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Anderson
@@ -22,6 +24,7 @@ public class GUIRelatorioEquipamento extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -35,11 +38,11 @@ public class GUIRelatorioEquipamento extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 558, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 278, Short.MAX_VALUE)
         );
 
         pack();
