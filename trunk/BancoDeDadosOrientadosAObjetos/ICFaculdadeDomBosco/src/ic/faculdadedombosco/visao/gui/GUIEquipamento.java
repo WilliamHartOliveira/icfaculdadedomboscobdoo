@@ -21,8 +21,8 @@ import java.awt.Dimension;
  */
 public class GUIEquipamento extends javax.swing.JInternalFrame {
 
-    Equipamento equip;
-    Persistencia pers;
+    Equipamento equip = null;
+    Persistencia pers = null;
 
     /** Creates new form GUICadastroEquipamento */
     public GUIEquipamento() {
@@ -163,27 +163,19 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
     private void limparCampos(){
         tfCodigo.setText(null);
         tfDescricao.setText(null);
-        cbStatus.setSelectedItem(null);
-        cbRede.setSelectedItem(null);
+        cbStatus.setSelectedItem("Selecione...");
+        cbRede.setSelectedItem("Selecione...");
     }
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
       
         equip = new Equipamento();
-
-        String status = "";
-        String caboRede = "";
+        pers = new Persistencia();
 
         equip.setCd_equipamento(tfCodigo.getText());
         equip.setDs_equipamento(tfDescricao.getText());
-
-        //status = cbStatus.getSelectedItem().toString();
-        //System.out.println(status);
-        //equip.setSt_equipamento(status);
-
-        //caboRede = cbRede.getSelectedItem().toString();
-        //System.out.println(caboRede);
-       // equip.setIn_cabo_rede(caboRede);
+        equip.setSt_equipamento(cbStatus.getSelectedItem().toString());
+        equip.setIn_cabo_rede(cbRede.getSelectedItem().toString());
 
         pers.Salvar(equip);
         limparCampos();

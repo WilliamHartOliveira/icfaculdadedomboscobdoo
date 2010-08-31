@@ -5,9 +5,6 @@
 
 package ic.faculdadedombosco;
 
-import java.io.Serializable;
-
-
 /**
  *
  * @author Anderson
@@ -50,5 +47,4 @@ public class Equipamento {
     public void setSt_equipamento(String st_equipamento) {
         this.st_equipamento = st_equipamento;
     }   
-
 }
