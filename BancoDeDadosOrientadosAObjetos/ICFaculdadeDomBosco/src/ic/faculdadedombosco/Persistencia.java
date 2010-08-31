@@ -7,9 +7,7 @@ package ic.faculdadedombosco;
 
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
-import com.db4o.query.Query;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,11 +15,11 @@ import com.db4o.query.Query;
  */
 public class Persistencia {
 
-    static ObjectContainer db = null;
+   static ObjectContainer db = null;
 
-   public static void AbrirConexao(){
+   public static void AbrirConexao(){    
         try{
-            Persistencia.db = Db4o.openFile("facdombosco.dbo");
+            db = Db4o.openFile("facdombosco.dbo");
             System.out.println("Conexão aberta...");
         }
         catch(Exception ex){
@@ -45,23 +43,14 @@ public class Persistencia {
         }
     }
     public static void Salvar(Equipamento equip){
-        equip.setRegistro(codigoProximoInserido());
-        db.set(equip);
-    }
-
-    public static int codigoProximoInserido() {
-        Query consulta = db.query();
-        consulta.constrain(Equipamento.class);
-        consulta.descend("registro").orderDescending(); // pega o maior codigo e ordena(redundante)
-
-        ObjectSet lista = consulta.execute();
-        
-        if (lista.size() > 0) {
-            Equipamento equip = (Equipamento) lista;//.get(0);
-            return equip.getRegistro() + 1;// ultimo codigo mais 1
-        } else {
-            return 1;
+        try{
+            db.store(equip);            
         }
+        catch(Exception ex){
+            System.out.println("Erro ao salvar o objeto!!!\n"+ex);
+            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto...\n"+ex, "Atenção!!!", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     public void Excluir(){

@@ -11,7 +11,6 @@
 
 package ic.faculdadedombosco.visao.gui;
 
-
 import ic.faculdadedombosco.Equipamento;
 import ic.faculdadedombosco.Persistencia;
 import java.awt.Dimension;
@@ -54,9 +53,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         bPesquisar = new javax.swing.JButton();
         bSalvar = new javax.swing.JButton();
         cbStatus = new javax.swing.JComboBox();
-        jcbRede = new javax.swing.JCheckBox();
-        lRegistro = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        cbRede = new javax.swing.JComboBox();
 
         setClosable(true);
         setResizable(true);
@@ -87,9 +84,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Ativo", "Inativo", "Reserva", "Emprestado", "Manutenção" }));
 
-        lRegistro.setText("0");
-
-        jLabel2.setText("Registro:");
+        cbRede.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Sim", "Não" }));
 
         javax.swing.GroupLayout pDadosEquipamentosLayout = new javax.swing.GroupLayout(pDadosEquipamentos);
         pDadosEquipamentos.setLayout(pDadosEquipamentosLayout);
@@ -116,27 +111,18 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
                             .addGroup(pDadosEquipamentosLayout.createSequentialGroup()
                                 .addComponent(lUtilizaRede, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcbRede)))
-                        .addGap(2, 2, 2))
+                                .addComponent(cbRede, 0, 92, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addComponent(tfDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                    .addGroup(pDadosEquipamentosLayout.createSequentialGroup()
-                        .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lRegistro)))
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         pDadosEquipamentosLayout.setVerticalGroup(
             pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pDadosEquipamentosLayout.createSequentialGroup()
-                .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lCodigo)
-                        .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lRegistro)
-                        .addComponent(jLabel2)))
+                .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lCodigo)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lDescricao)
@@ -146,7 +132,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
                     .addComponent(lStatus)
                     .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lUtilizaRede)
-                    .addComponent(jcbRede))
+                    .addComponent(cbRede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bPesquisar)
@@ -161,28 +147,46 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pDadosEquipamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pDadosEquipamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
+    private void limparCampos(){
+        tfCodigo.setText(null);
+        tfDescricao.setText(null);
+        cbStatus.setSelectedItem(null);
+        cbRede.setSelectedItem(null);
+    }
 
+    private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
+      
         equip = new Equipamento();
 
-        equip.setRegistro(Integer.parseInt(lRegistro.getText()));
+        String status = "";
+        String caboRede = "";
+
         equip.setCd_equipamento(tfCodigo.getText());
         equip.setDs_equipamento(tfDescricao.getText());
-           
+
+        //status = cbStatus.getSelectedItem().toString();
+        //System.out.println(status);
+        //equip.setSt_equipamento(status);
+
+        //caboRede = cbRede.getSelectedItem().toString();
+        //System.out.println(caboRede);
+       // equip.setIn_cabo_rede(caboRede);
+
         pers.Salvar(equip);
+        limparCampos();
             
     }//GEN-LAST:event_bSalvarActionPerformed
 
@@ -190,12 +194,10 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bPesquisar;
     private javax.swing.JButton bSalvar;
+    private javax.swing.JComboBox cbRede;
     private javax.swing.JComboBox cbStatus;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JCheckBox jcbRede;
     private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lDescricao;
-    private javax.swing.JLabel lRegistro;
     private javax.swing.JLabel lStatus;
     private javax.swing.JLabel lUtilizaRede;
     private javax.swing.JPanel pDadosEquipamentos;

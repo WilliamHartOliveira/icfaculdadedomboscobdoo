@@ -23,14 +23,15 @@ import javax.swing.JOptionPane;
  */
 public class GUIPrincipal extends javax.swing.JFrame {
 
-    Persistencia pers = null;
+    Persistencia pers;
 
     /** Creates new form GUIPrincipal */
     public GUIPrincipal() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-       
-       
+        pers = new Persistencia();
+        pers.AbrirConexao();//abrindo conexão banco db4o
+         
         // cuida para que o relório atualize sempre
         Thread time = new Thread() {
 
@@ -276,6 +277,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemDeMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuSairActionPerformed
+        pers.FecharConexao();//fechando conexão banco db4o
         System.exit(0);
     }//GEN-LAST:event_itemDeMenuSairActionPerformed
 
@@ -352,11 +354,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
             guisobre.setPosicao();
             guisobre.setVisible(true);
         }
-
-        //SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy - hh-mm-ss");
-        //Date  hora = new Date();
-        //String horaatual = formatador.format(hora);
-        //ldiasemana_hora.setText(horaatual);
 }//GEN-LAST:event_itemDeMenuSobreActionPerformed
 
     private void itemDeMenuRelatorioDeAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeAgendamentoActionPerformed
