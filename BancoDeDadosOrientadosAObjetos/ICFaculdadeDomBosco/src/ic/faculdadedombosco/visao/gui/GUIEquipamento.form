@@ -36,7 +36,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pDadosEquipamentos" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,24 +62,25 @@
                           <Component id="lCodigo" alignment="0" min="-2" pref="65" max="-2" attributes="1"/>
                           <Component id="lDescricao" alignment="1" min="-2" pref="65" max="-2" attributes="1"/>
                       </Group>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="tfPesquisa" pref="212" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="bPesquisar" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="cbStatus" min="-2" pref="123" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                  <Component id="bPesquisar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="bSalvar" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="lUtilizaRede" min="-2" pref="74" max="-2" attributes="1"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cbRede" pref="92" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="bSalvar" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="tfDescricao" alignment="0" pref="297" max="32767" attributes="1"/>
@@ -109,9 +110,12 @@
                       <Component id="cbRede" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="bSalvar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="bPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -151,6 +155,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bPesquisarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bSalvar">
           <Properties>
@@ -183,6 +190,13 @@
                 <StringItem index="2" value="N&#xe3;o"/>
               </StringArray>
             </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfPesquisa">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pesq.:"/>
           </Properties>
         </Component>
       </SubComponents>
