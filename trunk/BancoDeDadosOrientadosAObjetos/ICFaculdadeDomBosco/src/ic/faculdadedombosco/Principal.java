@@ -5,7 +5,7 @@
 
 package ic.faculdadedombosco;
 
-import ic.faculdadedombosco.visao.gui.GUILogin;
+import ic.faculdadedombosco.view.GUILogin;
 
 /**
  *
