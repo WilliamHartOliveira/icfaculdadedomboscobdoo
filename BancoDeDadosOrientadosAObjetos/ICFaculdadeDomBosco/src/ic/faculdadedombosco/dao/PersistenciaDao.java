@@ -10,7 +10,10 @@ import com.db4o.ObjectSet;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.model.Equipamento;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
 
@@ -52,14 +55,14 @@ public class PersistenciaDao {
     }
 
     public void Excluir(Equipamento equip){
-        /*Query consulta = db.query();
+        Query consulta = db.query();
         consulta.constrain(Equipamento.class);
         consulta.descend("codigo").constrain(equip.getCd_equipamento());
         ObjectSet lista = consulta.execute();
         if (lista.size() > 0) {
             Equipamento equip = (Equi) lista.get(0);
             db.delete(equip);
-        }*/
+        }
     }
 
     /*public static Equipamento Pesquisar(String ds_equipamento){
@@ -79,16 +82,14 @@ public class PersistenciaDao {
         }
     }*/
 
-    public List get(Equipamento equipamento){
-        ObjectSet obj;
-        obj = db.get(equipamento);
-        System.out.println("Tamanho do resultado: "+obj.size());
-        
-        List<Equipamento> list = new ArrayList<Equipamento>();
-        
-        while(obj.hasNext()){
-            System.out.println(list.add((Equipamento)obj.next()));
+    public List<Equipamento> listar(){
+
+        List list = new List();
+
+        try{
+            Equipamento equip = new Equipamento
+        }finally{
+
         }
-        return list;        
     }
 }
