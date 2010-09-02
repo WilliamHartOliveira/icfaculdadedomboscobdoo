@@ -5,11 +5,13 @@
 
 package ic.faculdadedombosco.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Anderson
  */
-public class Usuario {
+public class Usuario implements Serializable{
 
     private int cd_usuario;
     private String nm_usuario;

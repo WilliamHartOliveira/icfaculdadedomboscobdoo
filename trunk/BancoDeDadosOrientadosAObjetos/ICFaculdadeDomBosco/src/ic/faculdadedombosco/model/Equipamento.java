@@ -5,11 +5,13 @@
 
 package ic.faculdadedombosco.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Anderson
  */
-public class Equipamento {
+public class Equipamento implements Serializable{
 
     private String cd_equipamento;
     private String ds_equipamento;
