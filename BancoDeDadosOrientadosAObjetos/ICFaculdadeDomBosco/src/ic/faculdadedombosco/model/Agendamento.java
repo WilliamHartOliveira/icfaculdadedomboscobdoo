@@ -5,13 +5,14 @@
 
 package ic.faculdadedombosco.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Anderson
  */
-public class Agendamento {
+public class Agendamento implements Serializable{
 
     private int cd_agendamento;
     private java.util.Date hr_inicial;

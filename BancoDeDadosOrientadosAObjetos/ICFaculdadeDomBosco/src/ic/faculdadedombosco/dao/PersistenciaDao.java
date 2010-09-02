@@ -7,6 +7,7 @@ package ic.faculdadedombosco.dao;
 
 import com.db4o.*;
 import com.db4o.ObjectSet;
+import com.db4o.query.Query;
 import ic.faculdadedombosco.model.Equipamento;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +51,15 @@ public class PersistenciaDao {
 
     }
 
-    public void Excluir(){
-
+    public void Excluir(Equipamento equip){
+        /*Query consulta = db.query();
+        consulta.constrain(Equipamento.class);
+        consulta.descend("codigo").constrain(equip.getCd_equipamento());
+        ObjectSet lista = consulta.execute();
+        if (lista.size() > 0) {
+            Equipamento equip = (Equi) lista.get(0);
+            db.delete(equip);
+        }*/
     }
 
     /*public static Equipamento Pesquisar(String ds_equipamento){
