@@ -65,6 +65,10 @@ public class GUILogin extends javax.swing.JFrame {
         lUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lUsuario.setText("Usuário:");
 
+        tfUsuario.setText("admin");
+
+        tfSenha.setText("admin");
+
         lSenha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lSenha.setText("Senha:");
 

@@ -5,6 +5,10 @@
 
 package ic.faculdadedombosco;
 
+
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import ic.faculdadedombosco.dao.PersistenciaDao;
 import ic.faculdadedombosco.view.GUILogin;
 
 /**

@@ -11,6 +11,7 @@
 
 package ic.faculdadedombosco.view;
 
+import ic.faculdadedombosco.dao.Conexao;
 import ic.faculdadedombosco.dao.PersistenciaDao;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,15 +24,19 @@ import javax.swing.JOptionPane;
  */
 public class GUIPrincipal extends javax.swing.JFrame {
 
-    PersistenciaDao pers;
+    //private Conexao conexao;
+    PersistenciaDao persistenciaDao;
 
     /** Creates new form GUIPrincipal */
     public GUIPrincipal() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        pers = new PersistenciaDao();
-        pers.AbrirConexao();//abrindo conexão banco db4o
-         
+        persistenciaDao = new PersistenciaDao();
+        persistenciaDao.AbrirConexao();
+        //this.conexao = new Conexao();
+        //this.conexao.abrirConexao();//abrindo conexão banco db4o
+
+
         // cuida para que o relório atualize sempre
         Thread time = new Thread() {
 
@@ -277,7 +282,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemDeMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuSairActionPerformed
-        pers.FecharConexao();//fechando conexão banco db4o
+        persistenciaDao.FecharConexao();
         System.exit(0);
     }//GEN-LAST:event_itemDeMenuSairActionPerformed
 
