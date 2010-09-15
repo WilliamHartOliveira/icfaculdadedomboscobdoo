@@ -14,7 +14,7 @@ import com.db4o.ObjectContainer;
  */
 public class Conexao {
 
-    private static ObjectContainer db;
+    private ObjectContainer db;
 
     public void abrirConexao(){
         db = Db4o.openFile("facdombosco.dbo");
