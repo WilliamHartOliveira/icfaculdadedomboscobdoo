@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class PersistenciaDao {
 
-    static ObjectContainer db;
+    private static ObjectContainer db;
 
     public void AbrirConexao()
     {
@@ -49,41 +49,46 @@ public class PersistenciaDao {
         }
     }//Método responsável para Salvar Equipamento - OK
 
-    public boolean alterar(Equipamento equipamento)
+    public void alterar(Equipamento equipamento)
     {
-        Query query = db.query();
+
+        ObjectSet<Equipamento> lista = db.get(equipamento);
+        Equipamento equipamento1 = lista.next();
+        equipamento1.setCd_equipamento(equipamento.getCd_equipamento());
+        equipamento1.setDs_equipamento(equipamento.getDs_equipamento());
+        equipamento1.setIn_cabo_rede(equipamento.getIn_cabo_rede());
+        equipamento1.setSt_equipamento(equipamento.getSt_equipamento());
+        db.set(equipamento1);
+
+        /*Query query = db.query();
         query.constrain(Equipamento.class);
         query.descend("cd_equipamento").constrain(equipamento.getCd_equipamento());
 
-        ObjectSet lista = query.execute();
+        equipamento = (Equipamento)query.execute().next();
+        equipamento.setCd_equipamento(equipamento.getCd_equipamento());
+        db.store(equipamento);
+
+        /*ObjectSet lista = query.execute();
 
         if (lista.hasNext()) {
             Equipamento e = (Equipamento) lista.get(0);
             e = equipamento;
-            db.delete(e);
+            
             db.store(e);
             db.commit();
         } else {
             return false;
         }
-        return true;
+        return true;*/
 
     }// Método responsável para alterar equipamento - NÃO ESTÁ FUNCIONANDO
 
     public void Excluir(Equipamento equipamento)
     {
-
-          Query query = db.query();
-          query.constrain(Equipamento.class);
-          query.descend("cd_equipamento").constrain(equipamento.getCd_equipamento());
-          ObjectSet lista = query.execute();
-
-          while(lista.hasNext()){
-              Equipamento e = (Equipamento) lista.get(0);
-              db.delete(e);
-              db.commit();
-          }
-
+        ObjectSet<Equipamento> lista = db.get(equipamento);
+        Equipamento equipamento1 = lista.next();
+        db.delete(equipamento1);
+        db.commit();
     }// Método responsável para excluir equipamento - NÃO ESTÁ FUNCIONANDO
 
     public static Equipamento Pesquisar(String codEquip)

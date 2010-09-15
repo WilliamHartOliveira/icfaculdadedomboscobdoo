@@ -70,7 +70,6 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         bLimpar = new javax.swing.JButton();
 
         setClosable(true);
-        setResizable(true);
         setTitle("Equipamento");
 
         pDadosEquipamentos.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Equipamento"));
@@ -250,7 +249,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pDadosEquipamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -313,6 +312,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         persistenciaDao = new PersistenciaDao();
         equipamento = capturaDados();
         persistenciaDao.Salvar(equipamento);
+        this.montarTabela();
         //equipamentosService.incluir(equipamento);
         limparCampos();
     }//GEN-LAST:event_bSalvarActionPerformed
@@ -338,11 +338,11 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
     private void bExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirActionPerformed
 
         persistenciaDao = new PersistenciaDao();
-        equipamento = new Equipamento();
 
         equipamento = capturaDados();
         int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este equipamento: " + equipamento.getCd_equipamento(),"Cuidado",JOptionPane.YES_NO_OPTION);
         if (x == 0) {
+            
             persistenciaDao.Excluir(equipamento);
             limparCampos();
             this.montarTabela();
@@ -373,7 +373,6 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabelaEquipamentoMouseClicked
 
     private void bAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarActionPerformed
-        equipamento = new Equipamento();
         persistenciaDao = new PersistenciaDao();
 
         equipamento = capturaDados();
