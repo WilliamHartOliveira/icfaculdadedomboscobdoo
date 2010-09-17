@@ -7,7 +7,6 @@ package ic.faculdadedombosco.service;
 
 import ic.faculdadedombosco.dao.EquipamentoDao;
 import ic.faculdadedombosco.model.Equipamento;
-import java.util.List;
 
 /**
  *
@@ -15,38 +14,35 @@ import java.util.List;
  */
 public class EquipamentoService {
 
-    public Equipamento incluir(Equipamento equipamento){
+    public Equipamento incluir(Equipamento equipamento)
+    {
 
         EquipamentoDao equipamentoDao = new EquipamentoDao();
 
         return equipamentoDao.incluir(equipamento);
     }
 
-    public Equipamento atualizar(Equipamento equipamento){
+    public Equipamento atualizar(Equipamento equipamento)
+    {
 
         EquipamentoDao equipamentoDao = new EquipamentoDao();
 
         return equipamentoDao.atualizar(equipamento);
     }
 
-    public Equipamento excluir(Equipamento equipamento){
+    public Equipamento excluir(Equipamento equipamento)
+    {
 
         EquipamentoDao equipamentoDao = new EquipamentoDao();
 
         return equipamentoDao.excluir(equipamento);
     }
 
-    public Equipamento buscar(Equipamento equipamento){
+    public Equipamento buscar(String codigo)
+    {
 
         EquipamentoDao equipamentoDao = new EquipamentoDao();
 
-        return equipamentoDao.buscar(equipamento);
-    }
-
-    public List<Equipamento> listar(Equipamento equipamento){
-
-        EquipamentoDao equipamentoDao = new EquipamentoDao();
-
-        return equipamentoDao.listar();
+        return equipamentoDao.buscar(codigo);
     }
 }

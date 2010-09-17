@@ -11,7 +11,13 @@
 
 package ic.faculdadedombosco.view;
 
+import com.db4o.ObjectSet;
+import ic.faculdadedombosco.dao.RecursoDao;
+import ic.faculdadedombosco.model.Recurso;
+import ic.faculdadedombosco.service.RecursoService;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +25,9 @@ import java.awt.Dimension;
  */
 public class GUIRecurso extends javax.swing.JInternalFrame {
 
+    Recurso recurso;
+    RecursoService recursoService;
+    RecursoDao recursoDao;
     /** Creates new form GUICadastroRecurso */
     public GUIRecurso() {
         initComponents();
@@ -40,11 +49,10 @@ public class GUIRecurso extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        tfDescricaoRecurso = new javax.swing.JTextField();
+        cbTipoRecurso = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bExcluirRecurso = new javax.swing.JButton();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         pDadosEquipamentos = new javax.swing.JPanel();
         lCodigo = new javax.swing.JLabel();
@@ -58,7 +66,20 @@ public class GUIRecurso extends javax.swing.JInternalFrame {
         cbStatus = new javax.swing.JComboBox();
         jcbRede = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        cbStatusRecurso = new javax.swing.JComboBox();
+        bAtualizarRecurso = new javax.swing.JButton();
+        bListarRecurso = new javax.swing.JButton();
+        bLimparRecurso = new javax.swing.JButton();
+        bPesquisarRecurso = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        tfDescricaoPesquisaRecurso = new javax.swing.JTextField();
+        bSalvarRecurso = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cbLocalizacaoRecurso = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        tfQuantidadeOcupRecurso = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaRecurso = new javax.swing.JTable();
 
         setClosable(true);
         setTitle("Recurso");
@@ -68,14 +89,17 @@ public class GUIRecurso extends javax.swing.JInternalFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Descrição:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Sala de Aula", "Sala de Reunião", "Auditório", "Outros" }));
+        cbTipoRecurso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Sala de Aula", "Sala de Reunião", "Auditório", "Outros" }));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Tipo:");
 
-        jButton1.setText("Pesquisar");
-
-        jButton2.setText("Salvar");
+        bExcluirRecurso.setText("Excluir");
+        bExcluirRecurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExcluirRecursoActionPerformed(evt);
+            }
+        });
 
         jInternalFrame1.setClosable(true);
         jInternalFrame1.setResizable(true);
@@ -177,9 +201,81 @@ public class GUIRecurso extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Status:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Ativo", "Inativo" }));
+        cbStatusRecurso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Ativo", "Inativo" }));
+
+        bAtualizarRecurso.setText("Atualizar");
+        bAtualizarRecurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAtualizarRecursoActionPerformed(evt);
+            }
+        });
+
+        bListarRecurso.setText("Listar");
+        bListarRecurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bListarRecursoActionPerformed(evt);
+            }
+        });
+
+        bLimparRecurso.setText("Limpar");
+        bLimparRecurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLimparRecursoActionPerformed(evt);
+            }
+        });
+
+        bPesquisarRecurso.setText("Pesquisar");
+        bPesquisarRecurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPesquisarRecursoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Descrição:");
+
+        bSalvarRecurso.setText("Salvar");
+        bSalvarRecurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvarRecursoActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Localização:");
+
+        cbLocalizacaoRecurso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Segundo Andar", "Terceiro Andar", "Quarto Andar", "Laboratórios" }));
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Quant.Lugares:");
+
+        tabelaRecurso.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tabelaRecurso.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Descrição", "Tipo", "Localização", "Status", "Quant. Lugares"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaRecurso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaRecursoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelaRecurso);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,52 +283,92 @@ public class GUIRecurso extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbStatusRecurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbTipoRecurso, 0, 115, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(tfQuantidadeOcupRecurso)
+                                        .addGap(83, 83, 83))
+                                    .addComponent(cbLocalizacaoRecurso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tfDescricaoRecurso)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(bListarRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, 0, 114, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(bLimparRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(bAtualizarRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bExcluirRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bSalvarRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tfDescricaoPesquisaRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(bPesquisarRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 179, Short.MAX_VALUE)
+                    .addGap(0, 515, Short.MAX_VALUE)
                     .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 179, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDescricaoRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cbTipoRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbLocalizacaoRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cbStatusRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(tfQuantidadeOcupRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(bListarRecurso)
+                    .addComponent(bLimparRecurso)
+                    .addComponent(bAtualizarRecurso)
+                    .addComponent(bExcluirRecurso)
+                    .addComponent(bSalvarRecurso))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bPesquisarRecurso)
+                    .addComponent(tfDescricaoPesquisaRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 49, Short.MAX_VALUE)
+                    .addGap(0, 139, Short.MAX_VALUE)
                     .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 49, Short.MAX_VALUE)))
+                    .addGap(0, 139, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -241,48 +377,193 @@ public class GUIRecurso extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    private void limparCampos()
+    {
+        tfDescricaoRecurso.setText(null);
+        cbTipoRecurso.setSelectedItem("Selecione...");
+        cbLocalizacaoRecurso.setSelectedItem("Selecione...");
+        cbStatusRecurso.setSelectedItem("Selecione...");
+        tfQuantidadeOcupRecurso.setText(null);
+
+    }//Método responsável para limpar campos do frame
+
+    private Recurso capturaDados()
+    {
+        recurso.setDs_recurso(tfDescricaoRecurso.getText());
+        recurso.setTp_recurso(cbTipoRecurso.getSelectedItem().toString());
+        recurso.setLc_recurso(cbLocalizacaoRecurso.getSelectedItem().toString());
+        recurso.setSt_usuario(cbStatusRecurso.getSelectedItem().toString());
+        recurso.setQt_ocupante(tfQuantidadeOcupRecurso.getText());
+
+        return recurso;
+    }//Método responsável para capturar dadas do frame
+
+    private void montarTabela( )
+    {
+
+        recursoDao = new RecursoDao();
+
+        ObjectSet<Recurso> listaatual = recursoDao.montarTabelaEquip();
+        String [][] tabela = new String[listaatual.size()][5];
+
+        for(int i = 0; i < listaatual.size(); i++){
+            tabela[i][0] = String.valueOf(listaatual.get(i).getDs_recurso());
+            tabela[i][1] = listaatual.get(i).getTp_recurso();
+            tabela[i][2] = listaatual.get(i).getLc_recurso();
+            tabela[i][3] = listaatual.get(i).getSt_usuario();
+            tabela[i][4] = listaatual.get(i).getQt_ocupante();
+        }
+
+        this.tabelaRecurso.setModel(
+            new DefaultTableModel(
+                tabela,
+                new String[] {"Descrição", "Tipo", "Localização", "Status", "Quant. Lugares"}
+        )
+        {
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+
+    }//Método responsável para montar tabela
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
 
       
     }//GEN-LAST:event_bSalvarActionPerformed
 
+    private void bLimparRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimparRecursoActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_bLimparRecursoActionPerformed
+
+    private void bAtualizarRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarRecursoActionPerformed
+       recurso = new Recurso();
+       recursoService = new RecursoService();
+
+       recurso = capturaDados();
+       recursoService.atualizar(recurso);
+       montarTabela();
+    }//GEN-LAST:event_bAtualizarRecursoActionPerformed
+
+    private void bListarRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bListarRecursoActionPerformed
+       montarTabela();
+    }//GEN-LAST:event_bListarRecursoActionPerformed
+
+    private void bExcluirRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirRecursoActionPerformed
+        recurso = new Recurso();
+        recursoService = new RecursoService();
+
+        recurso = capturaDados();
+        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este recurso: " + recurso.getDs_recurso(),"Cuidado",JOptionPane.YES_NO_OPTION);
+        if (x == 0) {
+
+            recursoService.excluir(recurso);
+            limparCampos();
+            this.montarTabela();
+        }else {
+            JOptionPane.showMessageDialog(null, "Nenhum recurso foi excluído...", "Excluir - Recurso", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_bExcluirRecursoActionPerformed
+
+    private void bSalvarRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarRecursoActionPerformed
+        recurso = new Recurso();
+        recursoService = new RecursoService();
+
+        recurso = capturaDados();
+        recursoService.incluir(recurso);
+        montarTabela();
+    }//GEN-LAST:event_bSalvarRecursoActionPerformed
+
+    private void bPesquisarRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarRecursoActionPerformed
+       recurso = new Recurso();
+       recursoService = new RecursoService();
+
+        recurso = recursoService.buscar(tfDescricaoPesquisaRecurso.getText());
+
+        if(recurso != null){
+            JOptionPane.showMessageDialog(null, "Recurso encontrado", "Pesquisa Recurso", JOptionPane.INFORMATION_MESSAGE);
+            tfDescricaoRecurso.setText(""+recurso.getDs_recurso());
+            cbTipoRecurso.setSelectedItem(""+recurso.getTp_recurso());
+            cbLocalizacaoRecurso.setSelectedItem(""+recurso.getLc_recurso());
+            cbStatusRecurso.setSelectedItem(""+recurso.getSt_usuario());
+            tfQuantidadeOcupRecurso.setText(""+recurso.getQt_ocupante());
+        }else{
+             JOptionPane.showMessageDialog(null, "Recurso não encontrado", "Pesquisa Recurso", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_bPesquisarRecursoActionPerformed
+
+    private void tabelaRecursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaRecursoMouseClicked
+
+        this.tfDescricaoRecurso.setText(String.valueOf(
+                this.tabelaRecurso.getModel().getValueAt(this.tabelaRecurso.getSelectedRow(), 0)));
+        this.cbTipoRecurso.setSelectedItem(String.valueOf(
+                this.tabelaRecurso.getModel().getValueAt(this.tabelaRecurso.getSelectedRow(), 1)));
+        this.cbLocalizacaoRecurso.setSelectedItem(String.valueOf(
+                this.tabelaRecurso.getModel().getValueAt(this.tabelaRecurso.getSelectedRow(), 2)));
+        this.cbStatusRecurso.setSelectedItem(String.valueOf(
+                this.tabelaRecurso.getModel().getValueAt(this.tabelaRecurso.getSelectedRow(), 3)));
+         this.tfQuantidadeOcupRecurso.setText(String.valueOf(
+                this.tabelaRecurso.getModel().getValueAt(this.tabelaRecurso.getSelectedRow(), 4)));
+
+        this.tfDescricaoRecurso.requestFocus();
+    }//GEN-LAST:event_tabelaRecursoMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bAtualizarRecurso;
+    private javax.swing.JButton bExcluirRecurso;
+    private javax.swing.JButton bLimparRecurso;
+    private javax.swing.JButton bListarRecurso;
     private javax.swing.JButton bPesquisar;
+    private javax.swing.JButton bPesquisarRecurso;
     private javax.swing.JButton bSalvar;
+    private javax.swing.JButton bSalvarRecurso;
+    private javax.swing.JComboBox cbLocalizacaoRecurso;
     private javax.swing.JComboBox cbStatus;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox cbStatusRecurso;
+    private javax.swing.JComboBox cbTipoRecurso;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JCheckBox jcbRede;
     private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lDescricao;
     private javax.swing.JLabel lStatus;
     private javax.swing.JLabel lUtilizaRede;
     private javax.swing.JPanel pDadosEquipamentos;
+    private javax.swing.JTable tabelaRecurso;
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfDescricao;
+    private javax.swing.JTextField tfDescricaoPesquisaRecurso;
+    private javax.swing.JTextField tfDescricaoRecurso;
+    private javax.swing.JTextField tfQuantidadeOcupRecurso;
     // End of variables declaration//GEN-END:variables
 
 }

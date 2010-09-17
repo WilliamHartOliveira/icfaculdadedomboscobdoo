@@ -13,26 +13,12 @@ import java.io.Serializable;
  */
 public class Recurso implements Serializable{
 
-    private int cd_recurso;
     private String ds_recurso;
-    private char id_tp_recurso;
-    private int cd_usuario;
+    private String tp_recurso;
+    private String st_usuario;
+    private String lc_recurso;
+    private String qt_ocupante;
 
-    public int getCd_recurso() {
-        return cd_recurso;
-    }
-
-    public void setCd_recurso(int cd_recurso) {
-        this.cd_recurso = cd_recurso;
-    }
-
-    public int getCd_usuario() {
-        return cd_usuario;
-    }
-
-    public void setCd_usuario(int cd_usuario) {
-        this.cd_usuario = cd_usuario;
-    }
 
     public String getDs_recurso() {
         return ds_recurso;
@@ -42,12 +28,36 @@ public class Recurso implements Serializable{
         this.ds_recurso = ds_recurso;
     }
 
-    public char getId_tp_recurso() {
-        return id_tp_recurso;
+    public String getSt_usuario() {
+        return st_usuario;
     }
 
-    public void setId_tp_recurso(char id_tp_recurso) {
-        this.id_tp_recurso = id_tp_recurso;
+    public void setSt_usuario(String st_usuario) {
+        this.st_usuario = st_usuario;
     }
-    
+
+    public String getTp_recurso() {
+        return tp_recurso;
+    }
+
+    public void setTp_recurso(String tp_recurso) {
+        this.tp_recurso = tp_recurso;
+    }
+
+    public String getLc_recurso() {
+        return lc_recurso;
+    }
+
+    public void setLc_recurso(String lc_recurso) {
+        this.lc_recurso = lc_recurso;
+    }
+
+    public String getQt_ocupante() {
+        return qt_ocupante;
+    }
+
+    public void setQt_ocupante(String qt_ocupante) {
+        this.qt_ocupante = qt_ocupante;
+    }
+
 }
