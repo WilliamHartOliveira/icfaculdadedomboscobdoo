@@ -35,7 +35,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pDadosEquipamentos" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,9 +54,13 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" pref="460" max="32767" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="lStatus" min="-2" pref="73" max="-2" attributes="0"/>
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -67,35 +71,36 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="cbStatus" min="-2" pref="123" max="-2" attributes="0"/>
+                                  <Component id="cbStatusEquipamento" min="-2" pref="123" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lUtilizaRede" min="-2" pref="74" max="-2" attributes="1"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbRede" pref="178" max="32767" attributes="0"/>
+                                  <Component id="cbRedeEquipamento" pref="178" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="tfDescricao" alignment="0" pref="383" max="32767" attributes="1"/>
-                              <Component id="tfCodigo" alignment="0" min="-2" pref="122" max="-2" attributes="1"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="bLimpar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="bListar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="bAtualizar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="bExcluir" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="bSalvar" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="tfDescricaoEquipamento" alignment="0" pref="383" max="32767" attributes="1"/>
+                              <Component id="tfCodigoEquipamento" alignment="0" min="-2" pref="122" max="-2" attributes="1"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="73" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="tfPesquisaCodigoEquipamento" pref="164" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
-                          <Component id="bPesquisar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="bPesquisarEquipamento" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="bLimparEquipamento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="bListarEquipamento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="bAtualizarEquipamento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="bExcluirEquipamento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="bSalvarEquipamento" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -106,39 +111,37 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfCodigoEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lDescricao" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfDescricao" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfDescricaoEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbStatusEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lUtilizaRede" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbRede" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="bSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bAtualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bListar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbRedeEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="bPesquisar" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tfPesquisaCodigoEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="bSalvarEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bExcluirEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bAtualizarEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bListarEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bLimparEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="bPesquisarEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfPesquisaCodigoEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="90" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="77" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -150,9 +153,9 @@
             <Property name="text" type="java.lang.String" value="C&#xf3;digo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfCodigo">
+        <Component class="javax.swing.JTextField" name="tfCodigoEquipamento">
         </Component>
-        <Component class="javax.swing.JTextField" name="tfDescricao">
+        <Component class="javax.swing.JTextField" name="tfDescricaoEquipamento">
         </Component>
         <Component class="javax.swing.JLabel" name="lDescricao">
           <Properties>
@@ -172,23 +175,23 @@
             <Property name="text" type="java.lang.String" value="Status:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="bPesquisar">
+        <Component class="javax.swing.JButton" name="bPesquisarEquipamento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bPesquisarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bPesquisarEquipamentoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bSalvar">
+        <Component class="javax.swing.JButton" name="bSalvarEquipamento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Salvar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSalvarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSalvarEquipamentoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbStatus">
+        <Component class="javax.swing.JComboBox" name="cbStatusEquipamento">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="6">
@@ -202,7 +205,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbRede">
+        <Component class="javax.swing.JComboBox" name="cbRedeEquipamento">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
@@ -213,20 +216,20 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="bExcluir">
+        <Component class="javax.swing.JButton" name="bExcluirEquipamento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bExcluirActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bExcluirEquipamentoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bAtualizar">
+        <Component class="javax.swing.JButton" name="bAtualizarEquipamento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Atualizar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAtualizarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAtualizarEquipamentoActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -291,20 +294,20 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfPesquisaCodigoEquipamento">
         </Component>
-        <Component class="javax.swing.JButton" name="bListar">
+        <Component class="javax.swing.JButton" name="bListarEquipamento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Listar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bListarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bListarEquipamentoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bLimpar">
+        <Component class="javax.swing.JButton" name="bLimparEquipamento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Limpar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bLimparActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bLimparEquipamentoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

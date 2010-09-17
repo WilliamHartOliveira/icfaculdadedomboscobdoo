@@ -12,8 +12,8 @@
 package ic.faculdadedombosco.view;
 
 import com.db4o.ObjectSet;
+import ic.faculdadedombosco.dao.EquipamentoDao;
 import ic.faculdadedombosco.model.Equipamento;
-import ic.faculdadedombosco.dao.PersistenciaDao;
 import ic.faculdadedombosco.service.EquipamentoService;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
@@ -25,9 +25,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GUIEquipamento extends javax.swing.JInternalFrame {
 
-    PersistenciaDao persistenciaDao;
-    Equipamento equipamento = null;
-    EquipamentoService equipamentosService;
+    Equipamento equipamento;
+    EquipamentoService equipamentoService;
+    EquipamentoDao equipamentoDao;
 
     /** Creates new form GUICadastroEquipamento */
     public GUIEquipamento() {
@@ -51,23 +51,23 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
         pDadosEquipamentos = new javax.swing.JPanel();
         lCodigo = new javax.swing.JLabel();
-        tfCodigo = new javax.swing.JTextField();
-        tfDescricao = new javax.swing.JTextField();
+        tfCodigoEquipamento = new javax.swing.JTextField();
+        tfDescricaoEquipamento = new javax.swing.JTextField();
         lDescricao = new javax.swing.JLabel();
         lUtilizaRede = new javax.swing.JLabel();
         lStatus = new javax.swing.JLabel();
-        bPesquisar = new javax.swing.JButton();
-        bSalvar = new javax.swing.JButton();
-        cbStatus = new javax.swing.JComboBox();
-        cbRede = new javax.swing.JComboBox();
-        bExcluir = new javax.swing.JButton();
-        bAtualizar = new javax.swing.JButton();
+        bPesquisarEquipamento = new javax.swing.JButton();
+        bSalvarEquipamento = new javax.swing.JButton();
+        cbStatusEquipamento = new javax.swing.JComboBox();
+        cbRedeEquipamento = new javax.swing.JComboBox();
+        bExcluirEquipamento = new javax.swing.JButton();
+        bAtualizarEquipamento = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaEquipamento = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         tfPesquisaCodigoEquipamento = new javax.swing.JTextField();
-        bListar = new javax.swing.JButton();
-        bLimpar = new javax.swing.JButton();
+        bListarEquipamento = new javax.swing.JButton();
+        bLimparEquipamento = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Equipamento");
@@ -86,35 +86,35 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         lStatus.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lStatus.setText("Status:");
 
-        bPesquisar.setText("Pesquisar");
-        bPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        bPesquisarEquipamento.setText("Pesquisar");
+        bPesquisarEquipamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bPesquisarActionPerformed(evt);
+                bPesquisarEquipamentoActionPerformed(evt);
             }
         });
 
-        bSalvar.setText("Salvar");
-        bSalvar.addActionListener(new java.awt.event.ActionListener() {
+        bSalvarEquipamento.setText("Salvar");
+        bSalvarEquipamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSalvarActionPerformed(evt);
+                bSalvarEquipamentoActionPerformed(evt);
             }
         });
 
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Ativo", "Inativo", "Reserva", "Emprestado", "Manutenção" }));
+        cbStatusEquipamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Ativo", "Inativo", "Reserva", "Emprestado", "Manutenção" }));
 
-        cbRede.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Sim", "Não" }));
+        cbRedeEquipamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Sim", "Não" }));
 
-        bExcluir.setText("Excluir");
-        bExcluir.addActionListener(new java.awt.event.ActionListener() {
+        bExcluirEquipamento.setText("Excluir");
+        bExcluirEquipamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bExcluirActionPerformed(evt);
+                bExcluirEquipamentoActionPerformed(evt);
             }
         });
 
-        bAtualizar.setText("Atualizar");
-        bAtualizar.addActionListener(new java.awt.event.ActionListener() {
+        bAtualizarEquipamento.setText("Atualizar");
+        bAtualizarEquipamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAtualizarActionPerformed(evt);
+                bAtualizarEquipamentoActionPerformed(evt);
             }
         });
 
@@ -145,17 +145,17 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Código:");
 
-        bListar.setText("Listar");
-        bListar.addActionListener(new java.awt.event.ActionListener() {
+        bListarEquipamento.setText("Listar");
+        bListarEquipamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bListarActionPerformed(evt);
+                bListarEquipamentoActionPerformed(evt);
             }
         });
 
-        bLimpar.setText("Limpar");
-        bLimpar.addActionListener(new java.awt.event.ActionListener() {
+        bLimparEquipamento.setText("Limpar");
+        bLimparEquipamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bLimparActionPerformed(evt);
+                bLimparEquipamentoActionPerformed(evt);
             }
         });
 
@@ -164,9 +164,12 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         pDadosEquipamentosLayout.setHorizontalGroup(
             pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pDadosEquipamentosLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pDadosEquipamentosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
                     .addGroup(pDadosEquipamentosLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,30 +178,31 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pDadosEquipamentosLayout.createSequentialGroup()
-                                .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbStatusEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lUtilizaRede, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbRede, 0, 178, Short.MAX_VALUE))
-                            .addComponent(tfDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pDadosEquipamentosLayout.createSequentialGroup()
-                                .addComponent(bLimpar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bListar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bAtualizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bExcluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bSalvar))))
+                                .addComponent(cbRedeEquipamento, 0, 178, Short.MAX_VALUE))
+                            .addComponent(tfDescricaoEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                            .addComponent(tfCodigoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pDadosEquipamentosLayout.createSequentialGroup()
+                        .addGap(144, 144, 144)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfPesquisaCodigoEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                        .addGap(140, 140, 140)
-                        .addComponent(bPesquisar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bPesquisarEquipamento))
+                    .addGroup(pDadosEquipamentosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(bLimparEquipamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bListarEquipamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bAtualizarEquipamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bExcluirEquipamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bSalvarEquipamento)))
                 .addContainerGap())
         );
         pDadosEquipamentosLayout.setVerticalGroup(
@@ -206,33 +210,32 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
             .addGroup(pDadosEquipamentosLayout.createSequentialGroup()
                 .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lCodigo)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCodigoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lDescricao)
-                    .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDescricaoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lStatus)
-                    .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbStatusEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lUtilizaRede)
-                    .addComponent(cbRede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bSalvar)
-                    .addComponent(bExcluir)
-                    .addComponent(bAtualizar)
-                    .addComponent(bListar)
-                    .addComponent(bLimpar))
+                    .addComponent(cbRedeEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bPesquisar)
-                    .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfPesquisaCodigoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)))
+                .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bSalvarEquipamento)
+                    .addComponent(bExcluirEquipamento)
+                    .addComponent(bAtualizarEquipamento)
+                    .addComponent(bListarEquipamento)
+                    .addComponent(bLimparEquipamento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(pDadosEquipamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bPesquisarEquipamento)
+                    .addComponent(tfPesquisaCodigoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -249,7 +252,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pDadosEquipamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -257,27 +260,28 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     private void limparCampos()
     {
-        tfCodigo.setText(null);
-        tfDescricao.setText(null);
-        cbStatus.setSelectedItem("Selecione...");
-        cbRede.setSelectedItem("Selecione...");
+        tfCodigoEquipamento.setText(null);
+        tfDescricaoEquipamento.setText(null);
+        cbStatusEquipamento.setSelectedItem("Selecione...");
+        cbRedeEquipamento.setSelectedItem("Selecione...");
         tfPesquisaCodigoEquipamento.setText("");
     }//Método responsável para limpar campos do frame
 
     private Equipamento capturaDados()
     {
-        equipamento = new Equipamento();
-        equipamento.setCd_equipamento(tfCodigo.getText());
-        equipamento.setDs_equipamento(tfDescricao.getText());
-        equipamento.setSt_equipamento(cbStatus.getSelectedItem().toString());
-        equipamento.setIn_cabo_rede(cbRede.getSelectedItem().toString());
+        equipamento.setCd_equipamento(tfCodigoEquipamento.getText());
+        equipamento.setDs_equipamento(tfDescricaoEquipamento.getText());
+        equipamento.setSt_equipamento(cbStatusEquipamento.getSelectedItem().toString());
+        equipamento.setIn_cabo_rede(cbRedeEquipamento.getSelectedItem().toString());
         return equipamento;
     }//Método responsável para capturar dadas do frame
 
     private void montarTabela( )
     {
 
-        ObjectSet<Equipamento> listaatual = persistenciaDao.montarTabelaEquip();
+        equipamentoDao = new EquipamentoDao();
+        
+        ObjectSet<Equipamento> listaatual = equipamentoDao.montarTabelaEquip();
         String [][] tabela = new String[listaatual.size()][4];
 
         for(int i = 0; i < listaatual.size(); i++){
@@ -307,88 +311,92 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     }//Método responsável para montar tabela
 
-    private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
+    private void bSalvarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarEquipamentoActionPerformed
+
         equipamento = new Equipamento();
-        persistenciaDao = new PersistenciaDao();
+        equipamentoService = new EquipamentoService();
+
         equipamento = capturaDados();
-        persistenciaDao.Salvar(equipamento);
-        this.montarTabela();
-        //equipamentosService.incluir(equipamento);
+        equipamentoService.incluir(equipamento);
+        montarTabela();
         limparCampos();
-    }//GEN-LAST:event_bSalvarActionPerformed
+    }//GEN-LAST:event_bSalvarEquipamentoActionPerformed
 
-    private void bPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarActionPerformed
+    private void bPesquisarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarEquipamentoActionPerformed
         equipamento = new Equipamento();
-        equipamento = persistenciaDao.Pesquisar(tfPesquisaCodigoEquipamento.getText());
+        equipamentoService = new EquipamentoService();
 
+        equipamento = equipamentoService.buscar(tfPesquisaCodigoEquipamento.getText());
+        
         if(equipamento != null){
             JOptionPane.showMessageDialog(null, "Equipamento encontrado", "Pesquisa Equipamento", JOptionPane.INFORMATION_MESSAGE);
-            tfCodigo.setText(""+equipamento.getCd_equipamento());
-            tfDescricao.setText(""+equipamento.getDs_equipamento());
-            cbStatus.setSelectedItem(""+equipamento.getSt_equipamento());
-            cbRede.setSelectedItem(""+equipamento.getIn_cabo_rede());
+            tfCodigoEquipamento.setText(""+equipamento.getCd_equipamento());
+            tfDescricaoEquipamento.setText(""+equipamento.getDs_equipamento());
+            cbStatusEquipamento.setSelectedItem(""+equipamento.getSt_equipamento());
+            cbRedeEquipamento.setSelectedItem(""+equipamento.getIn_cabo_rede());
             
         }else{
              JOptionPane.showMessageDialog(null, "Equipamento não encontrado", "Pesquisa Equipamento", JOptionPane.INFORMATION_MESSAGE);
         }
+    }//GEN-LAST:event_bPesquisarEquipamentoActionPerformed
 
+    private void bExcluirEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirEquipamentoActionPerformed
 
-    }//GEN-LAST:event_bPesquisarActionPerformed
-
-    private void bExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirActionPerformed
-
-        persistenciaDao = new PersistenciaDao();
+        equipamento = new Equipamento();
+        equipamentoService = new EquipamentoService();
 
         equipamento = capturaDados();
         int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este equipamento: " + equipamento.getCd_equipamento(),"Cuidado",JOptionPane.YES_NO_OPTION);
         if (x == 0) {
             
-            persistenciaDao.Excluir(equipamento);
+            equipamentoService.excluir(equipamento);
             limparCampos();
             this.montarTabela();
         }else {
             JOptionPane.showMessageDialog(null, "Nenhum equipamento foi excluído...", "Excluir - Equipamento", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_bExcluirActionPerformed
+    }//GEN-LAST:event_bExcluirEquipamentoActionPerformed
 
-    private void bListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bListarActionPerformed
+    private void bListarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bListarEquipamentoActionPerformed
         this.montarTabela();   
-    }//GEN-LAST:event_bListarActionPerformed
+    }//GEN-LAST:event_bListarEquipamentoActionPerformed
 
-    private void bLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimparActionPerformed
+    private void bLimparEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimparEquipamentoActionPerformed
         limparCampos();
-    }//GEN-LAST:event_bLimparActionPerformed
+    }//GEN-LAST:event_bLimparEquipamentoActionPerformed
 
     private void tabelaEquipamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEquipamentoMouseClicked
-        this.tfCodigo.setText(String.valueOf(
+        this.tfCodigoEquipamento.setText(String.valueOf(
                 this.tabelaEquipamento.getModel().getValueAt(this.tabelaEquipamento.getSelectedRow(), 0)));
-        this.tfDescricao.setText(String.valueOf(
+        this.tfDescricaoEquipamento.setText(String.valueOf(
                 this.tabelaEquipamento.getModel().getValueAt(this.tabelaEquipamento.getSelectedRow(), 1)));
-        this.cbStatus.setSelectedItem(String.valueOf(
+        this.cbStatusEquipamento.setSelectedItem(String.valueOf(
                 this.tabelaEquipamento.getModel().getValueAt(this.tabelaEquipamento.getSelectedRow(), 2)));
-        this.cbRede.setSelectedItem(String.valueOf(
+        this.cbRedeEquipamento.setSelectedItem(String.valueOf(
                 this.tabelaEquipamento.getModel().getValueAt(this.tabelaEquipamento.getSelectedRow(), 3)));
 
-        this.tfCodigo.requestFocus();
+        this.tfCodigoEquipamento.requestFocus();
     }//GEN-LAST:event_tabelaEquipamentoMouseClicked
 
-    private void bAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarActionPerformed
-        persistenciaDao = new PersistenciaDao();
+    private void bAtualizarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarEquipamentoActionPerformed
+        equipamento = new Equipamento();
+        equipamentoService = new EquipamentoService();
 
         equipamento = capturaDados();
-        persistenciaDao.alterar(equipamento);
-    }//GEN-LAST:event_bAtualizarActionPerformed
+        equipamentoService.atualizar(equipamento);
+        montarTabela();
+    }//GEN-LAST:event_bAtualizarEquipamentoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bAtualizar;
-    private javax.swing.JButton bExcluir;
-    private javax.swing.JButton bLimpar;
-    private javax.swing.JButton bListar;
-    private javax.swing.JButton bPesquisar;
-    private javax.swing.JButton bSalvar;
-    private javax.swing.JComboBox cbRede;
-    private javax.swing.JComboBox cbStatus;
+    private javax.swing.JButton bAtualizarEquipamento;
+    private javax.swing.JButton bExcluirEquipamento;
+    private javax.swing.JButton bLimparEquipamento;
+    private javax.swing.JButton bListarEquipamento;
+    private javax.swing.JButton bPesquisarEquipamento;
+    private javax.swing.JButton bSalvarEquipamento;
+    private javax.swing.JComboBox cbRedeEquipamento;
+    private javax.swing.JComboBox cbStatusEquipamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lCodigo;
@@ -397,8 +405,8 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lUtilizaRede;
     private javax.swing.JPanel pDadosEquipamentos;
     public javax.swing.JTable tabelaEquipamento;
-    private javax.swing.JTextField tfCodigo;
-    private javax.swing.JTextField tfDescricao;
+    private javax.swing.JTextField tfCodigoEquipamento;
+    private javax.swing.JTextField tfDescricaoEquipamento;
     private javax.swing.JTextField tfPesquisaCodigoEquipamento;
     // End of variables declaration//GEN-END:variables
 

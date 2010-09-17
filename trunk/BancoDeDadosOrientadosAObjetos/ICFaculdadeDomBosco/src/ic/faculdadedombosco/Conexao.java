@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package ic.faculdadedombosco.dao;
+package ic.faculdadedombosco;
 
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
@@ -14,7 +14,7 @@ import com.db4o.ObjectContainer;
  */
 public class Conexao {
 
-    private ObjectContainer db;
+    private static ObjectContainer db;
 
     public void abrirConexao(){
         db = Db4o.openFile("facdombosco.dbo");
@@ -33,6 +33,6 @@ public class Conexao {
 
     public ObjectContainer getDb()
     {
-        return this.db;
+        return db;
     }
 }

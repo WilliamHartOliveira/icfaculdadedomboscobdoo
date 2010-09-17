@@ -11,8 +11,7 @@
 
 package ic.faculdadedombosco.view;
 
-import ic.faculdadedombosco.dao.Conexao;
-import ic.faculdadedombosco.dao.PersistenciaDao;
+import ic.faculdadedombosco.Conexao;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
@@ -24,18 +23,14 @@ import javax.swing.JOptionPane;
  */
 public class GUIPrincipal extends javax.swing.JFrame {
 
-    //private Conexao conexao;
-    PersistenciaDao persistenciaDao;
+    Conexao conexao;
 
     /** Creates new form GUIPrincipal */
     public GUIPrincipal() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        persistenciaDao = new PersistenciaDao();
-        persistenciaDao.AbrirConexao();
-        //this.conexao = new Conexao();
-        //this.conexao.abrirConexao();//abrindo conexão banco db4o
-
+        conexao = new Conexao();
+        conexao.abrirConexao();
 
         // cuida para que o relório atualize sempre
         Thread time = new Thread() {
@@ -282,7 +277,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemDeMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuSairActionPerformed
-        persistenciaDao.FecharConexao();
+        conexao.fecharConexao();
         System.exit(0);
     }//GEN-LAST:event_itemDeMenuSairActionPerformed
 
@@ -323,7 +318,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemDeMenuAgendamentoActionPerformed
 
     private void itemDeMenuRelatorioDeEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeEquipamentoActionPerformed
-
          JOptionPane.showMessageDialog(null, "Módulo em construção...", "Atenção!!!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_itemDeMenuRelatorioDeEquipamentoActionPerformed
 
