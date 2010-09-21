@@ -88,6 +88,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
         itemDeMenuRelatorioDeGradeDisciplina = new javax.swing.JMenuItem();
         itemDeMenuRelatorioDeRecurso = new javax.swing.JMenuItem();
         itemDeMenuRelatorioDeUsuario = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        itemDeMenuGerenciadorUsuario = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         itemDeMenuSobre = new javax.swing.JMenuItem();
 
@@ -103,7 +105,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel2.setBounds(0, 0, 1250, 740);
         desktopPane.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        lHora.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lHora.setFont(new java.awt.Font("Tahoma", 1, 18));
         lHora.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lHora.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -178,9 +180,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         menuCadastro.add(itemDeMenuRecurso);
 
-        itemDeMenuUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        itemDeMenuUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         itemDeMenuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/usuario.png"))); // NOI18N
-        itemDeMenuUsuario.setText("Usuário");
+        itemDeMenuUsuario.setText("Requisitante");
         itemDeMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemDeMenuUsuarioActionPerformed(evt);
@@ -234,6 +236,18 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuRelatorio);
 
+        jMenu1.setText("Usuário");
+
+        itemDeMenuGerenciadorUsuario.setText("Gerenciador");
+        itemDeMenuGerenciadorUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemDeMenuGerenciadorUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(itemDeMenuGerenciadorUsuario);
+
+        menuBar.add(jMenu1);
+
         menuAjuda.setText("Ajuda");
 
         itemDeMenuSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
@@ -270,7 +284,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lHora, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-                .addGap(11, 11, 11))
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -282,11 +296,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemDeMenuSairActionPerformed
 
     private void itemDeMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuUsuarioActionPerformed
-        if((guicadusu == null) || (!guicadusu.isVisible())){
-            guicadusu = new GUIUsuario();
-            desktopPane.add(guicadusu);
-            guicadusu.setPosicao();
-            guicadusu.setVisible(true);
+        if((guirequisitante == null) || (!guirequisitante.isVisible())){
+            guirequisitante = new GUIRequisitante();
+            desktopPane.add(guirequisitante);
+            guirequisitante.setPosicao();
+            guirequisitante.setVisible(true);
         }
     }//GEN-LAST:event_itemDeMenuUsuarioActionPerformed
 
@@ -364,6 +378,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_itemDeMenuRelatorioDeAgendamentoActionPerformed
 
+    private void itemDeMenuGerenciadorUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuGerenciadorUsuarioActionPerformed
+        if((guiusuario == null) || (!guiusuario.isVisible())){
+            guiusuario = new GUIUsuario();
+            desktopPane.add(guiusuario);
+            guiusuario.setPosicao();
+            guiusuario.setVisible(true);
+        }
+    }//GEN-LAST:event_itemDeMenuGerenciadorUsuarioActionPerformed
+
     public void Calendario(){
         if((guicalendar == null) || (!guicalendar.isVisible())){
             guicalendar = new GUICalendario();
@@ -377,6 +400,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     public javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem itemDeMenuAgendamento;
     private javax.swing.JMenuItem itemDeMenuEquipamento;
+    private javax.swing.JMenuItem itemDeMenuGerenciadorUsuario;
     private javax.swing.JMenuItem itemDeMenuGradeDisciplina;
     private javax.swing.JMenuItem itemDeMenuRecurso;
     private javax.swing.JMenuItem itemDeMenuRelatorioDeAgendamento;
@@ -391,6 +415,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator itemSeparador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lHora;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuArquivo;
@@ -402,11 +427,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private GUIEquipamento guicadequip;
     private GUIMovimentacaoAgendamento guimovagend;
     private GUIRecurso guicadrec;
-    private GUIUsuario guicadusu;
-    private GUIVinUsuRec guivinusurec;
+    private GUIRequisitante guirequisitante;
     private GUISobre guisobre;
     private GUICalendario guicalendar;
     private GUIRelatorioAgendamento guirelatagend;
     private GUIGradeDisciplina guigradedisciplina;
+    private GUIUsuario guiusuario;
    
 }

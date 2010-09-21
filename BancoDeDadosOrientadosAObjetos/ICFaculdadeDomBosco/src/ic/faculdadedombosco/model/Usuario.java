@@ -5,40 +5,49 @@
 
 package ic.faculdadedombosco.model;
 
-import java.io.Serializable;
+
 
 /**
  *
  * @author Anderson
  */
-public class Usuario implements Serializable{
+public class Usuario{
 
-    private int cd_usuario;
-    private String nm_usuario;
-    private int id_tp_usuario;
+    private String nome_usuario;
+    private String usuario_usuario;
+    private String senha_usuario;
+    private String adminstrador_usuario;
 
-    public int getCd_usuario() {
-        return cd_usuario;
+    public String getNome_usuario() {
+        return nome_usuario;
     }
 
-    public void setCd_usuario(int cd_usuario) {
-        this.cd_usuario = cd_usuario;
+    public void setNome_usuario(String nome_usuario) {
+        this.nome_usuario = nome_usuario;
     }
 
-    public int getId_tp_usuario() {
-        return id_tp_usuario;
+    public String getUsuario_usuario() {
+        return usuario_usuario;
     }
 
-    public void setId_tp_usuario(int id_tp_usuario) {
-        this.id_tp_usuario = id_tp_usuario;
+    public void setUsuario_usuario(String usuario_usuario) {
+        this.usuario_usuario = usuario_usuario;
     }
 
-    public String getNm_usuario() {
-        return nm_usuario;
+    public String getSenha_usuario() {
+        return senha_usuario;
     }
 
-    public void setNm_usuario(String nm_usuario) {
-        this.nm_usuario = nm_usuario;
+    public void setSenha_usuario(String senha_usuario) {
+        this.senha_usuario = senha_usuario;
+    }
+
+    public String getAdminstrador_usuario() {
+        return adminstrador_usuario;
+    }
+
+    public void setAdminstrador_usuario(String adminstrador_usuario) {
+        this.adminstrador_usuario = adminstrador_usuario;
     }
 
 }

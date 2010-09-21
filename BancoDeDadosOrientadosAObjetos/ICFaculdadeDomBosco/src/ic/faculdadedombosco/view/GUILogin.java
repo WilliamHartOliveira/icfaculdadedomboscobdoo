@@ -132,22 +132,25 @@ public class GUILogin extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        lSistemaGerRecursos.setText("Sistema de Gerenciamento de Resursos da Faculdade");
+        lSistemaGerRecursos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lSistemaGerRecursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lSistemaGerRecursos.setText("Sistema de Gerenciamento de Resursos");
 
+        lBemVindo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lBemVindo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lBemVindo.setText("Seja bem-vindo!");
 
-        lDomBosco.setText("Dom Bosco de Porto Alegre.");
+        lDomBosco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lDomBosco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lDomBosco.setText("Faculdade Dom Bosco de Porto Alegre");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lDomBosco)
-                    .addComponent(lSistemaGerRecursos)
-                    .addComponent(lBemVindo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lBemVindo, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+            .addComponent(lSistemaGerRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+            .addComponent(lDomBosco, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +182,7 @@ public class GUILogin extends javax.swing.JFrame {
             .addGroup(pLoginLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lImagemLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(lImagemLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                     .addGroup(pLoginLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
