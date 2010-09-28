@@ -11,6 +11,9 @@
 
 package ic.faculdadedombosco.view;
 
+import ic.faculdadedombosco.dao.RequisitanteDao;
+import ic.faculdadedombosco.model.Requisitante;
+import ic.faculdadedombosco.service.RequisitanteService;
 import java.awt.Dimension;
 
 /**
@@ -19,6 +22,10 @@ import java.awt.Dimension;
  */
 public class GUIRequisitante extends javax.swing.JInternalFrame {
 
+    Requisitante requisitante;
+    RequisitanteService requisitanteService;
+    RequisitanteDao requisitanteDao;
+    
     /** Creates new form GUICadastroUsuario */
     public GUIRequisitante() {
         initComponents();
@@ -29,6 +36,8 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
         this.setLocation((d.width - this.getSize().width)/3, (d.height - this.getSize().height)/3);
         //this.setLocation(15 + (d.width - this.getSize().width) / 5, 15 + (d.height - this.getSize().height)/5);
     }
+
+
 
     /** This method is called from within the constructor to
      * initialize the form.
