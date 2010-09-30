@@ -11,10 +11,13 @@
 
 package ic.faculdadedombosco.view;
 
+import com.db4o.ObjectSet;
 import ic.faculdadedombosco.dao.RequisitanteDao;
 import ic.faculdadedombosco.model.Requisitante;
 import ic.faculdadedombosco.service.RequisitanteService;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,6 +40,61 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
         //this.setLocation(15 + (d.width - this.getSize().width) / 5, 15 + (d.height - this.getSize().height)/5);
     }
 
+    private void limparCampos()
+    {
+        tfMatriculaRequisitante.setText(null);
+        cbStatusRequisitante.setSelectedItem("Selecione...");
+        tfNomeRequisitante.setText(null);
+        cbTipoRequisitante.setSelectedItem("Selecione...");
+        tfTelefoneRequisitante.setText(null);
+        tfNomePesqRequisitante.setText(null);
+    }//Método responsável para limpar campos do frame
+
+    private Requisitante capturaDados()
+    {
+        requisitante.setRequisitante_matricula(tfMatriculaRequisitante.getText());
+        requisitante.setRequisitante_status(cbStatusRequisitante.getSelectedItem().toString());
+        requisitante.setRequisitante_nome(tfNomeRequisitante.getText());
+        requisitante.setRequisitante_tipo(cbTipoRequisitante.getSelectedItem().toString());
+        requisitante.setRequisitante_telefone(tfTelefoneRequisitante.getText());
+        return requisitante;
+    }//Método responsável para capturar dadas do frame
+
+    private void montarTabela( )
+    {
+
+        requisitanteDao = new RequisitanteDao();
+
+        ObjectSet<Requisitante> listaatual = requisitanteDao.montarTabelaEquip();
+        String [][] tabela = new String[listaatual.size()][5];
+
+        for(int i = 0; i < listaatual.size(); i++){
+            tabela[i][0] = String.valueOf(listaatual.get(i).getRequisitante_matricula());
+            tabela[i][1] = listaatual.get(i).getRequisitante_status();
+            tabela[i][2] = listaatual.get(i).getRequisitante_nome();
+            tabela[i][3] = listaatual.get(i).getRequisitante_tipo();
+            tabela[i][4] = listaatual.get(i).getRequisitante_telefone();
+        }
+
+        this.tabelaRequisitante.setModel(
+            new DefaultTableModel(
+                tabela,
+                new String[] {"Matrícula", "Status", "Nome", "Tipo", "Telefone"}
+        )
+        {
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+
+    }//Método responsável para montar tabela
 
 
     /** This method is called from within the constructor to
@@ -53,22 +111,22 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        tfNomeRequisitante = new javax.swing.JTextField();
         bExcluirRequisitante = new javax.swing.JButton();
         bSalvarRequisitante = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        cbTipoRequisitante = new javax.swing.JComboBox();
+        cbStatusRequisitante = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        tfTelefoneRequisitante = new javax.swing.JFormattedTextField();
         bLimparRequisitante = new javax.swing.JButton();
         bListarRequisitante = new javax.swing.JButton();
         bAtualizarRequisitante = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaRequisitante = new javax.swing.JTable();
         bPesquisarRequisitante = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        tfNomePesqRequisitante = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        tfMatriculaRequisitante = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setTitle("Requisitante");
@@ -88,35 +146,91 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
         jLabel4.setText("Status:");
 
         bExcluirRequisitante.setText("Excluir");
+        bExcluirRequisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExcluirRequisitanteActionPerformed(evt);
+            }
+        });
 
         bSalvarRequisitante.setText("Salvar");
+        bSalvarRequisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvarRequisitanteActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Funcionário(a)", "Professor(a)", "Aluno(a)" }));
+        cbTipoRequisitante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Funcionário(a)", "Professor(a)", "Aluno(a)" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Ativo", "Inativo" }));
+        cbStatusRequisitante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Ativo", "Inativo" }));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Telefone:");
 
+        try {
+            tfTelefoneRequisitante.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         bLimparRequisitante.setText("Limpar");
+        bLimparRequisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLimparRequisitanteActionPerformed(evt);
+            }
+        });
 
         bListarRequisitante.setText("Listar");
+        bListarRequisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bListarRequisitanteActionPerformed(evt);
+            }
+        });
 
         bAtualizarRequisitante.setText("Atualizar");
+        bAtualizarRequisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAtualizarRequisitanteActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaRequisitante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Matrícula", "Nome", "Tipo"
+                "Matrícula", "Status", "Nome", "Tipo", "Telefone"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaRequisitante.getTableHeader().setReorderingAllowed(false);
+        tabelaRequisitante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaRequisitanteMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelaRequisitante);
+        tabelaRequisitante.getColumnModel().getColumn(0).setResizable(false);
+        tabelaRequisitante.getColumnModel().getColumn(1).setResizable(false);
+        tabelaRequisitante.getColumnModel().getColumn(2).setResizable(false);
+        tabelaRequisitante.getColumnModel().getColumn(3).setResizable(false);
+        tabelaRequisitante.getColumnModel().getColumn(4).setResizable(false);
 
         bPesquisarRequisitante.setText("Pesquisar");
 
         jLabel5.setText("Nome:");
+
+        try {
+            tfMatriculaRequisitante.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,76 +240,81 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                        .addGap(59, 59, 59)
-                        .addComponent(bPesquisarRequisitante))
-                    .addComponent(jScrollPane1, 0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox2, 0, 120, Short.MAX_VALUE)))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(bLimparRequisitante)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bListarRequisitante)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bAtualizarRequisitante)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bExcluirRequisitante)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bSalvarRequisitante)
-                .addContainerGap())
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cbTipoRequisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfTelefoneRequisitante))
+                                    .addComponent(tfNomeRequisitante, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(tfMatriculaRequisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cbStatusRequisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(bLimparRequisitante)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bListarRequisitante)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bAtualizarRequisitante)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bExcluirRequisitante)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bSalvarRequisitante))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfNomePesqRequisitante, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(bPesquisarRequisitante)))
+                                .addGap(25, 25, 25)))
+                        .addContainerGap(194, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, 0, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbStatusRequisitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(tfMatriculaRequisitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNomeRequisitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(26, 26, 26)
+                    .addComponent(cbTipoRequisitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(tfTelefoneRequisitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bLimparRequisitante)
                     .addComponent(bListarRequisitante)
                     .addComponent(bAtualizarRequisitante)
                     .addComponent(bExcluirRequisitante)
                     .addComponent(bSalvarRequisitante))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bPesquisarRequisitante)
-                    .addComponent(jLabel5))
+                    .addComponent(tfNomePesqRequisitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(bPesquisarRequisitante))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -207,19 +326,75 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bSalvarRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarRequisitanteActionPerformed
+        requisitante = new Requisitante();
+        requisitanteService = new RequisitanteService();
+
+        requisitante = capturaDados();
+        requisitanteService.incluir(requisitante);
+        montarTabela();
+    }//GEN-LAST:event_bSalvarRequisitanteActionPerformed
+
+    private void bExcluirRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirRequisitanteActionPerformed
+        requisitante = new Requisitante();
+        requisitanteService = new RequisitanteService();
+
+        requisitante = capturaDados();
+        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este requisitante: " + requisitante.getRequisitante_nome(),"Cuidado",JOptionPane.YES_NO_OPTION);
+        if (x == 0) {
+            requisitanteService.excluir(requisitante);
+            limparCampos();
+            this.montarTabela();
+        }else {
+            JOptionPane.showMessageDialog(null, "Nenhum requisitante foi excluído...", "Excluir - Requisitante", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_bExcluirRequisitanteActionPerformed
+
+    private void bAtualizarRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarRequisitanteActionPerformed
+       
+       requisitante = new Requisitante();
+       requisitanteService = new RequisitanteService();
+
+       requisitante = capturaDados();
+       requisitanteService.atualizar(requisitante);
+       montarTabela();
+    }//GEN-LAST:event_bAtualizarRequisitanteActionPerformed
+
+    private void bListarRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bListarRequisitanteActionPerformed
+        montarTabela();
+    }//GEN-LAST:event_bListarRequisitanteActionPerformed
+
+    private void bLimparRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimparRequisitanteActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_bLimparRequisitanteActionPerformed
+
+    private void tabelaRequisitanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaRequisitanteMouseClicked
+        this.tfMatriculaRequisitante.setText(String.valueOf(
+                this.tabelaRequisitante.getModel().getValueAt(this.tabelaRequisitante.getSelectedRow(), 0)));
+        this.cbStatusRequisitante.setSelectedItem(String.valueOf(
+                this.tabelaRequisitante.getModel().getValueAt(this.tabelaRequisitante.getSelectedRow(), 1)));
+        this.tfNomeRequisitante.setText(String.valueOf(
+                this.tabelaRequisitante.getModel().getValueAt(this.tabelaRequisitante.getSelectedRow(), 2)));
+        this.cbTipoRequisitante.setSelectedItem(String.valueOf(
+                this.tabelaRequisitante.getModel().getValueAt(this.tabelaRequisitante.getSelectedRow(), 3)));
+        this.tfTelefoneRequisitante.setText(String.valueOf(
+                this.tabelaRequisitante.getModel().getValueAt(this.tabelaRequisitante.getSelectedRow(), 4)));
+        this.tfNomeRequisitante.requestFocus();
+    }//GEN-LAST:event_tabelaRequisitanteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -229,8 +404,8 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
     private javax.swing.JButton bListarRequisitante;
     private javax.swing.JButton bPesquisarRequisitante;
     private javax.swing.JButton bSalvarRequisitante;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox cbStatusRequisitante;
+    private javax.swing.JComboBox cbTipoRequisitante;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -239,11 +414,11 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tabelaRequisitante;
+    private javax.swing.JFormattedTextField tfMatriculaRequisitante;
+    private javax.swing.JTextField tfNomePesqRequisitante;
+    private javax.swing.JTextField tfNomeRequisitante;
+    private javax.swing.JFormattedTextField tfTelefoneRequisitante;
     // End of variables declaration//GEN-END:variables
 
 }

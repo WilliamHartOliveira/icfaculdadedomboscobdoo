@@ -1,14 +1,12 @@
 package ic.faculdadedombosco.dao;
 
-
 import ic.faculdadedombosco.Conexao;
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.model.Equipamento;
 import javax.swing.JOptionPane;
 
-/**
- *
+/*
  * @author Anderson
  */
 public class EquipamentoDao {

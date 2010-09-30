@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ic.faculdadedombosco.dao;
 
 import com.db4o.ObjectSet;
@@ -11,15 +6,13 @@ import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.model.Usuario;
 import javax.swing.JOptionPane;
 
-/**
- *
+/*
  * @author Anderson
  */
 public class UsuarioDao {
     
      private Conexao conexao;
 
-     
      public Usuario incluir(Usuario usuario)
      {
 

@@ -1,12 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ic.faculdadedombosco.model;
 
-/**
- *
+/*
  * @author Anderson
  */
 public class Requisitante {
