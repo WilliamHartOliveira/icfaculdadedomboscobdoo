@@ -1,15 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ic.faculdadedombosco.service;
 
 import ic.faculdadedombosco.dao.EquipamentoDao;
 import ic.faculdadedombosco.model.Equipamento;
 
-/**
- *
+/*
  * @author Anderson
  */
 public class EquipamentoService {

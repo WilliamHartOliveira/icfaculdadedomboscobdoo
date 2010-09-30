@@ -1,15 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ic.faculdadedombosco.service;
 
 import ic.faculdadedombosco.dao.RecursoDao;
 import ic.faculdadedombosco.model.Recurso;
 
-/**
- *
+/*
  * @author Anderson
  */
 public class RecursoService {

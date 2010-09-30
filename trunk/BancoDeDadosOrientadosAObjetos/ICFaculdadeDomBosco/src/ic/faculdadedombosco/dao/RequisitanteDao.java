@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ic.faculdadedombosco.dao;
 
 import com.db4o.ObjectSet;
@@ -11,8 +6,7 @@ import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.model.Requisitante;
 import javax.swing.JOptionPane;
 
-/**
- *
+/*
  * @author Anderson
  */
 public class RequisitanteDao {
