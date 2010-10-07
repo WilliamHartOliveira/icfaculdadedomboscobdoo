@@ -2,4 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <data xmlns="http://www.netbeans.org/ns/profiler/1" version="0.9.1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/C:/svn/icfaculdadedomboscobdoo/BancoDeDadosOrientadosAObjetos/ICFaculdadeDomBosco/src/ic/faculdadedombosco/service/RequisitanteService.java</file>
+        <file>file:/C:/svn/icfaculdadedomboscobdoo/BancoDeDadosOrientadosAObjetos/ICFaculdadeDomBosco/src/ic/faculdadedombosco/dao/RecursoDao.java</file>
+        <file>file:/C:/svn/icfaculdadedomboscobdoo/BancoDeDadosOrientadosAObjetos/ICFaculdadeDomBosco/src/ic/faculdadedombosco/dao/RequisitanteDao.java</file>
+        <file>file:/C:/svn/icfaculdadedomboscobdoo/BancoDeDadosOrientadosAObjetos/ICFaculdadeDomBosco/src/ic/faculdadedombosco/model/Requisitante.java</file>
+        <file>file:/C:/svn/icfaculdadedomboscobdoo/BancoDeDadosOrientadosAObjetos/ICFaculdadeDomBosco/src/ic/faculdadedombosco/service/RecursoService.java</file>
+        <file>file:/C:/svn/icfaculdadedomboscobdoo/BancoDeDadosOrientadosAObjetos/ICFaculdadeDomBosco/src/ic/faculdadedombosco/view/GUIRecurso.java</file>
+    </open-files>
 </project-private>
