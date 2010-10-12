@@ -7,6 +7,8 @@ package ic.faculdadedombosco.service;
 
 import ic.faculdadedombosco.dao.UsuarioDao;
 import ic.faculdadedombosco.model.Usuario;
+import ic.faculdadedombosco.view.GUIPrincipal;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,12 +40,19 @@ public class UsuarioService {
        return usuarioDao.excluir(usuario);
     }
 
-    public Usuario buscar(String nome)
+    public Usuario buscar(String nome, String senha)
     {
+        UsuarioDao usuarioDao = new UsuarioDao();
+        if(usuarioDao.buscar(nome, senha).equals(true)){
+            
+            return usuarioDao.buscar(nome, senha);
+        }else{
+            JOptionPane.showMessageDialog(null, "O usuário ou a senha estão incorretos. Tente novamente.", "Atenção!!!", JOptionPane.ERROR_MESSAGE);
+        }
 
-       UsuarioDao usuarioDao = new UsuarioDao();
+        return usuarioDao.buscar(nome, senha);
 
-       return usuarioDao.buscar(nome);
+       
     }
 
 }

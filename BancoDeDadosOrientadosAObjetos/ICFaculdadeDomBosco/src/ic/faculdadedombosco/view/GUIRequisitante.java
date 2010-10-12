@@ -334,7 +334,7 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -366,7 +366,7 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bExcluirRequisitanteActionPerformed
 
     private void bAtualizarRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarRequisitanteActionPerformed
-       
+
        requisitante = new Requisitante();
        requisitanteService = new RequisitanteService();
 

@@ -11,11 +11,11 @@ package ic.faculdadedombosco.model;
  */
 public class GradeDisciplina {
 
-    String disciplina_gradeDisciplina;
-    String curso_gradeDisciplina;
-    Recurso recurso_gradeDisciplina;
-    Requisitante professor__gradeDisciplina;
-    String status_gradeDisciplina;
+    private String disciplina_gradeDisciplina;
+    private String curso_gradeDisciplina;
+    private Recurso recurso_gradeDisciplina;
+    private Requisitante professor__gradeDisciplina;
+    private String status_gradeDisciplina;
 
     public String getCurso_gradeDisciplina() {
         return curso_gradeDisciplina;
@@ -34,7 +34,7 @@ public class GradeDisciplina {
     }
 
     public Requisitante getProfessor__gradeDisciplina() {
-        return professor__gradeDisciplina;
+        return this.professor__gradeDisciplina;
     }
 
     public void setProfessor__gradeDisciplina(Requisitante professor__gradeDisciplina) {
@@ -42,7 +42,7 @@ public class GradeDisciplina {
     }
 
     public Recurso getRecurso_gradeDisciplina() {
-        return recurso_gradeDisciplina;
+        return this.recurso_gradeDisciplina;
     }
 
     public void setRecurso_gradeDisciplina(Recurso recurso_gradeDisciplina) {

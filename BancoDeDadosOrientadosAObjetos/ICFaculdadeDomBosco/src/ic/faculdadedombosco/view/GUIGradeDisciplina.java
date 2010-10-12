@@ -16,10 +16,12 @@ import com.db4o.query.Query;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.dao.GradeDisciplinaDao;
 import ic.faculdadedombosco.model.GradeDisciplina;
+import ic.faculdadedombosco.model.Recurso;
 import ic.faculdadedombosco.model.Requisitante;
 import ic.faculdadedombosco.service.GradeDisciplinaService;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,7 +35,9 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
     GradeDisciplinaDao gradeDisciplinaDao;
     private Conexao conexao;
 
-    private ArrayList<Integer> comboIdProfessor = new ArrayList<Integer>();
+    private ArrayList<String> comboIdProfessor = new ArrayList<String>();
+    private ArrayList<String> comboIdRecurso = new ArrayList<String>();
+
 
     public GUIGradeDisciplina() {
         initComponents();
@@ -56,21 +60,17 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
     private GradeDisciplina capturaDados()
     {
-
-
         gradeDisciplina.setDisciplina_gradeDisciplina(tf_disciplina_GradeDisciplina.getText());
         gradeDisciplina.setCurso_gradeDisciplina(cb_curso_GradeDisciplina.getSelectedItem().toString());
         //gradeDisciplina.setRecurso_gradeDisciplina(cb_recurso_GradeDisciplina.getSelectedItem().toString());
-        //gradeDisciplina.setProfessor__gradeDisciplina(cb_professor_GradeDisciplina.getSelectedItem().toString());
+       // gradeDisciplina.setProfessor__gradeDisciplina(cb_professor_GradeDisciplina.getSelectedItem().toString());
         gradeDisciplina.setStatus_gradeDisciplina(cb_status_GradeDisciplina.getSelectedItem().toString());
 
-        
         return gradeDisciplina;
     }//Método responsável para capturar dadas do frame
 
     private void montarTabela( )
     {
-
         gradeDisciplinaDao = new GradeDisciplinaDao();
 
         ObjectSet<GradeDisciplina> listaatual = gradeDisciplinaDao.montarTabelaEquip();
@@ -79,9 +79,9 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
         for(int i = 0; i < listaatual.size(); i++){
             tabela[i][0] = String.valueOf(listaatual.get(i).getDisciplina_gradeDisciplina());
             tabela[i][1] = listaatual.get(i).getCurso_gradeDisciplina();
-            tabela[i][2] = listaatual.get(i).getRecurso_gradeDisciplina();
-            tabela[i][3] = listaatual.get(i).getRequisitante_tipo();
-            tabela[i][4] = listaatual.get(i).getRequisitante_telefone();
+            tabela[i][2] = listaatual.get(i).getRecurso_gradeDisciplina().getDs_recurso();
+            tabela[i][3] = listaatual.get(i).getProfessor__gradeDisciplina().getRequisitante_nome();
+            tabela[i][4] = listaatual.get(i).getStatus_gradeDisciplina();
         }
 
         this.tabela_GradeDisciplina.setModel(
@@ -106,18 +106,16 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
     private void inicializarCombosBoxs()
     {
-
-
         this.comboIdProfessor.clear();
+        this.comboIdRecurso.clear();
 
 
         this.cb_professor_GradeDisciplina.removeAllItems();
+        this.cb_recurso_GradeDisciplina.removeAllItems();
 
 
         this.inicializarProfessor();
-
-
-
+        this.inicializarRecurso();
     }
 
     private void inicializarProfessor()
@@ -131,8 +129,24 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
         while (lista.hasNext())
         {
             Requisitante req = lista.next();
-            comboIdProfessor.add((Integer.parseInt(req.getRequisitante_matricula())));
+            this.comboIdProfessor.add((req.getRequisitante_matricula()));
             this.cb_professor_GradeDisciplina.addItem(req.getRequisitante_nome());
+        }
+    }
+
+    private void inicializarRecurso()
+    {
+        conexao = new Conexao();
+        Query query = this.conexao.getDb().query();
+        query.constrain(Recurso.class);
+        query.descend("ds_recurso").orderAscending();
+        ObjectSet<Recurso> lista = query.execute();
+
+        while (lista.hasNext())
+        {
+            Recurso rec = lista.next();
+            this.comboIdRecurso.add(rec.getDs_recurso());
+            this.cb_recurso_GradeDisciplina.addItem(rec.getDs_recurso());
         }
     }
   
@@ -316,6 +330,11 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
                 "Disciplina", "Curso", "Recurso", "Professor(a)", "Status"
             }
         ));
+        tabela_GradeDisciplina.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabela_GradeDisciplinaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabela_GradeDisciplina);
 
         b_pesquisar_GradeDisciplina.setText("Pesquisar");
@@ -372,31 +391,66 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_listar_GradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_listar_GradeDisciplinaActionPerformed
-
+        montarTabela();
 }//GEN-LAST:event_b_listar_GradeDisciplinaActionPerformed
 
     private void b_limpar_GradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_limpar_GradeDisciplinaActionPerformed
-       
+       limparCampos();
 }//GEN-LAST:event_b_limpar_GradeDisciplinaActionPerformed
 
     private void b_atualizar_GradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_atualizar_GradeDisciplinaActionPerformed
-      
+       gradeDisciplina = new GradeDisciplina();
+       gradeDisciplinaService = new GradeDisciplinaService();
+
+       gradeDisciplina = capturaDados();
+       gradeDisciplinaService.atualizar(gradeDisciplina);
+       montarTabela();
 }//GEN-LAST:event_b_atualizar_GradeDisciplinaActionPerformed
 
     private void b_excluir_GradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_excluir_GradeDisciplinaActionPerformed
-       
+        gradeDisciplina = new GradeDisciplina();
+        gradeDisciplinaService = new GradeDisciplinaService();
+
+        gradeDisciplina = capturaDados();
+        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir está Disciplina: " + gradeDisciplina.getDisciplina_gradeDisciplina(),"Cuidado",JOptionPane.YES_NO_OPTION);
+        if (x == 0) {
+            gradeDisciplinaService.excluir(gradeDisciplina);
+            limparCampos();
+            this.montarTabela();
+        }else {
+            JOptionPane.showMessageDialog(null, "Nenhum requisitante foi excluído...", "Excluir - Disciplina", JOptionPane.INFORMATION_MESSAGE);
+        }
 }//GEN-LAST:event_b_excluir_GradeDisciplinaActionPerformed
 
     private void b_salvar_GradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_salvar_GradeDisciplinaActionPerformed
-        
+        gradeDisciplina = new GradeDisciplina();
+        gradeDisciplinaService = new GradeDisciplinaService();
+
+        gradeDisciplina = capturaDados();
+        gradeDisciplinaService.incluir(gradeDisciplina);
+        montarTabela();
+        limparCampos();
 }//GEN-LAST:event_b_salvar_GradeDisciplinaActionPerformed
+
+    private void tabela_GradeDisciplinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_GradeDisciplinaMouseClicked
+        this.tf_disciplina_GradeDisciplina.setText(String.valueOf(
+                this.tabela_GradeDisciplina.getModel().getValueAt(this.tabela_GradeDisciplina.getSelectedRow(), 0)));
+        this.cb_curso_GradeDisciplina.setSelectedItem(String.valueOf(
+                this.tabela_GradeDisciplina.getModel().getValueAt(this.tabela_GradeDisciplina.getSelectedRow(), 1)));
+        this.cb_recurso_GradeDisciplina.setSelectedItem(String.valueOf(
+                this.tabela_GradeDisciplina.getModel().getValueAt(this.tabela_GradeDisciplina.getSelectedRow(), 2)));
+        this.cb_professor_GradeDisciplina.setSelectedItem(String.valueOf(
+                this.tabela_GradeDisciplina.getModel().getValueAt(this.tabela_GradeDisciplina.getSelectedRow(), 3)));
+        this.cb_status_GradeDisciplina.setSelectedItem(String.valueOf(
+                this.tabela_GradeDisciplina.getModel().getValueAt(this.tabela_GradeDisciplina.getSelectedRow(), 4)));
+    }//GEN-LAST:event_tabela_GradeDisciplinaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
