@@ -11,6 +11,9 @@
 
 package ic.faculdadedombosco.view;
 
+import ic.faculdadedombosco.dao.UsuarioDao;
+import ic.faculdadedombosco.model.Usuario;
+import ic.faculdadedombosco.service.UsuarioService;
 import javax.swing.JOptionPane;
 
 
@@ -20,9 +23,13 @@ import javax.swing.JOptionPane;
  */
 public class GUILogin extends javax.swing.JFrame {
 
-    private String usuario;
-    private String senha;
+    private String user;
+    private String password;
     static GUILogin guilogin;
+
+    Usuario usuario;
+    UsuarioService usuarioService;
+    UsuarioDao usuarioDao;
 
     /** Creates new form GUILogin */
     public GUILogin() {
@@ -212,17 +219,23 @@ public class GUILogin extends javax.swing.JFrame {
 
     private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
 
-        usuario = new String (tfUsuario.getText());
-        senha = new String(tfSenha.getPassword());
+        usuario = new Usuario();
+        usuarioDao = new UsuarioDao();
+        usuarioService = new UsuarioService();
 
-        if(usuario.equals("admin") && senha.equals("admin")){
+        user = new String (tfUsuario.getText());
+        password = new String(tfSenha.getPassword());
+
+        //usuarioService.buscar(user, user);
+        //user.equals("admin") && password.equals("admin")
+        if(user.equals("admin") && password.equals("admin")){
             GUIPrincipal guiPrincipal = new GUIPrincipal();//cria uma instância de GUIPrincipal
             guiPrincipal.setLocationRelativeTo(null);//posicionam essa instância no centro do desktop
             guiPrincipal.setVisible(true);//exibem a instância
             this.setVisible(false);
         }else{
-            System.out.println(usuario);
-            System.out.println(senha);
+            System.out.println(user);
+            System.out.println(password);
             JOptionPane.showMessageDialog(null, "O usuário ou a senha estão incorretos. Tente novamente.", "Atenção!!!", JOptionPane.ERROR_MESSAGE);
             tfUsuario.setText(null);
             tfSenha.setText(null);

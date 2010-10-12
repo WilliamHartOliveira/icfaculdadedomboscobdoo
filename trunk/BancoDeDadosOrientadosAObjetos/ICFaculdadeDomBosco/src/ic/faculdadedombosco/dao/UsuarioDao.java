@@ -1,6 +1,7 @@
 package ic.faculdadedombosco.dao;
 
 import com.db4o.ObjectSet;
+import com.db4o.query.Constraint;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.model.Usuario;
@@ -61,13 +62,15 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public Usuario buscar(String nome)
+    public Usuario buscar(String nome, String senha)
     {
         conexao = new Conexao();
+        conexao.abrirConexao();
 
         Query query = conexao.getDb().query();
         query.constrain(Usuario.class);
-        query.descend("nome_usuario").constrain(nome);
+        Constraint secondConstr = query.descend("senha_usuario").constrain(senha);
+        query.descend("nome_usuario").constrain(nome).and(secondConstr);
 
         ObjectSet lista = query.execute();
 
