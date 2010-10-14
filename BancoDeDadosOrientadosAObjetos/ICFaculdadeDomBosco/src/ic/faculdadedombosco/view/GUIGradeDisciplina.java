@@ -41,6 +41,7 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
     public GUIGradeDisciplina() {
         initComponents();
+        inicializarCombosBoxs();
     }
 
     public void setPosicao(){
@@ -106,6 +107,8 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
     private void inicializarCombosBoxs()
     {
+        //this.conexao = new Conexao();
+
         this.comboIdProfessor.clear();
         this.comboIdRecurso.clear();
 
@@ -120,7 +123,7 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
     private void inicializarProfessor()
     {
-        conexao = new Conexao();
+        this.conexao = new Conexao();
         Query query = this.conexao.getDb().query();
         query.constrain(Requisitante.class);
         query.descend("requisitante_tipo").constrain("Professor(a)");
