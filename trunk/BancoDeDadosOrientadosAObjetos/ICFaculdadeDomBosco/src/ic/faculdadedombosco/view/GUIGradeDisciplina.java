@@ -63,12 +63,50 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
     {
         gradeDisciplina.setDisciplina_gradeDisciplina(tf_disciplina_GradeDisciplina.getText());
         gradeDisciplina.setCurso_gradeDisciplina(cb_curso_GradeDisciplina.getSelectedItem().toString());
-        //gradeDisciplina.setRecurso_gradeDisciplina(cb_recurso_GradeDisciplina.getSelectedItem().toString());
-       // gradeDisciplina.setProfessor__gradeDisciplina(cb_professor_GradeDisciplina.getSelectedItem().toString());
+        gradeDisciplina.setRecurso_gradeDisciplina(pesquisaRecurso(cb_recurso_GradeDisciplina.getSelectedItem().toString()));
+        gradeDisciplina.setProfessor__gradeDisciplina(pesquisaProfessor(cb_professor_GradeDisciplina.getSelectedItem().toString()));
         gradeDisciplina.setStatus_gradeDisciplina(cb_status_GradeDisciplina.getSelectedItem().toString());
 
         return gradeDisciplina;
     }//Método responsável para capturar dadas do frame
+
+    public Recurso pesquisaRecurso(String descRecurso){
+        
+        this.conexao = new Conexao();
+        Query query = this.conexao.getDb().query();
+        query.constrain(Recurso.class);
+        query.descend("ds_recurso").constrain(descRecurso);
+        ObjectSet<Recurso> lista = query.execute();
+        
+        Recurso rec = new Recurso();
+
+        while (lista.hasNext())
+        {
+            rec = lista.next();
+       
+        }
+        
+        return rec;
+    }
+
+    public Requisitante pesquisaProfessor(String nomeRequisitante){
+
+        this.conexao = new Conexao();
+        Query query = this.conexao.getDb().query();
+        query.constrain(Requisitante.class);
+        query.descend("requisitante_nome").constrain(nomeRequisitante);
+        ObjectSet<Requisitante> lista = query.execute();
+
+        Requisitante req = new Requisitante();
+
+        while (lista.hasNext())
+        {
+            req = lista.next();
+
+        }
+
+        return req;
+    }
 
     private void montarTabela( )
     {
@@ -76,7 +114,7 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
         ObjectSet<GradeDisciplina> listaatual = gradeDisciplinaDao.montarTabelaEquip();
         String [][] tabela = new String[listaatual.size()][5];
-
+        System.out.println("fhjfgdjfkg");
         for(int i = 0; i < listaatual.size(); i++){
             tabela[i][0] = String.valueOf(listaatual.get(i).getDisciplina_gradeDisciplina());
             tabela[i][1] = listaatual.get(i).getCurso_gradeDisciplina();
@@ -84,7 +122,7 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
             tabela[i][3] = listaatual.get(i).getProfessor__gradeDisciplina().getRequisitante_nome();
             tabela[i][4] = listaatual.get(i).getStatus_gradeDisciplina();
         }
-
+        System.out.println("fhjfgdjfkg");
         this.tabela_GradeDisciplina.setModel(
             new DefaultTableModel(
                 tabela,

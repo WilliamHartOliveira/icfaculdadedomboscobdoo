@@ -8,50 +8,77 @@ import java.util.Date;
  */
 public class Agendamento implements Serializable{
 
-    private int cd_agendamento;
-    private java.util.Date hr_inicial;
-    private java.util.Date hr_final;
-    private int cd_usuario;
-    private int cd_recurso;
+    private GradeDisciplina disciplina_Agendamento;
+    private Requisitante usuario_Agendamento;
+    private Recurso recurso_Agendamento;
+    private java.util.Date dataInicial_Agendamento;
+    private java.util.Date dataFinal_Agendamento;
+    private String horaInicial_Agendamento;
+    private String horaFinal_Agendamento;
+    private String observacao_Agendamento;
 
-    public int getCd_agendamento() {
-        return cd_agendamento;
+    public Date getDataFinal_Agendamento() {
+        return dataFinal_Agendamento;
     }
 
-    public void setCd_agendamento(int cd_agendamento) {
-        this.cd_agendamento = cd_agendamento;
+    public void setDataFinal_Agendamento(Date dataFinal_Agendamento) {
+        this.dataFinal_Agendamento = dataFinal_Agendamento;
     }
 
-    public int getCd_recurso() {
-        return cd_recurso;
+    public Date getDataInicial_Agendamento() {
+        return dataInicial_Agendamento;
     }
 
-    public void setCd_recurso(int cd_recurso) {
-        this.cd_recurso = cd_recurso;
+    public void setDataInicial_Agendamento(Date dataInicial_Agendamento) {
+        this.dataInicial_Agendamento = dataInicial_Agendamento;
     }
 
-    public int getCd_usuario() {
-        return cd_usuario;
+    public GradeDisciplina getDisciplina_Agendamento() {
+        return disciplina_Agendamento;
     }
 
-    public void setCd_usuario(int cd_usuario) {
-        this.cd_usuario = cd_usuario;
+    public void setDisciplina_Agendamento(GradeDisciplina disciplina_Agendamento) {
+        this.disciplina_Agendamento = disciplina_Agendamento;
     }
 
-    public Date getHr_final() {
-        return hr_final;
+    public String getHoraFinal_Agendamento() {
+        return horaFinal_Agendamento;
     }
 
-    public void setHr_final(Date hr_final) {
-        this.hr_final = hr_final;
+    public void setHoraFinal_Agendamento(String horaFinal_Agendamento) {
+        this.horaFinal_Agendamento = horaFinal_Agendamento;
     }
 
-    public Date getHr_inicial() {
-        return hr_inicial;
+    public String getHoraInicial_Agendamento() {
+        return horaInicial_Agendamento;
     }
 
-    public void setHr_inicial(Date hr_inicial) {
-        this.hr_inicial = hr_inicial;
+    public void setHoraInicial_Agendamento(String horaInicial_Agendamento) {
+        this.horaInicial_Agendamento = horaInicial_Agendamento;
     }
-    
+
+    public String getObservacao_Agendamento() {
+        return observacao_Agendamento;
+    }
+
+    public void setObservacao_Agendamento(String observacao_Agendamento) {
+        this.observacao_Agendamento = observacao_Agendamento;
+    }
+
+    public Recurso getRecurso_Agendamento() {
+        return recurso_Agendamento;
+    }
+
+    public void setRecurso_Agendamento(Recurso recurso_Agendamento) {
+        this.recurso_Agendamento = recurso_Agendamento;
+    }
+
+    public Requisitante getUsuario_Agendamento() {
+        return usuario_Agendamento;
+    }
+
+    public void setUsuario_Agendamento(Requisitante usuario_Agendamento) {
+        this.usuario_Agendamento = usuario_Agendamento;
+    }
+
 }
