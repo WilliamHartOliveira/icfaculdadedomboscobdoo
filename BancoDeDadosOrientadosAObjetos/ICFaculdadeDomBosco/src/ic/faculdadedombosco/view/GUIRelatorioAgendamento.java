@@ -12,9 +12,7 @@
 package ic.faculdadedombosco.view;
 
 import java.awt.Dimension;
-import java.beans.PropertyVetoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 /**

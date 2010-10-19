@@ -8,7 +8,6 @@ import ic.faculdadedombosco.service.EquipamentoService;
 import ic.faculdadedombosco.tables.EquipamentoTableModel;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,7 +29,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
      {
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width)/2, (d.height - this.getSize().height)/2);
-     }//Método responsável para setar posição do frame
+     }
      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -241,7 +240,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         cbStatusEquipamento.setSelectedItem("Selecione...");
         cbRedeEquipamento.setSelectedItem("Selecione...");
         tfPesquisaCodigoEquipamento.setText("");
-    }//Método responsável para limpar campos do frame
+    }
 
     private Equipamento capturaDados()
     {
@@ -250,7 +249,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         equipamento.setSt_equipamento(cbStatusEquipamento.getSelectedItem().toString());
         equipamento.setIn_cabo_rede(cbRedeEquipamento.getSelectedItem().toString());
         return equipamento;
-    }//Método responsável para capturar dadas do frame
+    }
 
     private void carregarFormulario (Equipamento equipamento) {
         tfCodigoEquipamento.setText(String.valueOf(equipamento.getCd_equipamento()));
@@ -261,8 +260,14 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     private void montarTabela( )
     {
-
         equipamentoDao = new EquipamentoDao();
+
+        ObjectSet<Equipamento> listEquipamento = equipamentoDao.montarTabelaEquip();
+
+        EquipamentoTableModel equipamentoTableModel = new EquipamentoTableModel(listEquipamento);
+        this.tabelaEquipamento.setModel(equipamentoTableModel);
+
+        /*equipamentoDao = new EquipamentoDao();
         
         ObjectSet<Equipamento> listaatual = equipamentoDao.montarTabelaEquip();
         String [][] tabela = new String[listaatual.size()][4];
@@ -290,7 +295,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
             {
                 return canEdit [columnIndex];
             }
-        });
+        });*/
 
     }//Método responsável para montar tabela
 
@@ -330,29 +335,22 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
         equipamento = capturaDados();
         int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este equipamento: " + equipamento.getCd_equipamento(),"Cuidado",JOptionPane.YES_NO_OPTION);
-        if (x == 0) {
-            
+        if (x == 0){
             equipamentoService.excluir(equipamento);
             limparCampos();
-            //this.montarTabela();
+            this.tabelaEquipamento.setModel(new EquipamentoTableModel(new ArrayList<Equipamento>()));
         }else {
             JOptionPane.showMessageDialog(null, "Nenhum equipamento foi excluído...", "Excluir - Equipamento", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_bExcluirEquipamentoActionPerformed
 
     private void bListarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bListarEquipamentoActionPerformed
-        //this.montarTabela();
-        equipamentoDao = new EquipamentoDao();
-
-        ObjectSet<Equipamento> listEquipamento = equipamentoDao.montarTabelaEquip();
-
-        EquipamentoTableModel equipamentoTableModel = new EquipamentoTableModel(listEquipamento);
-        this.tabelaEquipamento.setModel(equipamentoTableModel);
+        montarTabela();
     }//GEN-LAST:event_bListarEquipamentoActionPerformed
 
     private void bLimparEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimparEquipamentoActionPerformed
         limparCampos();
-         this.tabelaEquipamento.setModel(new EquipamentoTableModel(new ArrayList<Equipamento>()));
+        this.tabelaEquipamento.setModel(new EquipamentoTableModel(new ArrayList<Equipamento>()));
     }//GEN-LAST:event_bLimparEquipamentoActionPerformed
 
     private void tabelaEquipamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEquipamentoMouseClicked
@@ -380,6 +378,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
         equipamento = capturaDados();
         equipamentoService.atualizar(equipamento);
+
         montarTabela();
     }//GEN-LAST:event_bAtualizarEquipamentoActionPerformed
 
