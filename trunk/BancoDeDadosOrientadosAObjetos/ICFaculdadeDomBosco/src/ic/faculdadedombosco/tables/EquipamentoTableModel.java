@@ -43,10 +43,10 @@ public class EquipamentoTableModel extends AbstractTableModel{
 
         switch (columnIndex) {
             case 0:
-                value = equipamento.getCd_equipamento();
+                value = equipamento.getCdEquipamento();
                 break;
             case 1:
-                value = equipamento.getDs_equipamento();
+                value = equipamento.getDsEquipamento();
                 break;
             default:
                 break;

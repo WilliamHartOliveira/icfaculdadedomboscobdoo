@@ -9,12 +9,7 @@ import ic.faculdadedombosco.tables.EquipamentoTableModel;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Anderson
- */
 public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     Equipamento equipamento;
@@ -244,18 +239,18 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     private Equipamento capturaDados()
     {
-        equipamento.setCd_equipamento(tfCodigoEquipamento.getText());
-        equipamento.setDs_equipamento(tfDescricaoEquipamento.getText());
-        equipamento.setSt_equipamento(cbStatusEquipamento.getSelectedItem().toString());
-        equipamento.setIn_cabo_rede(cbRedeEquipamento.getSelectedItem().toString());
+        equipamento.setCdEquipamento(tfCodigoEquipamento.getText());
+        equipamento.setDsEquipamento(tfDescricaoEquipamento.getText());
+        equipamento.setStEquipamento(cbStatusEquipamento.getSelectedItem().toString());
+        equipamento.setInCaboRede(cbRedeEquipamento.getSelectedItem().toString());
         return equipamento;
     }
 
     private void carregarFormulario (Equipamento equipamento) {
-        tfCodigoEquipamento.setText(String.valueOf(equipamento.getCd_equipamento()));
-        tfDescricaoEquipamento.setText(equipamento.getDs_equipamento());
-        cbStatusEquipamento.setSelectedItem(equipamento.getSt_equipamento());
-        cbRedeEquipamento.setSelectedItem(equipamento.getIn_cabo_rede());
+        tfCodigoEquipamento.setText(String.valueOf(equipamento.getCdEquipamento()));
+        tfDescricaoEquipamento.setText(equipamento.getDsEquipamento());
+        cbStatusEquipamento.setSelectedItem(equipamento.getStEquipamento());
+        cbRedeEquipamento.setSelectedItem(equipamento.getInCaboRede());
     }
 
     private void montarTabela( )
@@ -266,38 +261,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
         EquipamentoTableModel equipamentoTableModel = new EquipamentoTableModel(listEquipamento);
         this.tabelaEquipamento.setModel(equipamentoTableModel);
-
-        /*equipamentoDao = new EquipamentoDao();
-        
-        ObjectSet<Equipamento> listaatual = equipamentoDao.montarTabelaEquip();
-        String [][] tabela = new String[listaatual.size()][4];
-
-        for(int i = 0; i < listaatual.size(); i++){
-            tabela[i][0] = String.valueOf(listaatual.get(i).getCd_equipamento());
-            tabela[i][1] = listaatual.get(i).getDs_equipamento();
-            tabela[i][2] = listaatual.get(i).getSt_equipamento();
-            tabela[i][3] = listaatual.get(i).getIn_cabo_rede();
-        }
-
-        this.tabelaEquipamento.setModel(
-            new DefaultTableModel(
-                tabela,
-                new String[] {"Código", "Descrição", "Status", "Rede"}
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
-                false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
-                return canEdit [columnIndex];
-            }
-        });*/
-
-    }//Método responsável para montar tabela
+    }
 
     private void bSalvarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarEquipamentoActionPerformed
 
@@ -306,7 +270,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
         equipamento = capturaDados();
         equipamentoService.incluir(equipamento);
-        //montarTabela();
+        montarTabela();
         limparCampos();
     }//GEN-LAST:event_bSalvarEquipamentoActionPerformed
 
@@ -318,10 +282,10 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         
         if(equipamento != null){
             JOptionPane.showMessageDialog(null, "Equipamento encontrado", "Pesquisa Equipamento", JOptionPane.INFORMATION_MESSAGE);
-            tfCodigoEquipamento.setText(""+equipamento.getCd_equipamento());
-            tfDescricaoEquipamento.setText(""+equipamento.getDs_equipamento());
-            cbStatusEquipamento.setSelectedItem(""+equipamento.getSt_equipamento());
-            cbRedeEquipamento.setSelectedItem(""+equipamento.getIn_cabo_rede());
+            tfCodigoEquipamento.setText(""+equipamento.getCdEquipamento());
+            tfDescricaoEquipamento.setText(""+equipamento.getDsEquipamento());
+            cbStatusEquipamento.setSelectedItem(""+equipamento.getStEquipamento());
+            cbRedeEquipamento.setSelectedItem(""+equipamento.getInCaboRede());
             
         }else{
              JOptionPane.showMessageDialog(null, "Equipamento não encontrado", "Pesquisa Equipamento", JOptionPane.INFORMATION_MESSAGE);
@@ -334,7 +298,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         equipamentoService = new EquipamentoService();
 
         equipamento = capturaDados();
-        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este equipamento: " + equipamento.getCd_equipamento(),"Cuidado",JOptionPane.YES_NO_OPTION);
+        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este equipamento: " + equipamento.getCdEquipamento(),"Cuidado",JOptionPane.YES_NO_OPTION);
         if (x == 0){
             equipamentoService.excluir(equipamento);
             limparCampos();
@@ -354,15 +318,6 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bLimparEquipamentoActionPerformed
 
     private void tabelaEquipamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEquipamentoMouseClicked
-        /*this.tfCodigoEquipamento.setText(String.valueOf(
-                this.tabelaEquipamento.getModel().getValueAt(this.tabelaEquipamento.getSelectedRow(), 0)));
-        this.tfDescricaoEquipamento.setText(String.valueOf(
-                this.tabelaEquipamento.getModel().getValueAt(this.tabelaEquipamento.getSelectedRow(), 1)));
-        this.cbStatusEquipamento.setSelectedItem(String.valueOf(
-                this.tabelaEquipamento.getModel().getValueAt(this.tabelaEquipamento.getSelectedRow(), 2)));
-        this.cbRedeEquipamento.setSelectedItem(String.valueOf(
-                this.tabelaEquipamento.getModel().getValueAt(this.tabelaEquipamento.getSelectedRow(), 3)));
-*/
         if (this.tabelaEquipamento.getSelectedRow() != -1) {
 
             EquipamentoTableModel equipamentoTableModel = (EquipamentoTableModel)this.tabelaEquipamento.getModel();
