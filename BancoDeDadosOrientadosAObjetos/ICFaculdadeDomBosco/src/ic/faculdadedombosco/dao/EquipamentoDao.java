@@ -4,6 +4,8 @@ import ic.faculdadedombosco.Conexao;
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.model.Equipamento;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /*
@@ -35,13 +37,13 @@ public class EquipamentoDao {
 
         Query query = conexao.getDb().query();
         query.constrain(Equipamento.class);
-        query.descend("cd_equipamento").constrain(equipamento.getCd_equipamento());
+        query.descend("cdEquipamento").constrain(equipamento.getCdEquipamento());
 
         Equipamento equip = (Equipamento) query.execute().get(0);
-        equip.setCd_equipamento(equipamento.getCd_equipamento());
-        equip.setDs_equipamento(equipamento.getDs_equipamento());
-        equip.setIn_cabo_rede(equipamento.getIn_cabo_rede());
-        equip.setSt_equipamento(equipamento.getSt_equipamento());
+        equip.setCdEquipamento(equipamento.getCdEquipamento());
+        equip.setDsEquipamento(equipamento.getDsEquipamento());
+        equip.setInCaboRede(equipamento.getInCaboRede());
+        equip.setStEquipamento(equipamento.getStEquipamento());
         conexao.getDb().store(equip);
         conexao.getDb().commit();
 
@@ -66,7 +68,7 @@ public class EquipamentoDao {
 
         Query query = conexao.getDb().query();
         query.constrain(Equipamento.class);
-        query.descend("cd_equipamento").constrain(codigo);
+        query.descend("cdEquipamento").constrain(codigo);
 
         ObjectSet lista = query.execute();
 
@@ -84,8 +86,27 @@ public class EquipamentoDao {
 
         Query query = conexao.getDb().query();
         query.constrain(Equipamento.class);
-        query.descend("cd_equipamento").orderAscending();
+        query.descend("cdEquipamento").orderAscending();
         ObjectSet<Equipamento> lista = query.execute();
+
+        return lista;
+    }
+
+
+    public List<Equipamento> listarEquip()
+    {
+        conexao = new Conexao();
+        List<Equipamento> lista=new ArrayList();
+        Query consulta= conexao.getDb().query();
+        consulta.constrain(Equipamento.class);
+        consulta.descend("cdEquipamento").orderAscending();
+
+        ObjectSet resultado=consulta.execute();
+
+        while(resultado.hasNext())
+        {
+              lista.add((Equipamento)resultado.next());
+        }
 
         return lista;
     }
