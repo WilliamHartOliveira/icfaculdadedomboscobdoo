@@ -80,22 +80,18 @@ public class GUILogin extends javax.swing.JFrame {
         pLogindadosLayout.setHorizontalGroup(
             pLogindadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pLogindadosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pLogindadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lUsuario)
+                    .addComponent(lSenha))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pLogindadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pLogindadosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pLogindadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lUsuario)
-                            .addComponent(lSenha))
+                        .addComponent(bOk, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pLogindadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tfSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                            .addComponent(tfUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pLogindadosLayout.createSequentialGroup()
-                        .addContainerGap(163, Short.MAX_VALUE)
-                        .addComponent(bTrocarSenha))
-                    .addGroup(pLogindadosLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(bOk)))
+                        .addComponent(bTrocarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                    .addComponent(tfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pLogindadosLayout.setVerticalGroup(
@@ -110,10 +106,10 @@ public class GUILogin extends javax.swing.JFrame {
                     .addComponent(lSenha)
                     .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bOk)
-                .addGap(11, 11, 11)
-                .addComponent(bTrocarSenha)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addGroup(pLogindadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bOk)
+                    .addComponent(bTrocarSenha))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         lImagemLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -121,15 +117,15 @@ public class GUILogin extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        lSistemaGerRecursos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lSistemaGerRecursos.setFont(new java.awt.Font("Tahoma", 0, 12));
         lSistemaGerRecursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lSistemaGerRecursos.setText("Sistema de Gerenciamento de Resursos");
 
-        lBemVindo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lBemVindo.setFont(new java.awt.Font("Tahoma", 1, 14));
         lBemVindo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lBemVindo.setText("Seja bem-vindo!");
 
-        lDomBosco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lDomBosco.setFont(new java.awt.Font("Tahoma", 0, 12));
         lDomBosco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lDomBosco.setText("Faculdade Dom Bosco de Porto Alegre");
 
@@ -175,7 +171,7 @@ public class GUILogin extends javax.swing.JFrame {
                     .addGroup(pLoginLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(pLogindados, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))
+                        .addComponent(pLogindados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

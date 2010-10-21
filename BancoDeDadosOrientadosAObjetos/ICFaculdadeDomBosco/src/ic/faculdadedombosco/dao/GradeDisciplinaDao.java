@@ -5,7 +5,10 @@ import com.db4o.query.Query;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.model.GradeDisciplina;
 import javax.swing.JOptionPane;
-
+import ic.faculdadedombosco.Conexao;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 /*
  * @author Anderson
  */
@@ -87,6 +90,24 @@ public class GradeDisciplinaDao {
         query.constrain(GradeDisciplina.class);
         query.descend("curso_gradeDisciplina").orderAscending();
         ObjectSet<GradeDisciplina> lista = query.execute();
+
+        return lista;
+    }
+
+    public List<GradeDisciplina> listarGradeDisciplina()
+    {
+        oConexao = new Conexao();
+        List<GradeDisciplina> lista=new ArrayList();
+        Query consulta= oConexao.getDb().query();
+        consulta.constrain(GradeDisciplina.class);
+        consulta.descend("disciplina_gradeDisciplina").orderAscending();
+
+        ObjectSet resultado=consulta.execute();
+
+        while(resultado.hasNext())
+        {
+              lista.add((GradeDisciplina)resultado.next());
+        }
 
         return lista;
     }

@@ -1,14 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * GUIUsuario.java
- *
- * Created on 20/09/2010, 16:07:48
- */
-
 package ic.faculdadedombosco.view;
 
 import com.db4o.ObjectSet;
@@ -19,10 +8,11 @@ import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
+/*
  * @author Anderson
+ * @author William
  */
+
 public class GUIUsuario extends javax.swing.JInternalFrame {
 
     Usuario usuario;

@@ -1,30 +1,38 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * GUIAgendamento.java
- *
- * Created on 04/08/2010, 23:47:08
- */
-
 package ic.faculdadedombosco.view;
 
+import com.db4o.ObjectSet;
+import com.db4o.query.Query;
 import com.sun.java.swing.plaf.nimbus.DesktopPanePainter;
+import ic.faculdadedombosco.Conexao;
+import ic.faculdadedombosco.dao.AgendamentoDao;
+import ic.faculdadedombosco.model.Agendamento;
+import ic.faculdadedombosco.model.GradeDisciplina;
+import ic.faculdadedombosco.model.Recurso;
+import ic.faculdadedombosco.model.Requisitante;
+import ic.faculdadedombosco.service.AgendamentoService;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
+/*
  * @author Anderson
+ * @author William
  */
 public class GUIAgendamento extends javax.swing.JInternalFrame {
 
+    Agendamento oAgendamento;
+    AgendamentoService oAgendamentoService;
+    AgendamentoDao oAgendamentoDao;
+    private Conexao oConexao;
 
+    private ArrayList<String> comboIdDisciplina = new ArrayList<String>();
+    private ArrayList<String> comboIdRecurso = new ArrayList<String>();
+    private ArrayList<String> comboIdProfessor = new ArrayList<String>();
 
-    /** Creates new form GUIAgendamento */
     public GUIAgendamento() {
         initComponents();
+        inicializarCombosBoxs();
     }
 
     public void setPosicao(){
@@ -474,6 +482,68 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_bDataFinalPesquisaActionPerformed
 
+    private void inicializarCombosBoxs()
+    {
+        this.comboIdDisciplina.clear();
+        this.comboIdProfessor.clear();
+        this.comboIdRecurso.clear();
+
+        this.cbDisciplinaAgendamento.removeAllItems();
+        this.cbUsuarioAgendamento.removeAllItems();
+        this.cbRecursoAgendamento.removeAllItems();
+
+        this.inicializarDisciplina();
+        this.inicializarProfessor();
+        this.inicializarRecurso();
+    }
+
+    private void inicializarProfessor()
+    {
+        this.oConexao = new Conexao();
+        Query query = this.oConexao.getDb().query();
+        query.constrain(Requisitante.class);
+        query.descend("requisitante_tipo").constrain("Professor(a)");
+        ObjectSet<Requisitante> lista = query.execute();
+
+        while (lista.hasNext())
+        {
+            Requisitante req = lista.next();
+            this.comboIdProfessor.add((req.getRequisitante_matricula()));
+            this.cbUsuarioAgendamento.addItem(req.getRequisitante_nome());
+        }
+    }
+
+    private void inicializarRecurso()
+    {
+        this.oConexao = new Conexao();
+        Query query = this.oConexao.getDb().query();
+        query.constrain(Recurso.class);
+        query.descend("ds_recurso").orderAscending();
+        ObjectSet<Recurso> lista = query.execute();
+
+        while (lista.hasNext())
+        {
+            Recurso rec = lista.next();
+            this.comboIdRecurso.add(rec.getDs_recurso());
+            this.cbRecursoAgendamento.addItem(rec.getDs_recurso());
+        }
+    }
+
+    private void inicializarDisciplina()
+    {
+        this.oConexao = new Conexao();
+        Query query = this.oConexao.getDb().query();
+        query.constrain(GradeDisciplina.class);
+        query.descend("disciplina_gradeDisciplina").orderAscending();
+        ObjectSet<GradeDisciplina> lista = query.execute();
+
+        while (lista.hasNext())
+        {
+            GradeDisciplina grd = lista.next();
+            this.comboIdDisciplina.add((grd.getDisciplina_gradeDisciplina()));
+            this.cbDisciplinaAgendamento.addItem(grd.getDisciplina_gradeDisciplina());
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
