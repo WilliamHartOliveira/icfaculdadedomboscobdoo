@@ -7,32 +7,32 @@ import ic.faculdadedombosco.model.GradeDisciplina;
 
 public class GradeDisciplinaService {
 
-    public GradeDisciplina incluir(GradeDisciplina gradeDisciplina)
+    public GradeDisciplina incluir(GradeDisciplina oGradeDisciplina)
     {
-       GradeDisciplinaDao gradeDisciplinaDao = new GradeDisciplinaDao();
+       GradeDisciplinaDao oGradeDisciplinaDao = new GradeDisciplinaDao();
 
-       return gradeDisciplinaDao.incluir(gradeDisciplina);
+       return oGradeDisciplinaDao.incluir(oGradeDisciplina);
     }
 
-    public GradeDisciplina atualizar(GradeDisciplina gradeDisciplina)
+    public GradeDisciplina atualizar(GradeDisciplina oGradeDisciplina)
     {
-       GradeDisciplinaDao gradeDisciplinaDao = new GradeDisciplinaDao();
+       GradeDisciplinaDao oGradeDisciplinaDao = new GradeDisciplinaDao();
 
-       return gradeDisciplinaDao.atualizar(gradeDisciplina);
+       return oGradeDisciplinaDao.atualizar(oGradeDisciplina);
     }
 
-    public GradeDisciplina excluir(GradeDisciplina gradeDisciplina)
+    public GradeDisciplina excluir(GradeDisciplina oGradeDisciplina)
     {
-       GradeDisciplinaDao gradeDisciplinaDao = new GradeDisciplinaDao();
+       GradeDisciplinaDao oGradeDisciplinaDao = new GradeDisciplinaDao();
 
-       return gradeDisciplinaDao.excluir(gradeDisciplina);
+       return oGradeDisciplinaDao.excluir(oGradeDisciplina);
     }
 
     public GradeDisciplina buscar(String curso)
     {
-       GradeDisciplinaDao gradeDisciplinaDao = new GradeDisciplinaDao();
+       GradeDisciplinaDao oGradeDisciplinaDao = new GradeDisciplinaDao();
 
-       return gradeDisciplinaDao.buscar(curso);
+       return oGradeDisciplinaDao.buscar(curso);
     }
 
 }

@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ic.faculdadedombosco.dao;
 
 import com.db4o.ObjectSet;
@@ -11,35 +6,33 @@ import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.model.GradeDisciplina;
 import javax.swing.JOptionPane;
 
-/**
- *
+/*
  * @author Anderson
  */
 public class GradeDisciplinaDao {
 
-    private Conexao conexao;
+    private Conexao oConexao;
 
     public GradeDisciplina incluir(GradeDisciplina gradeDisciplina)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
         try{
-            conexao.getDb().store(gradeDisciplina);
-            conexao.getDb().commit();
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso...", "Informar", JOptionPane.INFORMATION_MESSAGE);
+            oConexao.getDb().store(gradeDisciplina);
+            oConexao.getDb().commit();
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso.", "Informar", JOptionPane.INFORMATION_MESSAGE);
         }
         catch(Exception ex){
-            System.out.println("Erro ao salvar Disciplina!!!\n"+ex);
-            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto...\n"+ex, "Atenção!!!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto.\n"+ex, "Atenção!", JOptionPane.ERROR_MESSAGE);
         }
         return gradeDisciplina;
     }
 
     public GradeDisciplina atualizar(GradeDisciplina gradeDisciplina)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(GradeDisciplina.class);
         query.descend("curso_gradeDisciplina").constrain(gradeDisciplina.getCurso_gradeDisciplina());
 
@@ -51,29 +44,29 @@ public class GradeDisciplinaDao {
         graddisc.setProfessor__gradeDisciplina(gradeDisciplina.getProfessor__gradeDisciplina());
         graddisc.setStatus_gradeDisciplina(gradeDisciplina.getStatus_gradeDisciplina());
 
-        conexao.getDb().store(graddisc);
-        conexao.getDb().commit();
+        oConexao.getDb().store(graddisc);
+        oConexao.getDb().commit();
 
         return gradeDisciplina;
     }
 
     public GradeDisciplina excluir(GradeDisciplina gradeDisciplina)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        ObjectSet<GradeDisciplina> lista = conexao.getDb().get(gradeDisciplina);
+        ObjectSet<GradeDisciplina> lista = oConexao.getDb().get(gradeDisciplina);
         GradeDisciplina graddisc = lista.next();
-        conexao.getDb().delete(graddisc);
-        conexao.getDb().commit();
+        oConexao.getDb().delete(graddisc);
+        oConexao.getDb().commit();
 
         return gradeDisciplina;
     }
 
     public GradeDisciplina buscar(String curso)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(GradeDisciplina.class);
         query.descend("curso_gradeDisciplina").constrain(curso);
 
@@ -88,9 +81,9 @@ public class GradeDisciplinaDao {
 
     public ObjectSet<GradeDisciplina> montarTabelaEquip()
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(GradeDisciplina.class);
         query.descend("curso_gradeDisciplina").orderAscending();
         ObjectSet<GradeDisciplina> lista = query.execute();

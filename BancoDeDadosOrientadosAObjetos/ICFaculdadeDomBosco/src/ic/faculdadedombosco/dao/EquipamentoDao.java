@@ -13,29 +13,28 @@ import javax.swing.JOptionPane;
  */
 public class EquipamentoDao {
 
-    private Conexao conexao;
+    private Conexao oConexao;
     
     public Equipamento incluir(Equipamento equipamento)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
         try{
-            conexao.getDb().store(equipamento);
-            conexao.getDb().commit();
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso...", "Informar", JOptionPane.INFORMATION_MESSAGE);
+            oConexao.getDb().store(equipamento);
+            oConexao.getDb().commit();
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso.", "Informar", JOptionPane.INFORMATION_MESSAGE);
         }
-        catch(Exception ex){
-            System.out.println("Erro ao salvar o equipamento!!!\n"+ex);
-            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto...\n"+ex, "Atenção!!!", JOptionPane.ERROR_MESSAGE);
+        catch(Exception ex){            
+            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto.\n"+ex, "Atenção!", JOptionPane.ERROR_MESSAGE);
         }
         return equipamento;
     }
 
     public Equipamento atualizar(Equipamento equipamento)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Equipamento.class);
         query.descend("cdEquipamento").constrain(equipamento.getCdEquipamento());
 
@@ -44,29 +43,29 @@ public class EquipamentoDao {
         equip.setDsEquipamento(equipamento.getDsEquipamento());
         equip.setInCaboRede(equipamento.getInCaboRede());
         equip.setStEquipamento(equipamento.getStEquipamento());
-        conexao.getDb().store(equip);
-        conexao.getDb().commit();
+        oConexao.getDb().store(equip);
+        oConexao.getDb().commit();
 
         return equipamento;
     }
 
     public Equipamento excluir(Equipamento equipamento)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        ObjectSet<Equipamento> lista = conexao.getDb().get(equipamento);
+        ObjectSet<Equipamento> lista = oConexao.getDb().get(equipamento);
         Equipamento equipamento1 = lista.next();
-        conexao.getDb().delete(equipamento1);
-        conexao.getDb().commit();
+        oConexao.getDb().delete(equipamento1);
+        oConexao.getDb().commit();
 
         return equipamento;
     }
 
     public Equipamento buscar(String codigo)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Equipamento.class);
         query.descend("cdEquipamento").constrain(codigo);
 
@@ -82,9 +81,9 @@ public class EquipamentoDao {
 
     public ObjectSet<Equipamento> montarTabelaEquip()
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Equipamento.class);
         query.descend("cdEquipamento").orderAscending();
         ObjectSet<Equipamento> lista = query.execute();
@@ -95,9 +94,9 @@ public class EquipamentoDao {
 
     public List<Equipamento> listarEquip()
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
         List<Equipamento> lista=new ArrayList();
-        Query consulta= conexao.getDb().query();
+        Query consulta= oConexao.getDb().query();
         consulta.constrain(Equipamento.class);
         consulta.descend("cdEquipamento").orderAscending();
 

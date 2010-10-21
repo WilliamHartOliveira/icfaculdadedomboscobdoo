@@ -8,36 +8,36 @@ import ic.faculdadedombosco.model.Agendamento;
  */
 public class AgendamentoService {
 
-    public Agendamento incluir(Agendamento agendamento)
+    public Agendamento incluir(Agendamento oAgendamento)
     {
 
-        AgendamentoDao agendamentoDao = new AgendamentoDao();
+        AgendamentoDao oAgendamentoDao = new AgendamentoDao();
 
-        return agendamentoDao.incluir(agendamento);
+        return oAgendamentoDao.incluir(oAgendamento);
     }
 
-    public Agendamento atualizar(Agendamento agendamento)
+    public Agendamento atualizar(Agendamento oAgendamento)
     {
 
-        AgendamentoDao agendamentoDao = new AgendamentoDao();
+        AgendamentoDao oAgendamentoDao = new AgendamentoDao();
 
-        return agendamentoDao.atualizar(agendamento);
+        return oAgendamentoDao.atualizar(oAgendamento);
     }
 
-    public Agendamento excluir(Agendamento agendamento)
+    public Agendamento excluir(Agendamento oAgendamento)
     {
 
-        AgendamentoDao agendamentoDao = new AgendamentoDao();
+        AgendamentoDao oAgendamentoDao = new AgendamentoDao();
 
-        return agendamentoDao.excluir(agendamento);
+        return oAgendamentoDao.excluir(oAgendamento);
     }
 
     public Agendamento buscar(String dataInicial, String dataFinal)
     {
 
-        AgendamentoDao agendamentoDao = new AgendamentoDao();
+        AgendamentoDao oAgendamentoDao = new AgendamentoDao();
 
-        return agendamentoDao.buscar(dataInicial, dataFinal);
+        return oAgendamentoDao.buscar(dataInicial, dataFinal);
     }
 
 }

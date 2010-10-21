@@ -1,56 +1,49 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ic.faculdadedombosco.service;
 
 import ic.faculdadedombosco.dao.UsuarioDao;
 import ic.faculdadedombosco.model.Usuario;
-import ic.faculdadedombosco.view.GUIPrincipal;
 import javax.swing.JOptionPane;
 
-/**
- *
+/*
  * @author Anderson
  */
 public class UsuarioService {
 
-    public Usuario incluir(Usuario usuario)
+    public Usuario incluir(Usuario oUsuario)
     {
 
-       UsuarioDao usuarioDao = new UsuarioDao();
+       UsuarioDao oUsuarioDao = new UsuarioDao();
 
-       return usuarioDao.incluir(usuario);
+       return oUsuarioDao.incluir(oUsuario);
     }
 
-    public Usuario atualizar(Usuario usuario)
+    public Usuario atualizar(Usuario oUsuario)
     {
 
-       UsuarioDao usuarioDao = new UsuarioDao();
+       UsuarioDao oUsuarioDao = new UsuarioDao();
 
-       return usuarioDao.atualizar(usuario);
+       return oUsuarioDao.atualizar(oUsuario);
     }
 
-    public Usuario excluir(Usuario usuario)
+    public Usuario excluir(Usuario oUsuario)
     {
 
-       UsuarioDao usuarioDao = new UsuarioDao();
+       UsuarioDao oUsuarioDao = new UsuarioDao();
 
-       return usuarioDao.excluir(usuario);
+       return oUsuarioDao.excluir(oUsuario);
     }
 
     public Usuario buscar(String nome, String senha)
     {
-        UsuarioDao usuarioDao = new UsuarioDao();
-        if(usuarioDao.buscar(nome, senha).equals(true)){
+        UsuarioDao oUsuarioDao = new UsuarioDao();
+        if(oUsuarioDao.buscar(nome, senha).equals(true)){
             
-            return usuarioDao.buscar(nome, senha);
+            return oUsuarioDao.buscar(nome, senha);
         }else{
             JOptionPane.showMessageDialog(null, "O usuário ou a senha estão incorretos. Tente novamente.", "Atenção!!!", JOptionPane.ERROR_MESSAGE);
         }
 
-        return usuarioDao.buscar(nome, senha);
+        return oUsuarioDao.buscar(nome, senha);
 
        
     }

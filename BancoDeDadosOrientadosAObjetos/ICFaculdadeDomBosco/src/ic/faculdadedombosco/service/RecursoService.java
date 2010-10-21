@@ -9,35 +9,35 @@ import ic.faculdadedombosco.model.Recurso;
 public class RecursoService {
 
 
-    public Recurso incluir(Recurso recurso)
+    public Recurso incluir(Recurso oRecurso)
     {
 
-       RecursoDao recursoDao = new RecursoDao();
+       RecursoDao oRecursoDao = new RecursoDao();
 
-       return recursoDao.incluir(recurso);
+       return oRecursoDao.incluir(oRecurso);
     }
 
-    public Recurso atualizar(Recurso recurso)
+    public Recurso atualizar(Recurso oRecurso)
     {
 
-       RecursoDao recursoDao = new RecursoDao();
+       RecursoDao oRecursoDao = new RecursoDao();
 
-       return recursoDao.atualizar(recurso);
+       return oRecursoDao.atualizar(oRecurso);
     }
 
-    public Recurso excluir(Recurso recurso)
+    public Recurso excluir(Recurso oRecurso)
     {
 
-       RecursoDao recursoDao = new RecursoDao();
+       RecursoDao oRecursoDao = new RecursoDao();
 
-       return recursoDao.excluir(recurso);
+       return oRecursoDao.excluir(oRecurso);
     }
 
     public Recurso buscar(String descricao)
     {
 
-       RecursoDao recursoDao = new RecursoDao();
+       RecursoDao oRecursoDao = new RecursoDao();
 
-       return recursoDao.buscar(descricao);
+       return oRecursoDao.buscar(descricao);
     }
 }

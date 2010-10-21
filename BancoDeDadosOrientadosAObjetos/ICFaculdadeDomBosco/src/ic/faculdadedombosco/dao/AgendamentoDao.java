@@ -8,66 +8,65 @@ import javax.swing.JOptionPane;
 
 public class AgendamentoDao {
 
-    private Conexao conexao;
+    private Conexao oConexao;
 
     public Agendamento incluir(Agendamento agendamento)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
         try{
-            conexao.getDb().store(agendamento);
-            conexao.getDb().commit();
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso...", "Informar", JOptionPane.INFORMATION_MESSAGE);
+            oConexao.getDb().store(agendamento);
+            oConexao.getDb().commit();
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Informar", JOptionPane.INFORMATION_MESSAGE);
         }
         catch(Exception ex){
-            System.out.println("Erro ao salvar agendamento!!!\n"+ex);
-            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto...\n"+ex, "Atenção!!!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto.\n"+ex, "Atenção!", JOptionPane.ERROR_MESSAGE);
         }
         return agendamento;
     }
 
     public Agendamento atualizar(Agendamento agendamento)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Agendamento.class);
-        query.descend("disciplina_Agendamento").constrain(agendamento.getDisciplina_Agendamento());
+        query.descend("oGradeDisciplina").constrain(agendamento.getDisciplina());
 
         Agendamento agend = (Agendamento) query.execute().get(0);
 
-        agend.setDisciplina_Agendamento(agendamento.getDisciplina_Agendamento());
-        agend.setUsuario_Agendamento(agendamento.getUsuario_Agendamento());
-        agend.setRecurso_Agendamento(agendamento.getRecurso_Agendamento());
-        agend.setDataInicial_Agendamento(agendamento.getDataInicial_Agendamento());
-        agend.setDataFinal_Agendamento(agendamento.getDataFinal_Agendamento());
-        agend.setHoraInicial_Agendamento(agendamento.getHoraInicial_Agendamento());
-        agend.setHoraFinal_Agendamento(agendamento.getHoraFinal_Agendamento());
-        agend.setObservacao_Agendamento(agendamento.getObservacao_Agendamento());
+        agend.setDisciplina(agendamento.getDisciplina());
+        agend.setUsuario(agendamento.getUsuario());
+        agend.setRecurso(agendamento.getRecurso());
+        agend.setDataInicial(agendamento.getDataInicial());
+        agend.setDataFinal(agendamento.getDataFinal());
+        agend.setHoraInicial(agendamento.getHoraInicial());
+        agend.setHoraFinal(agendamento.getHoraFinal());
+        agend.setObservacao(agendamento.getObservacao());
 
-        conexao.getDb().store(agend);
-        conexao.getDb().commit();
+        oConexao.getDb().store(agend);
+        oConexao.getDb().commit();
 
         return agendamento;
     }
 
     public Agendamento excluir(Agendamento agendamento)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        ObjectSet<Agendamento> lista = conexao.getDb().get(agendamento);
+        ObjectSet<Agendamento> lista = oConexao.getDb().get(agendamento);
         Agendamento agend = lista.next();
-        conexao.getDb().delete(agend);
-        conexao.getDb().commit();
+        oConexao.getDb().delete(agend);
+        oConexao.getDb().commit();
 
         return agendamento;
     }
 
     public Agendamento buscar(String dataInicial, String dataFinal)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Agendamento.class);
 
         //query.descend("dataInicial_Agendamento").constrain(dataInicial);
@@ -84,11 +83,11 @@ public class AgendamentoDao {
 
     public ObjectSet<Agendamento> montarTabelaEquip()
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Agendamento.class);
-        query.descend("dataInicial_Agendamento").orderAscending();
+        query.descend("dDataInicial").orderAscending();
         ObjectSet<Agendamento> lista = query.execute();
 
         return lista;
