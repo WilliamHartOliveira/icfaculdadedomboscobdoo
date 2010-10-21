@@ -11,29 +11,28 @@ import javax.swing.JOptionPane;
  */
 public class RecursoDao {
 
-    private Conexao conexao;
+    private Conexao oConexao;
 
     public Recurso incluir(Recurso recurso)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
         try{
-            conexao.getDb().store(recurso);
-            conexao.getDb().commit();
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso...", "Informar", JOptionPane.INFORMATION_MESSAGE);
+            oConexao.getDb().store(recurso);
+            oConexao.getDb().commit();
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso.", "Informar", JOptionPane.INFORMATION_MESSAGE);
         }
         catch(Exception ex){
-            System.out.println("Erro ao salvar recurso!!!\n"+ex);
-            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto...\n"+ex, "Atenção!!!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto.\n"+ex, "Atenção!", JOptionPane.ERROR_MESSAGE);
         }
         return recurso;
     }
 
     public Recurso atualizar(Recurso recurso)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Recurso.class);
         query.descend("ds_recurso").constrain(recurso.getDs_recurso());
 
@@ -43,29 +42,29 @@ public class RecursoDao {
         rec.setLc_recurso(recurso.getLc_recurso());
         rec.setSt_usuario(recurso.getSt_usuario());
         rec.setQt_ocupante(recurso.getQt_ocupante());
-        conexao.getDb().store(rec);
-        conexao.getDb().commit();
+        oConexao.getDb().store(rec);
+        oConexao.getDb().commit();
 
         return recurso;
     }
 
     public Recurso excluir(Recurso recurso)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        ObjectSet<Recurso> lista = conexao.getDb().get(recurso);
+        ObjectSet<Recurso> lista = oConexao.getDb().get(recurso);
         Recurso rec = lista.next();
-        conexao.getDb().delete(rec);
-        conexao.getDb().commit();
+        oConexao.getDb().delete(rec);
+        oConexao.getDb().commit();
 
         return recurso;
     }
 
     public Recurso buscar(String descricao)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Recurso.class);
         query.descend("ds_recurso").constrain(descricao);
 
@@ -81,9 +80,9 @@ public class RecursoDao {
 
     public ObjectSet<Recurso> montarTabelaEquip()
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Recurso.class);
         query.descend("ds_recurso").orderAscending();
         ObjectSet<Recurso> lista = query.execute();

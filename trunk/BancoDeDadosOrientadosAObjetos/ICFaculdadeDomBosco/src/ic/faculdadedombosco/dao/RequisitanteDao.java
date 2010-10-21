@@ -11,29 +11,28 @@ import javax.swing.JOptionPane;
  */
 public class RequisitanteDao {
 
-    private Conexao conexao;
+    private Conexao oConexao;
 
     public Requisitante incluir(Requisitante requisitante)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
         try{
-            conexao.getDb().store(requisitante);
-            conexao.getDb().commit();
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso...", "Informar", JOptionPane.INFORMATION_MESSAGE);
+            oConexao.getDb().store(requisitante);
+            oConexao.getDb().commit();
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso.", "Informar", JOptionPane.INFORMATION_MESSAGE);
         }
         catch(Exception ex){
-            System.out.println("Erro ao salvar requisitante!!!\n"+ex);
-            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto...\n"+ex, "Atenção!!!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto.\n"+ex, "Atenção!", JOptionPane.ERROR_MESSAGE);
         }
         return requisitante;
     }
 
     public Requisitante atualizar(Requisitante requisitante)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Requisitante.class);
         query.descend("requisitante_nome").constrain(requisitante.getRequisitante_nome());
 
@@ -44,29 +43,29 @@ public class RequisitanteDao {
         req.setRequisitante_tipo(requisitante.getRequisitante_tipo());
         req.setRequisitante_telefone(requisitante.getRequisitante_telefone());
 
-        conexao.getDb().store(req);
-        conexao.getDb().commit();
+        oConexao.getDb().store(req);
+        oConexao.getDb().commit();
 
         return requisitante;
     }
 
     public Requisitante excluir(Requisitante requisitante)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        ObjectSet<Requisitante> lista = conexao.getDb().get(requisitante);
+        ObjectSet<Requisitante> lista = oConexao.getDb().get(requisitante);
         Requisitante req = lista.next();
-        conexao.getDb().delete(req);
-        conexao.getDb().commit();
+        oConexao.getDb().delete(req);
+        oConexao.getDb().commit();
 
         return requisitante;
     }
 
     public Requisitante buscar(String nome)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Requisitante.class);
         query.descend("requisitante_nome").constrain(nome);
 
@@ -82,9 +81,9 @@ public class RequisitanteDao {
 
     public ObjectSet<Requisitante> montarTabelaEquip()
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Requisitante.class);
         query.descend("requisitante_nome").orderAscending();
         ObjectSet<Requisitante> lista = query.execute();

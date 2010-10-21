@@ -8,35 +8,35 @@ import ic.faculdadedombosco.model.Equipamento;
  */
 public class EquipamentoService {
 
-    public Equipamento incluir(Equipamento equipamento)
+    public Equipamento incluir(Equipamento oEquipamento)
     {
 
-        EquipamentoDao equipamentoDao = new EquipamentoDao();
+        EquipamentoDao oEquipamentoDao = new EquipamentoDao();
 
-        return equipamentoDao.incluir(equipamento);
+        return oEquipamentoDao.incluir(oEquipamento);
     }
 
-    public Equipamento atualizar(Equipamento equipamento)
+    public Equipamento atualizar(Equipamento oEquipamento)
     {
 
-        EquipamentoDao equipamentoDao = new EquipamentoDao();
+        EquipamentoDao oEquipamentoDao = new EquipamentoDao();
 
-        return equipamentoDao.atualizar(equipamento);
+        return oEquipamentoDao.atualizar(oEquipamento);
     }
 
-    public Equipamento excluir(Equipamento equipamento)
+    public Equipamento excluir(Equipamento oEquipamento)
     {
 
-        EquipamentoDao equipamentoDao = new EquipamentoDao();
+        EquipamentoDao oEquipamentoDao = new EquipamentoDao();
 
-        return equipamentoDao.excluir(equipamento);
+        return oEquipamentoDao.excluir(oEquipamento);
     }
 
     public Equipamento buscar(String codigo)
     {
 
-        EquipamentoDao equipamentoDao = new EquipamentoDao();
+        EquipamentoDao oEquipamentoDao = new EquipamentoDao();
 
-        return equipamentoDao.buscar(codigo);
+        return oEquipamentoDao.buscar(codigo);
     }
 }

@@ -1,49 +1,43 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ic.faculdadedombosco.service;
 
 import ic.faculdadedombosco.dao.RequisitanteDao;
 import ic.faculdadedombosco.model.Requisitante;
 
-/**
- *
+/*
  * @author Anderson
  */
 public class RequisitanteService {
 
-    public Requisitante incluir(Requisitante requisitante)
+    public Requisitante incluir(Requisitante oRequisitante)
     {
 
-       RequisitanteDao requisitanteDao = new RequisitanteDao();
+       RequisitanteDao oRequisitanteDao = new RequisitanteDao();
 
-       return requisitanteDao.incluir(requisitante);
+       return oRequisitanteDao.incluir(oRequisitante);
     }
 
-    public Requisitante atualizar(Requisitante requisitante)
+    public Requisitante atualizar(Requisitante oRequisitante)
     {
 
-       RequisitanteDao requisitanteDao = new RequisitanteDao();
+       RequisitanteDao oRequisitanteDao = new RequisitanteDao();
 
-       return requisitanteDao.atualizar(requisitante);
+       return oRequisitanteDao.atualizar(oRequisitante);
     }
 
-    public Requisitante excluir(Requisitante requisitante)
+    public Requisitante excluir(Requisitante oRequisitante)
     {
 
-       RequisitanteDao requisitanteDao = new RequisitanteDao();
+       RequisitanteDao oRequisitanteDao = new RequisitanteDao();
 
-       return requisitanteDao.excluir(requisitante);
+       return oRequisitanteDao.excluir(oRequisitante);
     }
 
     public Requisitante buscar(String nome)
     {
 
-       RequisitanteDao requisitanteDao = new RequisitanteDao();
+       RequisitanteDao oRequisitanteDao = new RequisitanteDao();
 
-       return requisitanteDao.buscar(nome);
+       return oRequisitanteDao.buscar(nome);
     }
 
 }

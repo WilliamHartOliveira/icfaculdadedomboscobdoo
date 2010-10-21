@@ -8,6 +8,6 @@ import ic.faculdadedombosco.view.GUILogin;
 public class Principal {
 
     public static void main(String[] args) {
-        GUILogin guilogin = new GUILogin();
+        GUILogin oGUILogin = new GUILogin();
     }
 }

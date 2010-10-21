@@ -12,30 +12,29 @@ import javax.swing.JOptionPane;
  */
 public class UsuarioDao {
     
-     private Conexao conexao;
+     private Conexao oConexao;
 
      public Usuario incluir(Usuario usuario)
      {
 
-         conexao = new Conexao();
+         oConexao = new Conexao();
 
          try{
-             conexao.getDb().store(usuario);
-             conexao.getDb().commit();
-             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso...", "Informar", JOptionPane.INFORMATION_MESSAGE);
+             oConexao.getDb().store(usuario);
+             oConexao.getDb().commit();
+             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso.", "Informar", JOptionPane.INFORMATION_MESSAGE);
          }
          catch(Exception ex){
-             System.out.println("Erro ao salvar recurso!!!\n"+ex);
-             JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto...\n"+ex, "Atenção!!!", JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(null, "Erro ao salvar o objeto.\n"+ex, "Atenção!", JOptionPane.ERROR_MESSAGE);
          }
          return usuario;
      }
 
      public Usuario atualizar(Usuario usuario)
      {
-         conexao = new Conexao();
+         oConexao = new Conexao();
 
-         Query query = conexao.getDb().query();
+         Query query = oConexao.getDb().query();
          query.constrain(Usuario.class);
          query.descend("nome_usuario").constrain(usuario.getNome_usuario());
 
@@ -44,30 +43,30 @@ public class UsuarioDao {
          usu.setUsuario_usuario(usu.getUsuario_usuario());
          usu.setSenha_usuario(usu.getSenha_usuario());
          usu.setAdminstrador_usuario(usu.getAdminstrador_usuario());
-         conexao.getDb().store(usu);
-         conexao.getDb().commit();
+         oConexao.getDb().store(usu);
+         oConexao.getDb().commit();
 
          return usuario;
      }
 
     public Usuario excluir(Usuario usuario)
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        ObjectSet<Usuario> lista = conexao.getDb().get(usuario);
+        ObjectSet<Usuario> lista = oConexao.getDb().get(usuario);
         Usuario usu = lista.next();
-        conexao.getDb().delete(usu);
-        conexao.getDb().commit();
+        oConexao.getDb().delete(usu);
+        oConexao.getDb().commit();
 
         return usuario;
     }
 
     public Usuario buscar(String nome, String senha)
     {
-        conexao = new Conexao();
-        conexao.abrirConexao();
+        oConexao = new Conexao();
+        oConexao.abrirConexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Usuario.class);
         Constraint secondConstr = query.descend("senha_usuario").constrain(senha);
         query.descend("nome_usuario").constrain(nome).and(secondConstr);
@@ -84,9 +83,9 @@ public class UsuarioDao {
 
     public ObjectSet<Usuario> montarTabelaEquip()
     {
-        conexao = new Conexao();
+        oConexao = new Conexao();
 
-        Query query = conexao.getDb().query();
+        Query query = oConexao.getDb().query();
         query.constrain(Usuario.class);
         query.descend("nome_usuario").orderAscending();
         ObjectSet<Usuario> lista = query.execute();
