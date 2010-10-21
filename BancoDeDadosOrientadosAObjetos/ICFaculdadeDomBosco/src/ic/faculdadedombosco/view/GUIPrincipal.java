@@ -3,6 +3,7 @@ package ic.faculdadedombosco.view;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.dao.EquipamentoDao;
 import ic.faculdadedombosco.model.Equipamento;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -17,14 +19,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
-/**
- *
- * @author Anderson
- */
 public class GUIPrincipal extends javax.swing.JFrame {
 
     Conexao conexao;
-
 
     public GUIPrincipal() {
         initComponents();
@@ -328,19 +325,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void itemDeMenuRelatorioDeEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeEquipamentoActionPerformed
 
         EquipamentoDao equipamentoDao = new EquipamentoDao();
-        
+
+        String fileName="./REPORTS/reportEquipment.jasper";
+
         List<Equipamento> list = equipamentoDao.listarEquip();
         JRDataSource datos = new JRBeanCollectionDataSource(list);
 
-        JasperViewer ver=null;
-        JasperPrint jasper=null;
+        JasperViewer ver = null;
+        JasperPrint jasper = null;
 
-        String fileName="./Reports/reportEquipment.jasper";
-
-        //Map parameters = new HashMap();
-
-        try {
-
+        try {           
             jasper = JasperFillManager.fillReport(fileName, new HashMap(), datos);
 
             ver = new JasperViewer(jasper,false);
@@ -350,17 +344,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
             ver.setFocusable(true);
             ver.setExtendedState(ver.MAXIMIZED_BOTH);
             ver.setVisible(true);
-            //salirActionPerformed(evento);
-
             ver.setExtendedState(ver.MAXIMIZED_BOTH);
             ver.requestFocus();
             ver.setAlwaysOnTop(true);
-
         } catch (JRException ex) {
             ex.printStackTrace();
         }
 
-        //JOptionPane.showMessageDialog(null, "Módulo em construção...", "Atenção!!!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_itemDeMenuRelatorioDeEquipamentoActionPerformed
 
     private void itemDeMenuRelatorioDeGradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeGradeDisciplinaActionPerformed
