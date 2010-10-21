@@ -3,12 +3,10 @@ package ic.faculdadedombosco.view;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.dao.EquipamentoDao;
 import ic.faculdadedombosco.model.Equipamento;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -21,15 +19,15 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class GUIPrincipal extends javax.swing.JFrame {
 
-    Conexao conexao;
+    Conexao oConexao;
 
     public GUIPrincipal() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        conexao = new Conexao();
-        conexao.abrirConexao();
+        oConexao = new Conexao();
+        oConexao.abrirConexao();
 
-        // cuida para que o relório atualize sempre
+        //Cuida para que o relógio atualize sempre
         Thread time = new Thread() {
 
             @Override
@@ -39,19 +37,17 @@ public class GUIPrincipal extends javax.swing.JFrame {
                         lHora.setText(pegarData());
                         Thread.sleep(1000);
                         } catch (InterruptedException e) {
-                        System.out.println("");
+                            //Ninguém precisa saber que deu erro.
                     }
                 }
             }
         };
-
         time.start();
     }
 
     String pegarData() {
         SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss aa"); //
         return data.format(new Date());
-
     }
 
     @SuppressWarnings("unchecked")
@@ -282,7 +278,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemDeMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuSairActionPerformed
-        conexao.fecharConexao();
+        oConexao.fecharConexao();
         System.exit(0);
     }//GEN-LAST:event_itemDeMenuSairActionPerformed
 
