@@ -2,7 +2,9 @@ package ic.faculdadedombosco.view;
 
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.dao.EquipamentoDao;
+import ic.faculdadedombosco.dao.GradeDisciplinaDao;
 import ic.faculdadedombosco.model.Equipamento;
+import ic.faculdadedombosco.model.GradeDisciplina;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -350,7 +352,33 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemDeMenuRelatorioDeEquipamentoActionPerformed
 
     private void itemDeMenuRelatorioDeGradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeGradeDisciplinaActionPerformed
-        JOptionPane.showMessageDialog(null, "Módulo em construção...", "Atenção!!!", JOptionPane.INFORMATION_MESSAGE);
+
+        GradeDisciplinaDao oGradeDisciplinaDao = new GradeDisciplinaDao();
+
+        String fileName="./REPORTS/reportGradeDisciplina.jasper";
+
+        List<GradeDisciplina> list = oGradeDisciplinaDao.listarGradeDisciplina();
+        JRDataSource datos = new JRBeanCollectionDataSource(list); 
+
+        JasperViewer ver = null;
+        JasperPrint jasper = null;
+
+        try {
+            jasper = JasperFillManager.fillReport(fileName, new HashMap(), datos);
+
+            ver = new JasperViewer(jasper,false);
+            ver.setTitle("Faculdade Dom Bosco de Porto Alegre");
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.setLocationRelativeTo(this);
+            ver.setFocusable(true);
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.setVisible(true);
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.requestFocus();
+            ver.setAlwaysOnTop(true);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_itemDeMenuRelatorioDeGradeDisciplinaActionPerformed
 
     private void itemDeMenuRelatorioDeRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeRecursoActionPerformed

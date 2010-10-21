@@ -1,14 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * GUIGradeDisciplina.java
- *
- * Created on 28/08/2010, 17:31:51
- */
-
 package ic.faculdadedombosco.view;
 
 import com.db4o.ObjectSet;
@@ -24,20 +13,19 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
+/*
  * @author Anderson
+ * @author William
  */
 public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
-    GradeDisciplina gradeDisciplina;
-    GradeDisciplinaService gradeDisciplinaService;
-    GradeDisciplinaDao gradeDisciplinaDao;
-    private Conexao conexao;
+    GradeDisciplina oGradeDisciplina;
+    GradeDisciplinaService oGradeDisciplinaService;
+    GradeDisciplinaDao oGradeDisciplinaDao;
+    private Conexao oConexao;
 
     private ArrayList<String> comboIdProfessor = new ArrayList<String>();
     private ArrayList<String> comboIdRecurso = new ArrayList<String>();
-
 
     public GUIGradeDisciplina() {
         initComponents();
@@ -61,19 +49,19 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
     private GradeDisciplina capturaDados()
     {
-        gradeDisciplina.setDisciplina_gradeDisciplina(tf_disciplina_GradeDisciplina.getText());
-        gradeDisciplina.setCurso_gradeDisciplina(cb_curso_GradeDisciplina.getSelectedItem().toString());
-        gradeDisciplina.setRecurso_gradeDisciplina(pesquisaRecurso(cb_recurso_GradeDisciplina.getSelectedItem().toString()));
-        gradeDisciplina.setProfessor__gradeDisciplina(pesquisaProfessor(cb_professor_GradeDisciplina.getSelectedItem().toString()));
-        gradeDisciplina.setStatus_gradeDisciplina(cb_status_GradeDisciplina.getSelectedItem().toString());
+        oGradeDisciplina.setDisciplina_gradeDisciplina(tf_disciplina_GradeDisciplina.getText());
+        oGradeDisciplina.setCurso_gradeDisciplina(cb_curso_GradeDisciplina.getSelectedItem().toString());
+        oGradeDisciplina.setRecurso_gradeDisciplina(pesquisaRecurso(cb_recurso_GradeDisciplina.getSelectedItem().toString()));
+        oGradeDisciplina.setProfessor__gradeDisciplina(pesquisaProfessor(cb_professor_GradeDisciplina.getSelectedItem().toString()));
+        oGradeDisciplina.setStatus_gradeDisciplina(cb_status_GradeDisciplina.getSelectedItem().toString());
 
-        return gradeDisciplina;
+        return oGradeDisciplina;
     }//Método responsável para capturar dadas do frame
 
     public Recurso pesquisaRecurso(String descRecurso){
         
-        this.conexao = new Conexao();
-        Query query = this.conexao.getDb().query();
+        this.oConexao = new Conexao();
+        Query query = this.oConexao.getDb().query();
         query.constrain(Recurso.class);
         query.descend("ds_recurso").constrain(descRecurso);
         ObjectSet<Recurso> lista = query.execute();
@@ -83,7 +71,6 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
         while (lista.hasNext())
         {
             rec = lista.next();
-       
         }
         
         return rec;
@@ -91,8 +78,8 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
     public Requisitante pesquisaProfessor(String nomeRequisitante){
 
-        this.conexao = new Conexao();
-        Query query = this.conexao.getDb().query();
+        this.oConexao = new Conexao();
+        Query query = this.oConexao.getDb().query();
         query.constrain(Requisitante.class);
         query.descend("requisitante_nome").constrain(nomeRequisitante);
         ObjectSet<Requisitante> lista = query.execute();
@@ -102,7 +89,6 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
         while (lista.hasNext())
         {
             req = lista.next();
-
         }
 
         return req;
@@ -110,11 +96,11 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
     private void montarTabela( )
     {
-        gradeDisciplinaDao = new GradeDisciplinaDao();
+        oGradeDisciplinaDao = new GradeDisciplinaDao();
 
-        ObjectSet<GradeDisciplina> listaatual = gradeDisciplinaDao.montarTabelaEquip();
+        ObjectSet<GradeDisciplina> listaatual = oGradeDisciplinaDao.montarTabelaEquip();
         String [][] tabela = new String[listaatual.size()][5];
-        System.out.println("fhjfgdjfkg");
+
         for(int i = 0; i < listaatual.size(); i++){
             tabela[i][0] = String.valueOf(listaatual.get(i).getDisciplina_gradeDisciplina());
             tabela[i][1] = listaatual.get(i).getCurso_gradeDisciplina();
@@ -122,7 +108,7 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
             tabela[i][3] = listaatual.get(i).getProfessor__gradeDisciplina().getRequisitante_nome();
             tabela[i][4] = listaatual.get(i).getStatus_gradeDisciplina();
         }
-        System.out.println("fhjfgdjfkg");
+
         this.tabela_GradeDisciplina.setModel(
             new DefaultTableModel(
                 tabela,
@@ -150,10 +136,8 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
         this.comboIdProfessor.clear();
         this.comboIdRecurso.clear();
 
-
         this.cb_professor_GradeDisciplina.removeAllItems();
         this.cb_recurso_GradeDisciplina.removeAllItems();
-
 
         this.inicializarProfessor();
         this.inicializarRecurso();
@@ -161,8 +145,8 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
     private void inicializarProfessor()
     {
-        this.conexao = new Conexao();
-        Query query = this.conexao.getDb().query();
+        this.oConexao = new Conexao();
+        Query query = this.oConexao.getDb().query();
         query.constrain(Requisitante.class);
         query.descend("requisitante_tipo").constrain("Professor(a)");
         ObjectSet<Requisitante> lista = query.execute();
@@ -177,8 +161,8 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
     private void inicializarRecurso()
     {
-        conexao = new Conexao();
-        Query query = this.conexao.getDb().query();
+        oConexao = new Conexao();
+        Query query = this.oConexao.getDb().query();
         query.constrain(Recurso.class);
         query.descend("ds_recurso").orderAscending();
         ObjectSet<Recurso> lista = query.execute();
@@ -245,6 +229,11 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
         jLabel3.setText("Curso:");
 
         cb_curso_GradeDisciplina.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administração", "Ciências Contábeis", "Direito", "Eng. Ambiental e Sanitária", "Sistemas de Informação" }));
+        cb_curso_GradeDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_curso_GradeDisciplinaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Professor(a):");
 
@@ -432,7 +421,7 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -447,22 +436,22 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_b_limpar_GradeDisciplinaActionPerformed
 
     private void b_atualizar_GradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_atualizar_GradeDisciplinaActionPerformed
-       gradeDisciplina = new GradeDisciplina();
-       gradeDisciplinaService = new GradeDisciplinaService();
+       oGradeDisciplina = new GradeDisciplina();
+       oGradeDisciplinaService = new GradeDisciplinaService();
 
-       gradeDisciplina = capturaDados();
-       gradeDisciplinaService.atualizar(gradeDisciplina);
+       oGradeDisciplina = capturaDados();
+       oGradeDisciplinaService.atualizar(oGradeDisciplina);
        montarTabela();
 }//GEN-LAST:event_b_atualizar_GradeDisciplinaActionPerformed
 
     private void b_excluir_GradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_excluir_GradeDisciplinaActionPerformed
-        gradeDisciplina = new GradeDisciplina();
-        gradeDisciplinaService = new GradeDisciplinaService();
+        oGradeDisciplina = new GradeDisciplina();
+        oGradeDisciplinaService = new GradeDisciplinaService();
 
-        gradeDisciplina = capturaDados();
-        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir está Disciplina: " + gradeDisciplina.getDisciplina_gradeDisciplina(),"Cuidado",JOptionPane.YES_NO_OPTION);
+        oGradeDisciplina = capturaDados();
+        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir está Disciplina: " + oGradeDisciplina.getDisciplina_gradeDisciplina(),"Cuidado",JOptionPane.YES_NO_OPTION);
         if (x == 0) {
-            gradeDisciplinaService.excluir(gradeDisciplina);
+            oGradeDisciplinaService.excluir(oGradeDisciplina);
             limparCampos();
             this.montarTabela();
         }else {
@@ -471,11 +460,11 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_b_excluir_GradeDisciplinaActionPerformed
 
     private void b_salvar_GradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_salvar_GradeDisciplinaActionPerformed
-        gradeDisciplina = new GradeDisciplina();
-        gradeDisciplinaService = new GradeDisciplinaService();
+        oGradeDisciplina = new GradeDisciplina();
+        oGradeDisciplinaService = new GradeDisciplinaService();
 
-        gradeDisciplina = capturaDados();
-        gradeDisciplinaService.incluir(gradeDisciplina);
+        oGradeDisciplina = capturaDados();
+        oGradeDisciplinaService.incluir(oGradeDisciplina);
         montarTabela();
         limparCampos();
 }//GEN-LAST:event_b_salvar_GradeDisciplinaActionPerformed
@@ -492,6 +481,10 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
         this.cb_status_GradeDisciplina.setSelectedItem(String.valueOf(
                 this.tabela_GradeDisciplina.getModel().getValueAt(this.tabela_GradeDisciplina.getSelectedRow(), 4)));
     }//GEN-LAST:event_tabela_GradeDisciplinaMouseClicked
+
+    private void cb_curso_GradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_curso_GradeDisciplinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_curso_GradeDisciplinaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
