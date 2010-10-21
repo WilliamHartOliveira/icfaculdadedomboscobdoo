@@ -235,6 +235,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         cbStatusEquipamento.setSelectedItem("Selecione...");
         cbRedeEquipamento.setSelectedItem("Selecione...");
         tfPesquisaCodigoEquipamento.setText("");
+
     }
 
     private Equipamento capturaDados()

@@ -14,12 +14,12 @@ public class Equipamento{
 
     }
 
-    public Equipamento(String cdEquipamento, String dsEquipamento, String stEquipamento, String inCaboRede) {
+    /*public Equipamento(String cdEquipamento, String dsEquipamento, String stEquipamento, String inCaboRede) {
         this.cdEquipamento = cdEquipamento;
         this.dsEquipamento = dsEquipamento;
         this.stEquipamento = stEquipamento;
         this.inCaboRede = inCaboRede;
-    }
+    }*/
 
     public String getCdEquipamento() {
         return cdEquipamento;
@@ -52,5 +52,5 @@ public class Equipamento{
     public void setStEquipamento(String stEquipamento) {
         this.stEquipamento = stEquipamento;
     }
-    
+  
 }
