@@ -15,12 +15,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class GUIUsuario extends javax.swing.JInternalFrame {
 
-    Usuario usuario;
-    UsuarioService usuarioService;
-    UsuarioDao usuarioDao;
+    Usuario oUsuario;
+    UsuarioService oUsuarioService;
+    UsuarioDao oUsuarioDao;
 
-
-    /** Creates new form GUIUsuario */
     public GUIUsuario() {
         initComponents();
     }
@@ -41,20 +39,20 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
 
     private Usuario capturaDados()
     {
-        usuario.setNome_usuario(tfnomeGerenciamento.getText());
-        usuario.setUsuario_usuario(tfusuarioGerenciamento.getText());
-        usuario.setSenha_usuario(pfsenhaGerenciamento.getText());
-        usuario.setAdminstrador_usuario(cbadministradorGerenciamento.getSelectedItem().toString());
+        oUsuario.setNome_usuario(tfnomeGerenciamento.getText());
+        oUsuario.setUsuario_usuario(tfusuarioGerenciamento.getText());
+        oUsuario.setSenha_usuario(pfsenhaGerenciamento.getText());
+        oUsuario.setAdminstrador_usuario(cbadministradorGerenciamento.getSelectedItem().toString());
 
-        return usuario;
-    }//Método responsável para capturar dadas do frame
+        return oUsuario;
+    }
 
     private void montarTabela( )
     {
 
-        usuarioDao = new UsuarioDao();
+        oUsuarioDao = new UsuarioDao();
 
-        ObjectSet<Usuario> listaatual = usuarioDao.montarTabelaEquip();
+        ObjectSet<Usuario> listaatual = oUsuarioDao.montarTabelaEquip();
         String [][] tabela = new String[listaatual.size()][4];
 
         for(int i = 0; i < listaatual.size(); i++){
@@ -271,22 +269,22 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bListarGerencUsuarioActionPerformed
 
     private void bAtualizarGerencUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarGerencUsuarioActionPerformed
-       usuario = new Usuario();
-       usuarioService = new UsuarioService();
+       oUsuario = new Usuario();
+       oUsuarioService = new UsuarioService();
 
-       usuario = capturaDados();
-       usuarioService.atualizar(usuario);
+       oUsuario = capturaDados();
+       oUsuarioService.atualizar(oUsuario);
        montarTabela();
     }//GEN-LAST:event_bAtualizarGerencUsuarioActionPerformed
 
     private void bExcluirGerencUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirGerencUsuarioActionPerformed
-        usuario = new Usuario();
-        usuarioService = new UsuarioService();
+        oUsuario = new Usuario();
+        oUsuarioService = new UsuarioService();
 
-        usuario = capturaDados();
-        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este usuário: " + usuario.getNome_usuario(),"Cuidado",JOptionPane.YES_NO_OPTION);
+        oUsuario = capturaDados();
+        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este usuário: " + oUsuario.getNome_usuario(),"Cuidado",JOptionPane.YES_NO_OPTION);
         if (x == 0) {
-            usuarioService.excluir(usuario);
+            oUsuarioService.excluir(oUsuario);
             limparCampos();
             this.montarTabela();
         }else {
@@ -295,11 +293,11 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bExcluirGerencUsuarioActionPerformed
 
     private void bSalvarGerencUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarGerencUsuarioActionPerformed
-        usuario = new Usuario();
-        usuarioService = new UsuarioService();
+        oUsuario = new Usuario();
+        oUsuarioService = new UsuarioService();
 
-        usuario = capturaDados();
-        usuarioService.incluir(usuario);
+        oUsuario = capturaDados();
+        oUsuarioService.incluir(oUsuario);
         montarTabela();
     }//GEN-LAST:event_bSalvarGerencUsuarioActionPerformed
 
