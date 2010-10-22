@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
 
 public class GUIEquipamento extends javax.swing.JInternalFrame {
 
-    Equipamento equipamento;
-    EquipamentoService equipamentoService;
-    EquipamentoDao equipamentoDao;
+    Equipamento oEquipamento;
+    EquipamentoService oEquipamentoService;
+    EquipamentoDao oEquipamentoDao;
 
     public GUIEquipamento() {
         initComponents();
@@ -240,11 +240,12 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     private Equipamento capturaDados()
     {
-        equipamento.setCdEquipamento(tfCodigoEquipamento.getText());
-        equipamento.setDsEquipamento(tfDescricaoEquipamento.getText());
-        equipamento.setStEquipamento(cbStatusEquipamento.getSelectedItem().toString());
-        equipamento.setInCaboRede(cbRedeEquipamento.getSelectedItem().toString());
-        return equipamento;
+        oEquipamento.setCdEquipamento(tfCodigoEquipamento.getText());
+        oEquipamento.setDsEquipamento(tfDescricaoEquipamento.getText());
+        oEquipamento.setStEquipamento(cbStatusEquipamento.getSelectedItem().toString());
+        oEquipamento.setInCaboRede(cbRedeEquipamento.getSelectedItem().toString());
+
+        return oEquipamento;
     }
 
     private void carregarFormulario (Equipamento equipamento) {
@@ -256,9 +257,9 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     private void montarTabela( )
     {
-        equipamentoDao = new EquipamentoDao();
+        oEquipamentoDao = new EquipamentoDao();
 
-        ObjectSet<Equipamento> listEquipamento = equipamentoDao.montarTabelaEquip();
+        ObjectSet<Equipamento> listEquipamento = oEquipamentoDao.montarTabelaEquip();
 
         EquipamentoTableModel equipamentoTableModel = new EquipamentoTableModel(listEquipamento);
         this.tabelaEquipamento.setModel(equipamentoTableModel);
@@ -266,28 +267,27 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     private void bSalvarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarEquipamentoActionPerformed
 
-        equipamento = new Equipamento();
-        equipamentoService = new EquipamentoService();
+        oEquipamento = new Equipamento();
+        oEquipamentoService = new EquipamentoService();
 
-        equipamento = capturaDados();
-        equipamentoService.incluir(equipamento);
+        oEquipamento = capturaDados();
+        oEquipamentoService.incluir(oEquipamento);
         montarTabela();
         limparCampos();
     }//GEN-LAST:event_bSalvarEquipamentoActionPerformed
 
     private void bPesquisarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarEquipamentoActionPerformed
-        equipamento = new Equipamento();
-        equipamentoService = new EquipamentoService();
+        oEquipamento = new Equipamento();
+        oEquipamentoService = new EquipamentoService();
 
-        equipamento = equipamentoService.buscar(tfPesquisaCodigoEquipamento.getText());
+        oEquipamento = oEquipamentoService.buscar(tfPesquisaCodigoEquipamento.getText());
         
-        if(equipamento != null){
+        if(oEquipamento != null){
             JOptionPane.showMessageDialog(null, "Equipamento encontrado", "Pesquisa Equipamento", JOptionPane.INFORMATION_MESSAGE);
-            tfCodigoEquipamento.setText(""+equipamento.getCdEquipamento());
-            tfDescricaoEquipamento.setText(""+equipamento.getDsEquipamento());
-            cbStatusEquipamento.setSelectedItem(""+equipamento.getStEquipamento());
-            cbRedeEquipamento.setSelectedItem(""+equipamento.getInCaboRede());
-            
+            tfCodigoEquipamento.setText(""+oEquipamento.getCdEquipamento());
+            tfDescricaoEquipamento.setText(""+oEquipamento.getDsEquipamento());
+            cbStatusEquipamento.setSelectedItem(""+oEquipamento.getStEquipamento());
+            cbRedeEquipamento.setSelectedItem(""+oEquipamento.getInCaboRede());
         }else{
              JOptionPane.showMessageDialog(null, "Equipamento não encontrado", "Pesquisa Equipamento", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -295,13 +295,13 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     private void bExcluirEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirEquipamentoActionPerformed
 
-        equipamento = new Equipamento();
-        equipamentoService = new EquipamentoService();
+        oEquipamento = new Equipamento();
+        oEquipamentoService = new EquipamentoService();
 
-        equipamento = capturaDados();
-        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este equipamento: " + equipamento.getCdEquipamento(),"Cuidado",JOptionPane.YES_NO_OPTION);
+        oEquipamento = capturaDados();
+        int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este equipamento: " + oEquipamento.getCdEquipamento(),"Cuidado",JOptionPane.YES_NO_OPTION);
         if (x == 0){
-            equipamentoService.excluir(equipamento);
+            oEquipamentoService.excluir(oEquipamento);
             limparCampos();
             this.tabelaEquipamento.setModel(new EquipamentoTableModel(new ArrayList<Equipamento>()));
         }else {
@@ -329,11 +329,11 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabelaEquipamentoMouseClicked
 
     private void bAtualizarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarEquipamentoActionPerformed
-        equipamento = new Equipamento();
-        equipamentoService = new EquipamentoService();
+        oEquipamento = new Equipamento();
+        oEquipamentoService = new EquipamentoService();
 
-        equipamento = capturaDados();
-        equipamentoService.atualizar(equipamento);
+        oEquipamento = capturaDados();
+        oEquipamentoService.atualizar(oEquipamento);
 
         montarTabela();
     }//GEN-LAST:event_bAtualizarEquipamentoActionPerformed
