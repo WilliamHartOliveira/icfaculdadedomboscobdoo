@@ -1,5 +1,7 @@
 package ic.faculdadedombosco.view;
 
+import ic.faculdadedombosco.relatorio.GUIRelatorioEquipamento;
+import ic.faculdadedombosco.relatorio.GUIRelatorioAgendamento;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.dao.EquipamentoDao;
 import ic.faculdadedombosco.dao.GradeDisciplinaDao;
@@ -322,6 +324,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void itemDeMenuRelatorioDeEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeEquipamentoActionPerformed
 
+        /*if((guiRelatEquipamento == null) || (!guiRelatEquipamento.isVisible())){
+            guiRelatEquipamento = new GUIRelatorioEquipamento();
+            desktopPane.add(guiRelatEquipamento);
+            guiRelatEquipamento.setPosicao();
+            guiRelatEquipamento.setVisible(true);
+        }*/
+
         EquipamentoDao equipamentoDao = new EquipamentoDao();
 
         String fileName="./REPORTS/reportEquipment.jasper";
@@ -475,5 +484,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private GUIRelatorioAgendamento guirelatagend;
     private GUIGradeDisciplina guigradedisciplina;
     private GUIUsuario guiusuario;
+
+
+    private GUIRelatorioEquipamento guiRelatEquipamento;
    
 }
