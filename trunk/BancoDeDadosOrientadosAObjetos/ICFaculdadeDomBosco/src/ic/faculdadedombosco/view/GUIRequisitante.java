@@ -37,7 +37,6 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
     public void setPosicao(){
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width)/3, (d.height - this.getSize().height)/3);
-        //this.setLocation(15 + (d.width - this.getSize().width) / 5, 15 + (d.height - this.getSize().height)/5);
     }
 
     private void limparCampos()
@@ -334,7 +333,7 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
