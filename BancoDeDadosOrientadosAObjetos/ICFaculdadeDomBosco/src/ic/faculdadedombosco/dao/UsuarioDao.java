@@ -5,6 +5,8 @@ import com.db4o.query.Constraint;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.model.Usuario;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /*
@@ -89,6 +91,24 @@ public class UsuarioDao {
         query.constrain(Usuario.class);
         query.descend("nome_usuario").orderAscending();
         ObjectSet<Usuario> lista = query.execute();
+
+        return lista;
+    }
+
+     public List<Usuario> listarUsuario()
+    {
+        oConexao = new Conexao();
+        List<Usuario> lista=new ArrayList();
+        Query consulta= oConexao.getDb().query();
+        consulta.constrain(Usuario.class);
+        consulta.descend("nome_usuario").orderAscending();
+
+        ObjectSet resultado=consulta.execute();
+
+        while(resultado.hasNext())
+        {
+              lista.add((Usuario)resultado.next());
+        }
 
         return lista;
     }

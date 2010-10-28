@@ -92,7 +92,7 @@ public class EquipamentoDao {
     }
 
 
-    public List<Equipamento> listarEquip()
+    public List<Equipamento> listarEquipamento()
     {
         oConexao = new Conexao();
         List<Equipamento> lista=new ArrayList();

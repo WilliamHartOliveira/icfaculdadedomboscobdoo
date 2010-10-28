@@ -1,12 +1,14 @@
 package ic.faculdadedombosco.view;
 
-import ic.faculdadedombosco.relatorio.GUIRelatorioEquipamento;
-import ic.faculdadedombosco.relatorio.GUIRelatorioAgendamento;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.dao.EquipamentoDao;
 import ic.faculdadedombosco.dao.GradeDisciplinaDao;
+import ic.faculdadedombosco.dao.RecursoDao;
+import ic.faculdadedombosco.dao.UsuarioDao;
 import ic.faculdadedombosco.model.Equipamento;
 import ic.faculdadedombosco.model.GradeDisciplina;
+import ic.faculdadedombosco.model.Recurso;
+import ic.faculdadedombosco.model.Usuario;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -64,7 +66,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
-        itemImprimir = new javax.swing.JMenuItem();
         itemSeparador = new javax.swing.JPopupMenu.Separator();
         itemDeMenuSair = new javax.swing.JMenuItem();
         menuCadastro = new javax.swing.JMenu();
@@ -74,7 +75,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         itemDeMenuRecurso = new javax.swing.JMenuItem();
         itemDeMenuUsuario = new javax.swing.JMenuItem();
         menuRelatorio = new javax.swing.JMenu();
-        itemDeMenuRelatorioDeAgendamento = new javax.swing.JMenuItem();
         itemDeMenuRelatorioDeEquipamento = new javax.swing.JMenuItem();
         itemDeMenuRelatorioDeGradeDisciplina = new javax.swing.JMenuItem();
         itemDeMenuRelatorioDeRecurso = new javax.swing.JMenuItem();
@@ -105,16 +105,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         menuArquivo.setText("Arquivo");
-
-        itemImprimir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        itemImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/imprimir.png"))); // NOI18N
-        itemImprimir.setText("Imprimir");
-        itemImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemImprimirActionPerformed(evt);
-            }
-        });
-        menuArquivo.add(itemImprimir);
         menuArquivo.add(itemSeparador);
 
         itemDeMenuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
@@ -184,14 +174,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuBar.add(menuCadastro);
 
         menuRelatorio.setText("Relatório");
-
-        itemDeMenuRelatorioDeAgendamento.setText("Agendamento");
-        itemDeMenuRelatorioDeAgendamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemDeMenuRelatorioDeAgendamentoActionPerformed(evt);
-            }
-        });
-        menuRelatorio.add(itemDeMenuRelatorioDeAgendamento);
 
         itemDeMenuRelatorioDeEquipamento.setText("Equipamento");
         itemDeMenuRelatorioDeEquipamento.addActionListener(new java.awt.event.ActionListener() {
@@ -324,18 +306,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void itemDeMenuRelatorioDeEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeEquipamentoActionPerformed
 
-        /*if((guiRelatEquipamento == null) || (!guiRelatEquipamento.isVisible())){
-            guiRelatEquipamento = new GUIRelatorioEquipamento();
-            desktopPane.add(guiRelatEquipamento);
-            guiRelatEquipamento.setPosicao();
-            guiRelatEquipamento.setVisible(true);
-        }*/
-
         EquipamentoDao equipamentoDao = new EquipamentoDao();
 
         String fileName="./REPORTS/reportEquipment.jasper";
 
-        List<Equipamento> list = equipamentoDao.listarEquip();
+        List<Equipamento> list = equipamentoDao.listarEquipamento();
         JRDataSource datos = new JRBeanCollectionDataSource(list);
 
         JasperViewer ver = null;
@@ -362,11 +337,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void itemDeMenuRelatorioDeGradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeGradeDisciplinaActionPerformed
 
-        GradeDisciplinaDao oGradeDisciplinaDao = new GradeDisciplinaDao();
+        GradeDisciplinaDao gradeDisciplinaDao = new GradeDisciplinaDao();
 
         String fileName="./REPORTS/reportGradeDisciplina.jasper";
 
-        List<GradeDisciplina> list = oGradeDisciplinaDao.listarGradeDisciplina();
+        List<GradeDisciplina> list = gradeDisciplinaDao.listarGradeDisciplina();
         JRDataSource datos = new JRBeanCollectionDataSource(list); 
 
         JasperViewer ver = null;
@@ -391,16 +366,64 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemDeMenuRelatorioDeGradeDisciplinaActionPerformed
 
     private void itemDeMenuRelatorioDeRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeRecursoActionPerformed
-        JOptionPane.showMessageDialog(null, "Módulo em construção...", "Atenção!!!", JOptionPane.INFORMATION_MESSAGE);
+        
+        RecursoDao recusoDao = new RecursoDao();
+
+        String fileName="./REPORTS/reportRecurso.jasper";
+
+        List<Recurso> list = recusoDao.listarRecurso();
+        JRDataSource datos = new JRBeanCollectionDataSource(list);
+
+        JasperViewer ver = null;
+        JasperPrint jasper = null;
+
+        try {
+            jasper = JasperFillManager.fillReport(fileName, new HashMap(), datos);
+
+            ver = new JasperViewer(jasper,false);
+            ver.setTitle("Faculdade Dom Bosco de Porto Alegre");
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.setLocationRelativeTo(this);
+            ver.setFocusable(true);
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.setVisible(true);
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.requestFocus();
+            ver.setAlwaysOnTop(true);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_itemDeMenuRelatorioDeRecursoActionPerformed
 
     private void itemDeMenuRelatorioDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeUsuarioActionPerformed
-        JOptionPane.showMessageDialog(null, "Módulo em construção...", "Atenção!!!", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_itemDeMenuRelatorioDeUsuarioActionPerformed
 
-    private void itemImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemImprimirActionPerformed
-        JOptionPane.showMessageDialog(null, "Módulo em construção...", "Atenção!!!", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_itemImprimirActionPerformed
+        UsuarioDao usuarioDao = new UsuarioDao();
+
+        String fileName="./REPORTS/reportUsuario.jasper";
+
+        List<Usuario> list = usuarioDao.listarUsuario();
+        JRDataSource datos = new JRBeanCollectionDataSource(list);
+
+        JasperViewer ver = null;
+        JasperPrint jasper = null;
+
+        try {
+            jasper = JasperFillManager.fillReport(fileName, new HashMap(), datos);
+
+            ver = new JasperViewer(jasper,false);
+            ver.setTitle("Faculdade Dom Bosco de Porto Alegre");
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.setLocationRelativeTo(this);
+            ver.setFocusable(true);
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.setVisible(true);
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.requestFocus();
+            ver.setAlwaysOnTop(true);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_itemDeMenuRelatorioDeUsuarioActionPerformed
 
     private void itemDeMenuEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuEquipamentoActionPerformed
         if((guicadequip == null) || (!guicadequip.isVisible())){
@@ -419,15 +442,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
             guisobre.setVisible(true);
         }
 }//GEN-LAST:event_itemDeMenuSobreActionPerformed
-
-    private void itemDeMenuRelatorioDeAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeAgendamentoActionPerformed
-        if((guirelatagend == null) || (!guirelatagend.isVisible())){
-            guirelatagend = new GUIRelatorioAgendamento();
-            desktopPane.add(guirelatagend);
-            guirelatagend.setPosicao();
-            guirelatagend.setVisible(true);
-        }
-    }//GEN-LAST:event_itemDeMenuRelatorioDeAgendamentoActionPerformed
 
     private void itemDeMenuGerenciadorUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuGerenciadorUsuarioActionPerformed
         if((guiusuario == null) || (!guiusuario.isVisible())){
@@ -454,7 +468,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemDeMenuGerenciadorUsuario;
     private javax.swing.JMenuItem itemDeMenuGradeDisciplina;
     private javax.swing.JMenuItem itemDeMenuRecurso;
-    private javax.swing.JMenuItem itemDeMenuRelatorioDeAgendamento;
     private javax.swing.JMenuItem itemDeMenuRelatorioDeEquipamento;
     private javax.swing.JMenuItem itemDeMenuRelatorioDeGradeDisciplina;
     private javax.swing.JMenuItem itemDeMenuRelatorioDeRecurso;
@@ -462,7 +475,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemDeMenuSair;
     private javax.swing.JMenuItem itemDeMenuSobre;
     private javax.swing.JMenuItem itemDeMenuUsuario;
-    private javax.swing.JMenuItem itemImprimir;
     private javax.swing.JPopupMenu.Separator itemSeparador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -481,11 +493,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private GUIRequisitante guirequisitante;
     private GUISobre guisobre;
     private GUICalendario guicalendar;
-    private GUIRelatorioAgendamento guirelatagend;
     private GUIGradeDisciplina guigradedisciplina;
     private GUIUsuario guiusuario;
 
 
-    private GUIRelatorioEquipamento guiRelatEquipamento;
    
 }

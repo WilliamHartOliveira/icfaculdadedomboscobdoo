@@ -9,20 +9,6 @@
             <Property name="text" type="java.lang.String" value="Arquivo"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="itemImprimir">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+I"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/imprimir.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Imprimir"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemImprimirActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="itemSeparador">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemDeMenuSair">
@@ -123,14 +109,6 @@
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rio"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="itemDeMenuRelatorioDeAgendamento">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Agendamento"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemDeMenuRelatorioDeAgendamentoActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemDeMenuRelatorioDeEquipamento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Equipamento"/>
