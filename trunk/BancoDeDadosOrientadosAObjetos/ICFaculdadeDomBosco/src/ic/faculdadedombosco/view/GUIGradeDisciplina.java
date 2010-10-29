@@ -51,8 +51,8 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
     {
         oGradeDisciplina.setDisciplina_gradeDisciplina(tf_disciplina_GradeDisciplina.getText());
         oGradeDisciplina.setCurso_gradeDisciplina(cb_curso_GradeDisciplina.getSelectedItem().toString());
-        oGradeDisciplina.setRecurso_gradeDisciplina(pesquisaRecurso(cb_recurso_GradeDisciplina.getSelectedItem().toString()));
-        oGradeDisciplina.setProfessor__gradeDisciplina(pesquisaProfessor(cb_professor_GradeDisciplina.getSelectedItem().toString()));
+        oGradeDisciplina.setRecurso__gradeDisciplina(pesquisaRecurso(cb_recurso_GradeDisciplina.getSelectedItem().toString()));
+        oGradeDisciplina.setProfessor_gradeDisciplina(pesquisaProfessor(cb_professor_GradeDisciplina.getSelectedItem().toString()));
         oGradeDisciplina.setStatus_gradeDisciplina(cb_status_GradeDisciplina.getSelectedItem().toString());
 
         return oGradeDisciplina;
@@ -104,8 +104,8 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
         for(int i = 0; i < listaatual.size(); i++){
             tabela[i][0] = String.valueOf(listaatual.get(i).getDisciplina_gradeDisciplina());
             tabela[i][1] = listaatual.get(i).getCurso_gradeDisciplina();
-            tabela[i][2] = listaatual.get(i).getRecurso_gradeDisciplina().getDs_recurso();
-            tabela[i][3] = listaatual.get(i).getProfessor__gradeDisciplina().getRequisitante_nome();
+            tabela[i][2] = listaatual.get(i).getRecurso__gradeDisciplina().getDs_recurso();
+            tabela[i][3] = listaatual.get(i).getProfessor_gradeDisciplina().getRequisitante_nome();
             tabela[i][4] = listaatual.get(i).getStatus_gradeDisciplina();
         }
 

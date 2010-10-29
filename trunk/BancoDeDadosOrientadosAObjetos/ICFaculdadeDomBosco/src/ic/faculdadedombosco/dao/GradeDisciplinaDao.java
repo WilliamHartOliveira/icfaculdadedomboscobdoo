@@ -43,8 +43,8 @@ public class GradeDisciplinaDao {
 
         graddisc.setDisciplina_gradeDisciplina(gradeDisciplina.getDisciplina_gradeDisciplina());
         graddisc.setCurso_gradeDisciplina(gradeDisciplina.getCurso_gradeDisciplina());
-        graddisc.setRecurso_gradeDisciplina(gradeDisciplina.getRecurso_gradeDisciplina());
-        graddisc.setProfessor__gradeDisciplina(gradeDisciplina.getProfessor__gradeDisciplina());
+        graddisc.setRecurso__gradeDisciplina(gradeDisciplina.getRecurso__gradeDisciplina());
+        graddisc.setProfessor_gradeDisciplina(gradeDisciplina.getProfessor_gradeDisciplina());
         graddisc.setStatus_gradeDisciplina(gradeDisciplina.getStatus_gradeDisciplina());
 
         oConexao.getDb().store(graddisc);
