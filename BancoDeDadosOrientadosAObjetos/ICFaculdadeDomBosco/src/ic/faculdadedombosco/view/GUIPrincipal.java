@@ -308,7 +308,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         EquipamentoDao equipamentoDao = new EquipamentoDao();
 
-        String fileName="./REPORTS/reportEquipment.jasper";
+        String fileName="./REPORTS/reportEquipmento.jasper";
 
         List<Equipamento> list = equipamentoDao.listarEquipamento();
         JRDataSource datos = new JRBeanCollectionDataSource(list);

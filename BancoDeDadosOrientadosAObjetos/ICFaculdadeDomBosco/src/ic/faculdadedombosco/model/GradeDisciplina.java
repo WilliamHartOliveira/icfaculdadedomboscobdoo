@@ -9,8 +9,8 @@ public class GradeDisciplina {
 
     private String disciplina_gradeDisciplina;
     private String curso_gradeDisciplina;
-    private Recurso recurso_gradeDisciplina;
-    private Requisitante professor__gradeDisciplina;
+    private Recurso recurso__gradeDisciplina;
+    private Requisitante professor_gradeDisciplina;
     private String status_gradeDisciplina;
 
     public String getCurso_gradeDisciplina() {
@@ -29,20 +29,20 @@ public class GradeDisciplina {
         this.disciplina_gradeDisciplina = disciplina_gradeDisciplina;
     }
 
-    public Requisitante getProfessor__gradeDisciplina() {
-        return this.professor__gradeDisciplina;
+    public Requisitante getProfessor_gradeDisciplina() {
+        return this.professor_gradeDisciplina;
     }
 
-    public void setProfessor__gradeDisciplina(Requisitante professor__gradeDisciplina) {
-        this.professor__gradeDisciplina = professor__gradeDisciplina;
+    public void setProfessor_gradeDisciplina(Requisitante professor__gradeDisciplina) {
+        this.professor_gradeDisciplina = professor__gradeDisciplina;
     }
 
-    public Recurso getRecurso_gradeDisciplina() {
-        return this.recurso_gradeDisciplina;
+    public Recurso getRecurso__gradeDisciplina() {
+        return this.recurso__gradeDisciplina;
     }
 
-    public void setRecurso_gradeDisciplina(Recurso recurso_gradeDisciplina) {
-        this.recurso_gradeDisciplina = recurso_gradeDisciplina;
+    public void setRecurso__gradeDisciplina(Recurso recurso_gradeDisciplina) {
+        this.recurso__gradeDisciplina = recurso_gradeDisciplina;
     }
 
     public String getStatus_gradeDisciplina() {
