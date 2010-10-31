@@ -13,6 +13,14 @@ public class GradeDisciplina {
     private Requisitante professor_gradeDisciplina;
     private String status_gradeDisciplina;
 
+    public String getRecursoDescricao() {
+        return this.getRecurso__gradeDisciplina().getDs_recurso();
+    }
+    
+    public String getProfessorDescricao() {
+        return this.getProfessor_gradeDisciplina().getRequisitante_nome();
+    }
+
     public String getCurso_gradeDisciplina() {
         return curso_gradeDisciplina;
     }
