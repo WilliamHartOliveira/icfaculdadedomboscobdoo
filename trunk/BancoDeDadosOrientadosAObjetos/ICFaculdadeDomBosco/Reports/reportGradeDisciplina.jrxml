@@ -187,7 +187,7 @@ Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{professor_gradeDisciplina}.toString()]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[((Requisitante)$F{professor_gradeDisciplina}).getProfessorDescricao()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
 				<reportElement key="textField-5" x="695" y="3" width="75" height="20" forecolor="#000000"/>
@@ -213,7 +213,7 @@ Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{recurso__gradeDisciplina}.toString()]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[((Requisitante)$F{recurso__gradeDisciplina}).getRecursoDescricao()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
