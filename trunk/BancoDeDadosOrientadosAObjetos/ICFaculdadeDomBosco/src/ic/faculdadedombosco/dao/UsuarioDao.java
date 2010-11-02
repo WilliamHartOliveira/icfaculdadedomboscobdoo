@@ -71,7 +71,7 @@ public class UsuarioDao {
         Query query = oConexao.getDb().query();
         query.constrain(Usuario.class);
         Constraint secondConstr = query.descend("senha_usuario").constrain(senha);
-        query.descend("nome_usuario").constrain(nome).and(secondConstr);
+        query.descend("usuario_usuario").constrain(nome).and(secondConstr);
 
         ObjectSet lista = query.execute();
 
@@ -83,7 +83,7 @@ public class UsuarioDao {
 
     }
 
-    public ObjectSet<Usuario> montarTabelaEquip()
+    public ObjectSet<Usuario> montarTabelaUsuario()
     {
         oConexao = new Conexao();
 
@@ -109,8 +109,6 @@ public class UsuarioDao {
         {
               lista.add((Usuario)resultado.next());
         }
-
         return lista;
     }
-
 }

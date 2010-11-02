@@ -54,10 +54,6 @@ public class GUILogin extends javax.swing.JFrame {
         lUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lUsuario.setText("Usuário:");
 
-        tfUsuario.setText("admin");
-
-        tfSenha.setText("admin");
-
         lSenha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lSenha.setText("Senha:");
 
@@ -113,7 +109,7 @@ public class GUILogin extends javax.swing.JFrame {
         );
 
         lImagemLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lImagemLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/login.png"))); // NOI18N
+        lImagemLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/images/login.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -197,6 +193,26 @@ public class GUILogin extends javax.swing.JFrame {
 
     private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
 
+        /*
+        usuario = new Usuario();
+        usuarioService = new UsuarioService();
+
+        if(usuarioService.buscar(tfUsuario.getText(),tfSenha.getText()) != null){
+            GUIPrincipal guiPrincipal = new GUIPrincipal();//cria uma instância de GUIPrincipal
+            guiPrincipal.setLocationRelativeTo(null);//posicionam essa instância no centro do desktop
+            guiPrincipal.setVisible(true);//exibem a instância
+            this.setVisible(false);
+        }else{
+            System.out.println(tfUsuario.getText());
+            System.out.println(tfSenha.getText());
+            tfUsuario.setText(null);
+            tfSenha.setText(null);
+            tfUsuario.requestFocus();
+        }
+
+*/
+
+        
         usuario = new Usuario();
         usuarioDao = new UsuarioDao();
         usuarioService = new UsuarioService();
@@ -219,6 +235,8 @@ public class GUILogin extends javax.swing.JFrame {
             tfSenha.setText(null);
             tfUsuario.requestFocus();
         }
+         
+
 
     }//GEN-LAST:event_bOkActionPerformed
 

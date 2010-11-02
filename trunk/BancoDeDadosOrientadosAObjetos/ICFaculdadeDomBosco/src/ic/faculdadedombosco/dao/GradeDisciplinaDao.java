@@ -2,9 +2,7 @@ package ic.faculdadedombosco.dao;
 
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
-import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.model.GradeDisciplina;
-import javax.swing.JOptionPane;
 import ic.faculdadedombosco.Conexao;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +35,7 @@ public class GradeDisciplinaDao {
 
         Query query = oConexao.getDb().query();
         query.constrain(GradeDisciplina.class);
-        query.descend("curso_gradeDisciplina").constrain(gradeDisciplina.getCurso_gradeDisciplina());
+        query.descend("disciplina_gradeDisciplina").constrain(gradeDisciplina.getDisciplina_gradeDisciplina());
 
         GradeDisciplina graddisc = (GradeDisciplina) query.execute().get(0);
 
@@ -65,13 +63,13 @@ public class GradeDisciplinaDao {
         return gradeDisciplina;
     }
 
-    public GradeDisciplina buscar(String curso)
+    public GradeDisciplina buscar(String disciplina)
     {
         oConexao = new Conexao();
 
         Query query = oConexao.getDb().query();
         query.constrain(GradeDisciplina.class);
-        query.descend("curso_gradeDisciplina").constrain(curso);
+        query.descend("disciplina_gradeDisciplina").constrain(disciplina);
 
         ObjectSet lista = query.execute();
 
@@ -88,7 +86,7 @@ public class GradeDisciplinaDao {
 
         Query query = oConexao.getDb().query();
         query.constrain(GradeDisciplina.class);
-        query.descend("curso_gradeDisciplina").orderAscending();
+        query.descend("disciplina_gradeDisciplina").orderAscending();
         ObjectSet<GradeDisciplina> lista = query.execute();
 
         return lista;

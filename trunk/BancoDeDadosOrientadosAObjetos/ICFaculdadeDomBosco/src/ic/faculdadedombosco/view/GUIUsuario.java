@@ -4,6 +4,7 @@ import com.db4o.ObjectSet;
 import ic.faculdadedombosco.dao.UsuarioDao;
 import ic.faculdadedombosco.model.Usuario;
 import ic.faculdadedombosco.service.UsuarioService;
+import ic.faculdadedombosco.tables.UsuarioTableModel;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -35,6 +36,7 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
         tfusuarioGerenciamento.setText(null);
         pfsenhaGerenciamento.setText(null);
         cbadministradorGerenciamento.setSelectedItem("Selecione...");
+
     }//Método responsável para limpar campos do frame
 
     private Usuario capturaDados()
@@ -47,40 +49,22 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
         return oUsuario;
     }
 
+    private void carregarFormulario (Usuario usuario) {
+        tfnomeGerenciamento.setText(usuario.getNome_usuario());
+        tfusuarioGerenciamento.setText(usuario.getUsuario_usuario());
+        pfsenhaGerenciamento.setText(usuario.getSenha_usuario());
+        cbadministradorGerenciamento.setSelectedItem(usuario.getAdminstrador_usuario());
+    }
+
     private void montarTabela( )
     {
-
         oUsuarioDao = new UsuarioDao();
 
-        ObjectSet<Usuario> listaatual = oUsuarioDao.montarTabelaEquip();
-        String [][] tabela = new String[listaatual.size()][4];
+        ObjectSet<Usuario> listUsuario = oUsuarioDao.montarTabelaUsuario();
 
-        for(int i = 0; i < listaatual.size(); i++){
-            tabela[i][0] = String.valueOf(listaatual.get(i).getNome_usuario());
-            tabela[i][1] = listaatual.get(i).getUsuario_usuario();
-            tabela[i][2] = listaatual.get(i).getSenha_usuario();
-            tabela[i][3] = listaatual.get(i).getAdminstrador_usuario();
-        }
-
-        this.tabelaUsuario.setModel(
-            new DefaultTableModel(
-                tabela,
-                new String[] {"Nome", "Usuário", "Senha", "Administrador"}
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
-                false, false, false, false
-            };
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
-                return canEdit [columnIndex];
-            }
-        });
-
-    }//Método responsável para montar tabela
+        UsuarioTableModel usuarioTableModel = new UsuarioTableModel(listUsuario);
+        this.tabelaUsuario.setModel(usuarioTableModel);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -147,17 +131,9 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nome", "Usuário", "Senha", "Administrador"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         tabelaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaUsuarioMouseClicked(evt);
@@ -258,7 +234,7 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -299,6 +275,8 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
         oUsuario = capturaDados();
         oUsuarioService.incluir(oUsuario);
         montarTabela();
+
+
     }//GEN-LAST:event_bSalvarGerencUsuarioActionPerformed
 
     private void bLimparGerencUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimparGerencUsuarioActionPerformed
@@ -306,19 +284,13 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bLimparGerencUsuarioActionPerformed
 
     private void tabelaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaUsuarioMouseClicked
+        if (this.tabelaUsuario.getSelectedRow() != -1) {
 
-        this.tfnomeGerenciamento.setText(String.valueOf(
-                this.tabelaUsuario.getModel().getValueAt(this.tabelaUsuario.getSelectedRow(), 0)));
-        this.tfusuarioGerenciamento.setText(String.valueOf(
-                this.tabelaUsuario.getModel().getValueAt(this.tabelaUsuario.getSelectedRow(), 1)));
-        this.pfsenhaGerenciamento.setText(String.valueOf(
-                this.tabelaUsuario.getModel().getValueAt(this.tabelaUsuario.getSelectedRow(), 2)));
-        this.cbadministradorGerenciamento.setSelectedItem(String.valueOf(
-                this.tabelaUsuario.getModel().getValueAt(this.tabelaUsuario.getSelectedRow(), 3)));
-
-        this.tfusuarioGerenciamento.requestFocus();
+            UsuarioTableModel usuarioTableModel = (UsuarioTableModel)this.tabelaUsuario.getModel();
+            this.carregarFormulario(usuarioTableModel.getUsuarios().get(this.tabelaUsuario.getSelectedRow()));
+        }
+        this.tfnomeGerenciamento.requestFocus();
     }//GEN-LAST:event_tabelaUsuarioMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAtualizarGerencUsuario;

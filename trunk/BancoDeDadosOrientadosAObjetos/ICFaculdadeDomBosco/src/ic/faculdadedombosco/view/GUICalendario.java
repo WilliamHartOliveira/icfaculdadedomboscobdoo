@@ -1,5 +1,6 @@
 package ic.faculdadedombosco.view;
 
+import com.toedter.calendar.JCalendar;
 import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -74,14 +75,21 @@ public class GUICalendario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcCalendarMouseClicked
-       pegarData();
+
+        pegarData();
     }//GEN-LAST:event_jcCalendarMouseClicked
 
     String pegarData(){
         SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
-        data.format(new Date());
+        jcCalendar = new JCalendar();
+        data.format(jcCalendar.getCalendar());
+        //jcCalendar = new JCalendar();
+        //System.out.print(jcCalendar.getCalendar().toString());
+        //SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+        //data.format(jcCalendar = new JCalendar());
         System.out.print(data);
-        return data.format(new Date());
+        //return data;
+        return data.format(jcCalendar = new JCalendar());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

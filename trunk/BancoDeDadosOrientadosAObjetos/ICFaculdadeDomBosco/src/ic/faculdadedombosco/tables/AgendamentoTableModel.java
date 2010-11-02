@@ -5,14 +5,10 @@ import ic.faculdadedombosco.model.Agendamento;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Anderson
- */
 public class AgendamentoTableModel extends AbstractTableModel{
 
     private List<Agendamento> agendamentos;
-    private String[] columnNames = {"Data", "Horário", "Disciplina", "Usuário"};
+    private String[] columnNames = {"Data Inicial", "Hora Inicial", "Data Final", "Hora Final", "Disciplina", "Usuário"};
 
     public AgendamentoTableModel(List<Agendamento> agendamentos) {
         this.agendamentos = agendamentos;
@@ -26,14 +22,12 @@ public class AgendamentoTableModel extends AbstractTableModel{
         return this.columnNames.length;
     }
 
-
     @Override
     public String getColumnName(int column) {
         return this.columnNames[column];
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
-
         Agendamento agendamento = this.getAgendamentos().get(rowIndex);
         Object value = null;
 
@@ -45,15 +39,20 @@ public class AgendamentoTableModel extends AbstractTableModel{
                 value = agendamento.getHoraInicial();
                 break;
             case 2:
-                value = agendamento.getDisciplina();
+                value = agendamento.getDataFinal();
                 break;
             case 3:
+                value = agendamento.getHoraFinal();
+                break;
+            case 4:
+                value = agendamento.getDisciplina();
+                break;
+            case 5:
                 value = agendamento.getUsuario();
                 break;
             default:
                 break;
         }
-
         return value;
     }
 
@@ -64,5 +63,4 @@ public class AgendamentoTableModel extends AbstractTableModel{
     public void setAgendamentos(List<Agendamento> agendamentos) {
         this.agendamentos = agendamentos;
     }
-
 }
