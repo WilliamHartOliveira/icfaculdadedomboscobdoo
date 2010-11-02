@@ -222,6 +222,11 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
         tabelaRequisitante.getColumnModel().getColumn(4).setResizable(false);
 
         bPesquisarRequisitante.setText("Pesquisar");
+        bPesquisarRequisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPesquisarRequisitanteActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Nome:");
 
@@ -333,7 +338,7 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -395,6 +400,24 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
                 this.tabelaRequisitante.getModel().getValueAt(this.tabelaRequisitante.getSelectedRow(), 4)));
         this.tfNomeRequisitante.requestFocus();
     }//GEN-LAST:event_tabelaRequisitanteMouseClicked
+
+    private void bPesquisarRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarRequisitanteActionPerformed
+        requisitante = new Requisitante();
+        requisitanteService = new RequisitanteService();
+
+        requisitante = requisitanteService.buscar(tfNomePesqRequisitante.getText());
+
+        if(requisitante != null){
+            JOptionPane.showMessageDialog(null, "Requisitante encontrado", "Pesquisa Requisitante", JOptionPane.INFORMATION_MESSAGE);
+            tfMatriculaRequisitante.setText(""+requisitante.getRequisitante_matricula());
+            cbStatusRequisitante.setSelectedItem(""+requisitante.getRequisitante_status());
+            tfNomeRequisitante.setText(""+requisitante.getRequisitante_nome());
+            cbTipoRequisitante.setSelectedItem(""+requisitante.getRequisitante_telefone());
+            tfTelefoneRequisitante.setText(""+requisitante.getRequisitante_telefone());
+        }else{
+             JOptionPane.showMessageDialog(null, "Requisitante não encontrado", "Pesquisa Requisitante", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_bPesquisarRequisitanteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

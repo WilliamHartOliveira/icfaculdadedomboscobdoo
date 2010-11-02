@@ -28,11 +28,11 @@ public class GradeDisciplinaService {
        return oGradeDisciplinaDao.excluir(oGradeDisciplina);
     }
 
-    public GradeDisciplina buscar(String curso)
+    public GradeDisciplina buscar(String disciplina)
     {
        GradeDisciplinaDao oGradeDisciplinaDao = new GradeDisciplinaDao();
 
-       return oGradeDisciplinaDao.buscar(curso);
+       return oGradeDisciplinaDao.buscar(disciplina);
     }
 
 }

@@ -17,7 +17,7 @@
                   <KeyStroke key="Ctrl+F"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/sair.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/sair.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
@@ -38,7 +38,7 @@
                   <KeyStroke key="Ctrl+A"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/agendamento.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/agendamento.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agendamento"/>
               </Properties>
@@ -52,7 +52,7 @@
                   <KeyStroke key="Ctrl+E"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/equipamento.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/equipamento.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Equipamento"/>
               </Properties>
@@ -66,7 +66,7 @@
                   <KeyStroke key="Ctrl+G"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/grade_disciplina.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/grade_disciplina.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Grade Disciplina"/>
               </Properties>
@@ -80,7 +80,7 @@
                   <KeyStroke key="Ctrl+R"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/recurso.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/recurso.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Recurso"/>
               </Properties>
@@ -94,7 +94,7 @@
                   <KeyStroke key="Ctrl+Q"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/usuario.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/usuario.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Requisitante"/>
               </Properties>
@@ -169,7 +169,7 @@
                   <KeyStroke key="Ctrl+S"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/ajuda.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/ajuda.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sobre"/>
               </Properties>
@@ -246,7 +246,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ic/faculdadedombosco/imagens/face_bosco.jpg"/>
+              <Image iconType="3" name="/ic/faculdadedombosco/images/face_bosco.jpg"/>
             </Property>
             <Property name="verticalAlignment" type="int" value="1"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>

@@ -80,7 +80,7 @@ public class RecursoDao {
 
     }
 
-    public ObjectSet<Recurso> montarTabelaEquip()
+    public ObjectSet<Recurso> montarTabelaRecurso()
     {
         oConexao = new Conexao();
 

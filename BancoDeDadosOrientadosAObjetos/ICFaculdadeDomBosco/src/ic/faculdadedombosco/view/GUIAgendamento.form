@@ -25,8 +25,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -35,7 +35,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -98,10 +98,10 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" pref="672" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jScrollPane2" alignment="0" pref="800" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -145,7 +145,7 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="166" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="130" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -175,42 +175,10 @@
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="2">
-                        <Column editable="true" title="Data/Hor&#xe1;rio" type="java.lang.Object"/>
-                        <Column editable="true" title="Equipamento" type="java.lang.Object"/>
-                        <Column editable="true" title="Professor" type="java.lang.Object"/>
-                        <Column editable="true" title="Localiza&#xe7;&#xe3;o" type="java.lang.Object"/>
-                        <Column editable="true" title="Observa&#xe7;&#xe3;o" type="java.lang.Object"/>
-                      </Table>
+                      <Table columnCount="0" rowCount="2"/>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="2">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                      </TableColumnModel>
+                      <TableColumnModel selectionModel="2"/>
                     </Property>
                     <Property name="columnSelectionAllowed" type="boolean" value="true"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -235,7 +203,7 @@
             <Component class="javax.swing.JButton" name="bDataInicialPesquisa">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/calendario_1.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/calendario_1.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Calend&#xe1;rio"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -267,7 +235,7 @@
             <Component class="javax.swing.JButton" name="bDataFinalPesquisa">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/calendario_1.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/calendario_1.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Calend&#xe1;rio"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -333,8 +301,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cbHoraInicialAgendamento" pref="124" max="32767" attributes="1"/>
-                                  <Component id="cbHoraFinalAgendamento" alignment="0" pref="124" max="32767" attributes="1"/>
+                                  <Component id="cbHoraFinalAgendamento" pref="124" max="32767" attributes="1"/>
+                                  <Component id="cbHoraInicialAgendamento" alignment="0" pref="124" max="32767" attributes="1"/>
                               </Group>
                           </Group>
                           <Component id="cbRecursoAgendamento" alignment="0" pref="259" max="32767" attributes="1"/>
@@ -368,7 +336,7 @@
                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="cbHoraInicialAgendamento" alignment="3" max="32767" attributes="1"/>
+                                      <Component id="cbHoraInicialAgendamento" alignment="3" min="-2" max="-2" attributes="1"/>
                                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -399,8 +367,8 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="cbHoraFinalAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbHoraFinalAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                               </Group>
@@ -426,9 +394,6 @@
                   </StringArray>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbDisciplinaAgendamentoActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -493,7 +458,7 @@
             <Component class="javax.swing.JButton" name="bDataFinal">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/calendario_1.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/calendario_1.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Calend&#xe1;rio"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -513,7 +478,7 @@
             <Component class="javax.swing.JButton" name="bDataInicial">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ic/faculdadedombosco/imagens/calendario_1.png"/>
+                  <Image iconType="3" name="/ic/faculdadedombosco/images/calendario_1.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Calend&#xe1;rio"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -584,11 +549,24 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="298" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jScrollPane3" alignment="1" pref="426" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="1" pref="426" max="32767" attributes="1"/>
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="btAdicionarEquipamentoAgendamento" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btRemoverEquipamentoAgendamento" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="cbEquipamentosAgendamento" alignment="0" pref="351" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -600,7 +578,19 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="110" max="32767" attributes="1"/>
+                      <Component id="jScrollPane1" min="-2" pref="40" max="-2" attributes="1"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbEquipamentosAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btRemoverEquipamentoAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btAdicionarEquipamentoAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="41" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -627,6 +617,53 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JList" name="jlEquipamentosGradeDisciplina">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                    <Property name="selectionMode" type="int" value="0"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jLabel11">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Equipamentos:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cbEquipamentosAgendamento">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="1">
+                    <StringItem index="0" value="Selecione..."/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btAdicionarEquipamentoAgendamento">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Adicionar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAdicionarEquipamentoAgendamentoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btRemoverEquipamentoAgendamento">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Remover"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoverEquipamentoAgendamentoActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel5">
@@ -642,7 +679,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="335" max="32767" attributes="0"/>
+                      <EmptySpace pref="463" max="32767" attributes="0"/>
                       <Component id="btLimparAgendamento" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btListarAgendamento" min="-2" max="-2" attributes="0"/>
@@ -677,6 +714,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvarAgendamentoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btExcluirAgendamento">
               <Properties>

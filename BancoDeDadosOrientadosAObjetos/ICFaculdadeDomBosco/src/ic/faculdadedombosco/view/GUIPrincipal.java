@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -89,7 +88,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/face_bosco.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/images/face_bosco.jpg"))); // NOI18N
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -108,7 +107,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuArquivo.add(itemSeparador);
 
         itemDeMenuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        itemDeMenuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/sair.png"))); // NOI18N
+        itemDeMenuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/images/sair.png"))); // NOI18N
         itemDeMenuSair.setText("Sair");
         itemDeMenuSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +121,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuCadastro.setText("Cadastro");
 
         itemDeMenuAgendamento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        itemDeMenuAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/agendamento.png"))); // NOI18N
+        itemDeMenuAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/images/agendamento.png"))); // NOI18N
         itemDeMenuAgendamento.setText("Agendamento");
         itemDeMenuAgendamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +131,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuCadastro.add(itemDeMenuAgendamento);
 
         itemDeMenuEquipamento.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
-        itemDeMenuEquipamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/equipamento.png"))); // NOI18N
+        itemDeMenuEquipamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/images/equipamento.png"))); // NOI18N
         itemDeMenuEquipamento.setText("Equipamento");
         itemDeMenuEquipamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +141,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuCadastro.add(itemDeMenuEquipamento);
 
         itemDeMenuGradeDisciplina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        itemDeMenuGradeDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/grade_disciplina.png"))); // NOI18N
+        itemDeMenuGradeDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/images/grade_disciplina.png"))); // NOI18N
         itemDeMenuGradeDisciplina.setText("Grade Disciplina");
         itemDeMenuGradeDisciplina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +151,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuCadastro.add(itemDeMenuGradeDisciplina);
 
         itemDeMenuRecurso.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        itemDeMenuRecurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/recurso.png"))); // NOI18N
+        itemDeMenuRecurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/images/recurso.png"))); // NOI18N
         itemDeMenuRecurso.setText("Recurso");
         itemDeMenuRecurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +161,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuCadastro.add(itemDeMenuRecurso);
 
         itemDeMenuUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        itemDeMenuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/usuario.png"))); // NOI18N
+        itemDeMenuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/images/usuario.png"))); // NOI18N
         itemDeMenuUsuario.setText("Requisitante");
         itemDeMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,7 +223,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         menuAjuda.setText("Ajuda");
 
         itemDeMenuSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        itemDeMenuSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/imagens/ajuda.png"))); // NOI18N
+        itemDeMenuSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ic/faculdadedombosco/images/ajuda.png"))); // NOI18N
         itemDeMenuSobre.setText("Sobre");
         itemDeMenuSobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,6 +265,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void itemDeMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuSairActionPerformed
         oConexao.fecharConexao();
         System.exit(0);
+
+
     }//GEN-LAST:event_itemDeMenuSairActionPerformed
 
     private void itemDeMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuUsuarioActionPerformed
