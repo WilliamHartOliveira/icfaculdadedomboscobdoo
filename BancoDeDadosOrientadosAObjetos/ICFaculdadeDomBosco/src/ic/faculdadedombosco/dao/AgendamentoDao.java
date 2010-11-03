@@ -82,7 +82,7 @@ public class AgendamentoDao {
         }
     }
 
-    public ObjectSet<Agendamento> montarTabelaEquip()
+    public ObjectSet<Agendamento> montarTabelaAgendamento()
     {
         oConexao = new Conexao();
 

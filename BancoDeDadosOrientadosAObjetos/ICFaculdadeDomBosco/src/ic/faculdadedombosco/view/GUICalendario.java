@@ -1,10 +1,7 @@
 package ic.faculdadedombosco.view;
 
-import com.toedter.calendar.JCalendar;
 import java.awt.Dimension;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 /*
  * @author Anderson
@@ -39,6 +36,11 @@ public class GUICalendario extends javax.swing.JInternalFrame {
                 jcCalendarMouseClicked(evt);
             }
         });
+        jcCalendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jcCalendarPropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,28 +70,26 @@ public class GUICalendario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcCalendarMouseClicked
-
         pegarData();
     }//GEN-LAST:event_jcCalendarMouseClicked
 
+    private void jcCalendarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jcCalendarPropertyChange
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+        //String dataSetada = data.format(jcCalendar);
+        //System.out.println("Data setada: "+dataSetada);
+    }//GEN-LAST:event_jcCalendarPropertyChange
+
     String pegarData(){
         SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
-        jcCalendar = new JCalendar();
-        data.format(jcCalendar.getCalendar());
-        //jcCalendar = new JCalendar();
-        //System.out.print(jcCalendar.getCalendar().toString());
-        //SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
-        //data.format(jcCalendar = new JCalendar());
-        System.out.print(data);
-        //return data;
-        return data.format(jcCalendar = new JCalendar());
+        String dataSetada = data.format(jcCalendar.getCalendar());
+        return dataSetada;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
