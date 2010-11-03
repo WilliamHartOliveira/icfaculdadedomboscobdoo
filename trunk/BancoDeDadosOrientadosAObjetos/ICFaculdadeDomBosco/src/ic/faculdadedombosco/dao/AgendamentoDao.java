@@ -43,6 +43,7 @@ public class AgendamentoDao {
         agend.setHoraInicial(agendamento.getHoraInicial());
         agend.setHoraFinal(agendamento.getHoraFinal());
         agend.setObservacao(agendamento.getObservacao());
+        //agend.setEquipamento(agendamento.getListaEquipamento());
 
         oConexao.getDb().store(agend);
         oConexao.getDb().commit();
