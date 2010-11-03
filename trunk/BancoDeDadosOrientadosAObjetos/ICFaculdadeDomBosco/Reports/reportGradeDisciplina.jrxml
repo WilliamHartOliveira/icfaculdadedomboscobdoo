@@ -3,7 +3,7 @@
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="40"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -14,11 +14,11 @@
 	<field name="curso_gradeDisciplina" class="java.lang.String">
 		<fieldDescription><![CDATA[curso_gradeDisciplina]]></fieldDescription>
 	</field>
-	<field name="recurso__gradeDisciplina" class="java.lang.Object">
-		<fieldDescription><![CDATA[recurso__gradeDisciplina]]></fieldDescription>
+	<field name="recurso__gradeDisciplina.ds_recurso" class="java.lang.String">
+		<fieldDescription><![CDATA[recurso__gradeDisciplina.ds_recurso]]></fieldDescription>
 	</field>
-	<field name="professor_gradeDisciplina" class="java.lang.Object">
-		<fieldDescription><![CDATA[professor_gradeDisciplina]]></fieldDescription>
+	<field name="professor_gradeDisciplina.requisitante_nome" class="java.lang.String">
+		<fieldDescription><![CDATA[professor_gradeDisciplina.requisitante_nome]]></fieldDescription>
 	</field>
 	<field name="status_gradeDisciplina" class="java.lang.String">
 		<fieldDescription><![CDATA[status_gradeDisciplina]]></fieldDescription>
@@ -187,7 +187,7 @@ Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{recurso__gradeDisciplina}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{recurso__gradeDisciplina.ds_recurso}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
 				<reportElement key="textField-4" x="509" y="3" width="174" height="20" forecolor="#000000"/>
@@ -200,7 +200,7 @@ Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{professor_gradeDisciplina}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{professor_gradeDisciplina.requisitante_nome}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
 				<reportElement key="textField-5" x="695" y="3" width="75" height="20" forecolor="#000000"/>
