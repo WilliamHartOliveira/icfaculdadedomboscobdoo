@@ -4,6 +4,8 @@ import com.db4o.ObjectSet;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.model.Requisitante;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /*
@@ -79,7 +81,7 @@ public class RequisitanteDao {
 
     }
 
-    public ObjectSet<Requisitante> montarTabelaEquip()
+    public ObjectSet<Requisitante> montarTabelaRequisitante()
     {
         oConexao = new Conexao();
 
@@ -87,6 +89,24 @@ public class RequisitanteDao {
         query.constrain(Requisitante.class);
         query.descend("requisitante_nome").orderAscending();
         ObjectSet<Requisitante> lista = query.execute();
+
+        return lista;
+    }
+
+     public List<Requisitante> listarRequisitante()
+    {
+        oConexao = new Conexao();
+        List<Requisitante> lista=new ArrayList();
+        Query consulta= oConexao.getDb().query();
+        consulta.constrain(Requisitante.class);
+        consulta.descend("requisitante_nome").orderAscending();
+
+        ObjectSet resultado = consulta.execute();
+
+        while(resultado.hasNext())
+        {
+              lista.add((Requisitante)resultado.next());
+        }
 
         return lista;
     }

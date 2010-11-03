@@ -70,7 +70,6 @@
       <SubComponents>
         <Component class="com.toedter.calendar.JCalendar" name="jcCalendar">
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jcCalendarMouseClicked"/>
             <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jcCalendarPropertyChange"/>
           </Events>
         </Component>

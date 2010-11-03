@@ -109,6 +109,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         }
     }
 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -601,7 +602,8 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bDataInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDataInicialActionPerformed
-        chamarCalendario();       
+        chamarCalendario();
+        //txDataInicialAgendamento.setText(guicalendar.pegarDataSetada());
     }//GEN-LAST:event_bDataInicialActionPerformed
 
     private void bDataFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDataFinalActionPerformed
