@@ -1,11 +1,9 @@
 package ic.faculdadedombosco.model;
 
-import java.io.Serializable;
-
 /*
  * @author Anderson
  */
-public class Recurso implements Serializable{
+public class Recurso {
 
     private String ds_recurso;
     private String tp_recurso;

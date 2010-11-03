@@ -18,7 +18,8 @@ public class Agendamento implements Serializable{
     private String hHoraInicial;
     private String hHoraFinal;
     private String sObservacao;
-    //private ArrayList<Equipamento> listaEquipamento = new ArrayList<Equipamento>();
+    private ArrayList<String> listaEquipamentosAntesAgendamento = new ArrayList<String>();
+    private ArrayList<String> listaEquipamentosDepoisAgendamento = new ArrayList<String>();
 
     public Date getDataFinal() {
         return dDataFinal;
@@ -84,4 +85,19 @@ public class Agendamento implements Serializable{
         this.oRequisitante = oRequisitante;
     }
 
+    public ArrayList<String> getListaEquipamentosAntesAgendamento() {
+        return listaEquipamentosAntesAgendamento;
+    }
+
+    public void setListaEquipamentosAntesAgendamento(ArrayList<String> listaEquipamentosAntesAgendamento) {
+        this.listaEquipamentosAntesAgendamento = listaEquipamentosAntesAgendamento;
+    }
+
+    public ArrayList<String> getListaEquipamentosDepoisAgendamento() {
+        return listaEquipamentosDepoisAgendamento;
+    }
+
+    public void setListaEquipamentosDepoisAgendamento(ArrayList<String> listaEquipamentosDepoisAgendamento) {
+        this.listaEquipamentosDepoisAgendamento = listaEquipamentosDepoisAgendamento;
+    }
 }
