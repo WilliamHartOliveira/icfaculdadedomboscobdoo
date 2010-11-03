@@ -78,6 +78,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         oAgendamento.setDataFinal(new Date(txDataFinalAgendamento.getText()));
         oAgendamento.setHoraFinal(cbHoraFinalAgendamento.getSelectedItem().toString());
         oAgendamento.setObservacao(taObservacaoAgendamento.getText());
+        //oAgendamento.setEquipamento(agendamento.getListaEquipamento());
 
         return oAgendamento;
     }

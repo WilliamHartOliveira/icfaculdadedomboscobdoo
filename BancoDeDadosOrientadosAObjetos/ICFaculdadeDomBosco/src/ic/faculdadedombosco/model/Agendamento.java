@@ -1,6 +1,7 @@
 package ic.faculdadedombosco.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /*
@@ -17,6 +18,7 @@ public class Agendamento implements Serializable{
     private String hHoraInicial;
     private String hHoraFinal;
     private String sObservacao;
+    //private ArrayList<Equipamento> listaEquipamento = new ArrayList<Equipamento>();
 
     public Date getDataFinal() {
         return dDataFinal;
