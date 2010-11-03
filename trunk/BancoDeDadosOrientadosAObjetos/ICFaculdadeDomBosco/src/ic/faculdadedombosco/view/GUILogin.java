@@ -192,9 +192,7 @@ public class GUILogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
-
-        /*
-        usuario = new Usuario();
+        /*usuario = new Usuario();
         usuarioService = new UsuarioService();
 
         if(usuarioService.buscar(tfUsuario.getText(),tfSenha.getText()) != null){
@@ -209,10 +207,7 @@ public class GUILogin extends javax.swing.JFrame {
             tfSenha.setText(null);
             tfUsuario.requestFocus();
         }
-
-*/
-
-        
+        */
         usuario = new Usuario();
         usuarioDao = new UsuarioDao();
         usuarioService = new UsuarioService();
@@ -235,9 +230,6 @@ public class GUILogin extends javax.swing.JFrame {
             tfSenha.setText(null);
             tfUsuario.requestFocus();
         }
-         
-
-
     }//GEN-LAST:event_bOkActionPerformed
 
     private void bTrocarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTrocarSenhaActionPerformed
