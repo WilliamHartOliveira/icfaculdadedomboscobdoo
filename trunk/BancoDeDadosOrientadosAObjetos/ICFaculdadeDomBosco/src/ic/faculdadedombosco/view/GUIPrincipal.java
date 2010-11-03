@@ -4,10 +4,12 @@ import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.dao.EquipamentoDao;
 import ic.faculdadedombosco.dao.GradeDisciplinaDao;
 import ic.faculdadedombosco.dao.RecursoDao;
+import ic.faculdadedombosco.dao.RequisitanteDao;
 import ic.faculdadedombosco.dao.UsuarioDao;
 import ic.faculdadedombosco.model.Equipamento;
 import ic.faculdadedombosco.model.GradeDisciplina;
 import ic.faculdadedombosco.model.Recurso;
+import ic.faculdadedombosco.model.Requisitante;
 import ic.faculdadedombosco.model.Usuario;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -77,6 +79,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         itemDeMenuRelatorioDeEquipamento = new javax.swing.JMenuItem();
         itemDeMenuRelatorioDeGradeDisciplina = new javax.swing.JMenuItem();
         itemDeMenuRelatorioDeRecurso = new javax.swing.JMenuItem();
+        itemDeMenuRelatorioDeRequisitante = new javax.swing.JMenuItem();
         itemDeMenuRelatorioDeUsuario = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         itemDeMenuGerenciadorUsuario = new javax.swing.JMenuItem();
@@ -197,6 +200,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         });
         menuRelatorio.add(itemDeMenuRelatorioDeRecurso);
+
+        itemDeMenuRelatorioDeRequisitante.setText("Requisitante");
+        itemDeMenuRelatorioDeRequisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemDeMenuRelatorioDeRequisitanteActionPerformed(evt);
+            }
+        });
+        menuRelatorio.add(itemDeMenuRelatorioDeRequisitante);
 
         itemDeMenuRelatorioDeUsuario.setText("Usuário");
         itemDeMenuRelatorioDeUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -453,6 +464,35 @@ public class GUIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_itemDeMenuGerenciadorUsuarioActionPerformed
 
+    private void itemDeMenuRelatorioDeRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeRequisitanteActionPerformed
+        RequisitanteDao requisitanteDao = new RequisitanteDao();
+
+        String fileName="./REPORTS/reportRequisitante.jasper";
+
+        List<Requisitante> list = requisitanteDao.listarRequisitante();
+        JRDataSource datos = new JRBeanCollectionDataSource(list);
+
+        JasperViewer ver = null;
+        JasperPrint jasper = null;
+
+        try {
+            jasper = JasperFillManager.fillReport(fileName, new HashMap(), datos);
+
+            ver = new JasperViewer(jasper,false);
+            ver.setTitle("Faculdade Dom Bosco de Porto Alegre");
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.setLocationRelativeTo(this);
+            ver.setFocusable(true);
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.setVisible(true);
+            ver.setExtendedState(ver.MAXIMIZED_BOTH);
+            ver.requestFocus();
+            ver.setAlwaysOnTop(true);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_itemDeMenuRelatorioDeRequisitanteActionPerformed
+
     public void Calendario(){
         if((guicalendar == null) || (!guicalendar.isVisible())){
             guicalendar = new GUICalendario();
@@ -472,6 +512,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemDeMenuRelatorioDeEquipamento;
     private javax.swing.JMenuItem itemDeMenuRelatorioDeGradeDisciplina;
     private javax.swing.JMenuItem itemDeMenuRelatorioDeRecurso;
+    private javax.swing.JMenuItem itemDeMenuRelatorioDeRequisitante;
     private javax.swing.JMenuItem itemDeMenuRelatorioDeUsuario;
     private javax.swing.JMenuItem itemDeMenuSair;
     private javax.swing.JMenuItem itemDeMenuSobre;

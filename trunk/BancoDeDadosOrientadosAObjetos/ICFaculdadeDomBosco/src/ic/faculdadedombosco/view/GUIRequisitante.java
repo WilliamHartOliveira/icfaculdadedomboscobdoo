@@ -64,7 +64,7 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
 
         requisitanteDao = new RequisitanteDao();
 
-        ObjectSet<Requisitante> listaatual = requisitanteDao.montarTabelaEquip();
+        ObjectSet<Requisitante> listaatual = requisitanteDao.montarTabelaRequisitante();
         String [][] tabela = new String[listaatual.size()][5];
 
         for(int i = 0; i < listaatual.size(); i++){
@@ -338,7 +338,7 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();

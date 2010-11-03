@@ -1,7 +1,9 @@
 package ic.faculdadedombosco.view;
 
+import ic.faculdadedombosco.model.Agendamento;
 import java.awt.Dimension;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /*
  * @author Anderson
@@ -31,11 +33,6 @@ public class GUICalendario extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Calendário"));
 
-        jcCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jcCalendarMouseClicked(evt);
-            }
-        });
         jcCalendar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jcCalendarPropertyChange(evt);
@@ -76,21 +73,22 @@ public class GUICalendario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcCalendarMouseClicked
-        pegarData();
-    }//GEN-LAST:event_jcCalendarMouseClicked
-
     private void jcCalendarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jcCalendarPropertyChange
-        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
-        //String dataSetada = data.format(jcCalendar);
-        //System.out.println("Data setada: "+dataSetada);
+        //pegarDataSetada();
+        Date data = jcCalendar.getCalendar().getTime();
+        System.out.println("Data setada: " + new SimpleDateFormat("dd/MM/yyyy").format(data));
     }//GEN-LAST:event_jcCalendarPropertyChange
 
-    String pegarData(){
-        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
-        String dataSetada = data.format(jcCalendar.getCalendar());
+    /*
+    SimpleDateFormat pegarDataSetada(){
+
+        Date data = jcCalendar.getCalendar().getTime();
+        SimpleDateFormat dataSetada = new SimpleDateFormat("dd/MM/yyyy");
+        dataSetada.format(data);
+        System.out.println("Data setada: " + dataSetada);
+
         return dataSetada;
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
