@@ -105,7 +105,7 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
     {
         oGradeDisciplinaDao = new GradeDisciplinaDao();
 
-        ObjectSet<GradeDisciplina> listGradeDisciplina = oGradeDisciplinaDao.montarTabelaEquip();
+        ObjectSet<GradeDisciplina> listGradeDisciplina = oGradeDisciplinaDao.montarTabelaGradeDisciplina();
 
         GradeDisciplinaTableModel gradeDisciplinaTableModel = new GradeDisciplinaTableModel(listGradeDisciplina);
         this.tabela_GradeDisciplina.setModel(gradeDisciplinaTableModel);

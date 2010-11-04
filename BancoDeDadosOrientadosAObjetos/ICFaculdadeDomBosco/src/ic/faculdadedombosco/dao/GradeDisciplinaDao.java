@@ -80,7 +80,7 @@ public class GradeDisciplinaDao {
         }
     }
 
-    public ObjectSet<GradeDisciplina> montarTabelaEquip()
+    public ObjectSet<GradeDisciplina> montarTabelaGradeDisciplina()
     {
         oConexao = new Conexao();
 
