@@ -79,7 +79,7 @@ public class EquipamentoDao {
         
     }
 
-    public ObjectSet<Equipamento> montarTabelaEquip()
+    public ObjectSet<Equipamento> montarTabelaEquipamento()
     {
         oConexao = new Conexao();
 

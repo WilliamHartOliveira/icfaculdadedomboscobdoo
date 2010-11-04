@@ -294,7 +294,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
     {
         equipamentoDao = new EquipamentoDao();
 
-        ObjectSet<Equipamento> listEquipamento = equipamentoDao.montarTabelaEquip();
+        ObjectSet<Equipamento> listEquipamento = equipamentoDao.montarTabelaEquipamento();
 
         EquipamentoTableModel equipamentoTableModel = new EquipamentoTableModel(listEquipamento);
         this.tabelaEquipamento.setModel(equipamentoTableModel);
