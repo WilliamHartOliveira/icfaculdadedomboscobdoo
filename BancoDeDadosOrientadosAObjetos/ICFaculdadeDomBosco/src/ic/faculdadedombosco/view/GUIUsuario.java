@@ -6,8 +6,8 @@ import ic.faculdadedombosco.model.Usuario;
 import ic.faculdadedombosco.service.UsuarioService;
 import ic.faculdadedombosco.tables.UsuarioTableModel;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /*
  * @author Anderson
@@ -20,15 +20,16 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
     UsuarioService oUsuarioService;
     UsuarioDao oUsuarioDao;
 
-    public GUIUsuario() {
+    public GUIUsuario()
+    {
         initComponents();
     }
 
-    public void setPosicao(){
+    public void setPosicao()
+    {
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width)/2, (d.height - this.getSize().height)/2);
     }
-
 
     private void limparCampos()
     {
@@ -36,8 +37,8 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
         tfusuarioGerenciamento.setText(null);
         pfsenhaGerenciamento.setText(null);
         cbadministradorGerenciamento.setSelectedItem("Selecione...");
-
-    }//Método responsável para limpar campos do frame
+        this.tabelaUsuario.setModel(new UsuarioTableModel(new ArrayList<Usuario>()));
+    }
 
     private Usuario capturaDados()
     {
@@ -45,11 +46,11 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
         oUsuario.setUsuario_usuario(tfusuarioGerenciamento.getText());
         oUsuario.setSenha_usuario(pfsenhaGerenciamento.getText());
         oUsuario.setAdminstrador_usuario(cbadministradorGerenciamento.getSelectedItem().toString());
-
         return oUsuario;
     }
 
-    private void carregarFormulario (Usuario usuario) {
+    private void carregarFormulario (Usuario usuario)
+    {
         tfnomeGerenciamento.setText(usuario.getNome_usuario());
         tfusuarioGerenciamento.setText(usuario.getUsuario_usuario());
         pfsenhaGerenciamento.setText(usuario.getSenha_usuario());
@@ -59,9 +60,7 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
     private void montarTabela( )
     {
         oUsuarioDao = new UsuarioDao();
-
         ObjectSet<Usuario> listUsuario = oUsuarioDao.montarTabelaUsuario();
-
         UsuarioTableModel usuarioTableModel = new UsuarioTableModel(listUsuario);
         this.tabelaUsuario.setModel(usuarioTableModel);
     }
@@ -247,7 +246,6 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
     private void bAtualizarGerencUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarGerencUsuarioActionPerformed
        oUsuario = new Usuario();
        oUsuarioService = new UsuarioService();
-
        oUsuario = capturaDados();
        oUsuarioService.atualizar(oUsuario);
        montarTabela();
@@ -256,7 +254,6 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
     private void bExcluirGerencUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirGerencUsuarioActionPerformed
         oUsuario = new Usuario();
         oUsuarioService = new UsuarioService();
-
         oUsuario = capturaDados();
         int x = JOptionPane.showConfirmDialog(this, "Quer mesmo excluir este usuário: " + oUsuario.getNome_usuario(),"Cuidado",JOptionPane.YES_NO_OPTION);
         if (x == 0) {
@@ -271,12 +268,9 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
     private void bSalvarGerencUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarGerencUsuarioActionPerformed
         oUsuario = new Usuario();
         oUsuarioService = new UsuarioService();
-
         oUsuario = capturaDados();
         oUsuarioService.incluir(oUsuario);
         montarTabela();
-
-
     }//GEN-LAST:event_bSalvarGerencUsuarioActionPerformed
 
     private void bLimparGerencUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimparGerencUsuarioActionPerformed
@@ -285,7 +279,6 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
 
     private void tabelaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaUsuarioMouseClicked
         if (this.tabelaUsuario.getSelectedRow() != -1) {
-
             UsuarioTableModel usuarioTableModel = (UsuarioTableModel)this.tabelaUsuario.getModel();
             this.carregarFormulario(usuarioTableModel.getUsuarios().get(this.tabelaUsuario.getSelectedRow()));
         }
@@ -310,5 +303,4 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfnomeGerenciamento;
     private javax.swing.JTextField tfusuarioGerenciamento;
     // End of variables declaration//GEN-END:variables
-
 }
