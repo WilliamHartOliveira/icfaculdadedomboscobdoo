@@ -115,7 +115,7 @@ public class GUILogin extends javax.swing.JFrame {
 
         lSistemaGerRecursos.setFont(new java.awt.Font("Tahoma", 0, 12));
         lSistemaGerRecursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lSistemaGerRecursos.setText("Sistema de Gerenciamento de Resursos");
+        lSistemaGerRecursos.setText("Sistema de Gerenciamento de Recursos");
 
         lBemVindo.setFont(new java.awt.Font("Tahoma", 1, 14));
         lBemVindo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -4,6 +4,7 @@ import com.db4o.ObjectSet;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.model.Agendamento;
+import ic.faculdadedombosco.model.GradeDisciplina;
 import javax.swing.JOptionPane;
 
 public class AgendamentoDao {
@@ -81,6 +82,25 @@ public class AgendamentoDao {
             return null;
         }
     }
+    
+     public Agendamento buscarObjetoDisciplina(GradeDisciplina gradeDisciplina)
+    {
+        oConexao = new Conexao();
+
+        Query query = oConexao.getDb().query();
+        query.constrain(Agendamento.class);
+        query.descend("oGradeDisciplina").constrain(gradeDisciplina);
+
+        ObjectSet lista = query.execute();
+
+        if(lista.hasNext()){
+            return (Agendamento) lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+
 
     public ObjectSet<Agendamento> montarTabelaAgendamento()
     {

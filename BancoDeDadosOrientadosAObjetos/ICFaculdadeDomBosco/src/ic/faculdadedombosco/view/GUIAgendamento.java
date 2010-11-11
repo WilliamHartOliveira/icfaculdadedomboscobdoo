@@ -4,17 +4,25 @@ import com.db4o.ObjectSet;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.dao.AgendamentoDao;
+import ic.faculdadedombosco.dao.GradeDisciplinaDao;
+import ic.faculdadedombosco.dao.RecursoDao;
+import ic.faculdadedombosco.dao.RequisitanteDao;
 import ic.faculdadedombosco.model.Agendamento;
 import ic.faculdadedombosco.model.Equipamento;
 import ic.faculdadedombosco.model.GradeDisciplina;
 import ic.faculdadedombosco.model.Recurso;
 import ic.faculdadedombosco.model.Requisitante;
 import ic.faculdadedombosco.service.AgendamentoService;
+import ic.faculdadedombosco.service.GradeDisciplinaService;
+import ic.faculdadedombosco.service.RecursoService;
+import ic.faculdadedombosco.service.RequisitanteService;
 import ic.faculdadedombosco.tables.AgendamentoTableModel;
 import java.awt.Dimension;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /*
  * @author Anderson
@@ -25,7 +33,21 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     Agendamento oAgendamento;
     AgendamentoService oAgendamentoService;
     AgendamentoDao oAgendamentoDao;
+
+    GradeDisciplina oGradeDisciplina;
+    GradeDisciplinaService oGradeDisciplinaService;
+    GradeDisciplinaDao oGradeDisciplinaDao;
+
+    Requisitante oRequisitante;
+    RequisitanteService oRequisitanteService;
+    RequisitanteDao oRequisitanteDao;
+
+    Recurso oRecurso;
+    RecursoService oRecursoService;
+    RecursoDao oRecursoDao;
+
     private Conexao oConexao;
+    private String campoCaptura;
 
     private ArrayList<String> comboIdDisciplina = new ArrayList<String>();
     private ArrayList<String> comboIdRecurso = new ArrayList<String>();
@@ -72,9 +94,12 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
 
     private Agendamento capturaDados()
     {
-        oAgendamento.setDisciplina(pesquisaDisciplina(cbDisciplinaAgendamento.getSelectedItem().toString()));
-        oAgendamento.setUsuario(pesquisaRequisitante(cbUsuarioAgendamento.getSelectedItem().toString()));
-        oAgendamento.setRecurso(pesquisaRecurso(cbRecursoAgendamento.getSelectedItem().toString()));
+        oAgendamento.setDisciplina(oGradeDisciplinaService.buscar(cbDisciplinaAgendamento.getSelectedItem().toString()));
+        oAgendamento.setUsuario(oRequisitanteService.buscar(cbUsuarioAgendamento.getSelectedItem().toString()));
+        oAgendamento.setRecurso(oRecursoService.buscar(cbRecursoAgendamento.getSelectedItem().toString()));
+        //oAgendamento.setDisciplina(pesquisaDisciplina(cbDisciplinaAgendamento.getSelectedItem().toString()));
+        //oAgendamento.setUsuario(pesquisaRequisitante(cbUsuarioAgendamento.getSelectedItem().toString()));
+        //oAgendamento.setRecurso(pesquisaRecurso(cbRecursoAgendamento.getSelectedItem().toString()));
         oAgendamento.setDataInicial(new Date(txDataInicialAgendamento.getText()));
         oAgendamento.setHoraInicial(cbHoraInicialAgendamento.getSelectedItem().toString());
         oAgendamento.setDataFinal(new Date(txDataFinalAgendamento.getText()));
@@ -96,20 +121,18 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         jlEquipamentosAgendamentos.setListData(agendamento.getListaEquipamentosDepoisAgendamento().toArray());
     }//???????????????????????????????????????????????????
 
-    public void chamarCalendario()
+    public void chamarCalendario(JTextField jtf)
     {
         if((guicalendar == null) || (!guicalendar.isVisible())){
-            guicalendar = new GUICalendario();
+            guicalendar = new GUICalendario(jtf);
             this.getDesktopPane().add(guicalendar);
             guicalendar.setPosicao();
             guicalendar.setVisible(true);
         }else{
             guicalendar.setVisible(false);
-            chamarCalendario();
         }
     }
-
-
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -135,7 +158,6 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         cbRecursoAgendamento = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txDataInicialAgendamento = new javax.swing.JFormattedTextField();
         txDataFinalAgendamento = new javax.swing.JFormattedTextField();
         bDataFinal = new javax.swing.JButton();
         bDataInicial = new javax.swing.JButton();
@@ -143,6 +165,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         cbHoraFinalAgendamento = new javax.swing.JComboBox();
         cbHoraInicialAgendamento = new javax.swing.JComboBox();
+        txDataInicialAgendamento = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -232,17 +255,17 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txDataInicialPesquisaAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txDataInicialPesquisaAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bDataInicialPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txDataFinalPesquisaAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txDataFinalPesquisaAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bDataFinalPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -281,6 +304,11 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         jLabel8.setText("Disciplina:");
 
         cbDisciplinaAgendamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..." }));
+        cbDisciplinaAgendamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbDisciplinaAgendamentoMouseClicked(evt);
+            }
+        });
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Usuário:");
@@ -297,10 +325,6 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Data Final:");
-
-        txDataInicialAgendamento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txDataInicialAgendamento.setText("00/00/0000");
-        txDataInicialAgendamento.setPreferredSize(new java.awt.Dimension(62, 18));
 
         txDataFinalAgendamento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txDataFinalAgendamento.setText("00/00/0000");
@@ -341,40 +365,44 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         cbHoraInicialAgendamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "19h 10min", "21h 05min" }));
         cbHoraInicialAgendamento.setPreferredSize(new java.awt.Dimension(82, 18));
 
+        txDataInicialAgendamento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txDataInicialAgendamento.setText("00/00/0000");
+        txDataInicialAgendamento.setPreferredSize(new java.awt.Dimension(62, 18));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbDisciplinaAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 258, Short.MAX_VALUE)
-                    .addComponent(cbUsuarioAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 258, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addComponent(cbDisciplinaAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 264, Short.MAX_VALUE)
+                    .addComponent(cbUsuarioAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 264, Short.MAX_VALUE)
+                    .addComponent(cbRecursoAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 264, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txDataFinalAgendamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                            .addComponent(txDataInicialAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txDataInicialAgendamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(bDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(cbHoraFinalAgendamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbHoraInicialAgendamento, 0, 92, Short.MAX_VALUE)))
-                    .addComponent(cbRecursoAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 258, Short.MAX_VALUE))
+                            .addComponent(cbHoraInicialAgendamento, 0, 92, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -398,25 +426,26 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txDataInicialAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 19, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
-                    .addComponent(bDataInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addComponent(txDataInicialAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbHoraInicialAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addComponent(bDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txDataFinalAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                        .addComponent(jLabel6))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bDataFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbHoraFinalAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)))))
-                .addGap(49, 49, 49))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(bDataFinal, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(txDataFinalAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)))
+                        .addGap(65, 65, 65))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbHoraFinalAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3))
+                        .addContainerGap())))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -483,7 +512,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
                     .addComponent(btRemoverEquipamentoAgendamento)
                     .addComponent(btAdicionarEquipamentoAgendamento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -528,7 +557,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(499, Short.MAX_VALUE)
+                .addContainerGap(505, Short.MAX_VALUE)
                 .addComponent(btLimparAgendamento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btListarAgendamento)
@@ -602,20 +631,19 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bDataInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDataInicialActionPerformed
-        chamarCalendario();
-        //txDataInicialAgendamento.setText(guicalendar.pegarDataSetada());
+        chamarCalendario(txDataInicialAgendamento);
     }//GEN-LAST:event_bDataInicialActionPerformed
 
     private void bDataFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDataFinalActionPerformed
-        chamarCalendario();
+        chamarCalendario(txDataFinalAgendamento);
     }//GEN-LAST:event_bDataFinalActionPerformed
 
     private void bDataInicialPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDataInicialPesquisaActionPerformed
-        chamarCalendario();
+        chamarCalendario(txDataInicialPesquisaAgendamento);
     }//GEN-LAST:event_bDataInicialPesquisaActionPerformed
 
     private void bDataFinalPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDataFinalPesquisaActionPerformed
-        chamarCalendario();
+        chamarCalendario(txDataFinalPesquisaAgendamento);
     }//GEN-LAST:event_bDataFinalPesquisaActionPerformed
 
     private void btLimparAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparAgendamentoActionPerformed
@@ -695,8 +723,13 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btExcluirAgendamentoActionPerformed
 
-    public GradeDisciplina pesquisaDisciplina(String descGradeDisciplina){
-        
+    private void cbDisciplinaAgendamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbDisciplinaAgendamentoMouseClicked
+
+           
+
+    }//GEN-LAST:event_cbDisciplinaAgendamentoMouseClicked
+
+    /*public GradeDisciplina pesquisaDisciplina(String descGradeDisciplina){
         this.oConexao = new Conexao();
         Query query = this.oConexao.getDb().query();
         query.constrain(GradeDisciplina.class);
@@ -714,7 +747,6 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     }
 
     public Requisitante pesquisaRequisitante(String descRequisitante){
-
         this.oConexao = new Conexao();
         Query query = this.oConexao.getDb().query();
         query.constrain(Requisitante.class);
@@ -749,6 +781,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         return recurso;
     }
 
+    */ //TESTAR DEPOIS DESCARTAR -> FOI CHAMADO A CAMADA SERVICE, ELIMINANDO ASSIM REDUNDÂNCIAS DE MÉTODOS
     private void inicializarCombosBoxs()
     {
         this.comboIdDisciplina.clear();
@@ -764,13 +797,13 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         this.jlEquipamentosAgendamentos.removeAll();
 
         this.inicializarDisciplina();
-        this.inicializarProfessor();
+        //this.inicializarProfessor(oGradeDisciplinaService.buscar(cbUsuarioAgendamento.getSelectedItem().toString()));
         this.inicializarRecurso();
         this.inicializarEquipamento();
     }
 
 
-    private void inicializarProfessor()
+    private void inicializarProfessor(String professor)
     {
         this.oConexao = new Conexao();
         Query query = this.oConexao.getDb().query();
@@ -882,6 +915,8 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField txDataInicialAgendamento;
     private javax.swing.JFormattedTextField txDataInicialPesquisaAgendamento;
     // End of variables declaration//GEN-END:variables
+
+
 
     private GUICalendario guicalendar;
 }

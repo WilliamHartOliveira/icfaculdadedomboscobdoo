@@ -2,6 +2,7 @@ package ic.faculdadedombosco.service;
 
 import ic.faculdadedombosco.dao.AgendamentoDao;
 import ic.faculdadedombosco.model.Agendamento;
+import ic.faculdadedombosco.model.GradeDisciplina;
 
 /*
  * @author Anderson
@@ -38,6 +39,14 @@ public class AgendamentoService {
         AgendamentoDao oAgendamentoDao = new AgendamentoDao();
 
         return oAgendamentoDao.buscar(dataInicial, dataFinal);
+    }
+
+    public Agendamento buscarObjetoDisciplina(GradeDisciplina gradeDisciplina)
+    {
+
+        AgendamentoDao oAgendamentoDao = new AgendamentoDao();
+
+        return oAgendamentoDao.buscarObjetoDisciplina(gradeDisciplina);
     }
 
 }
