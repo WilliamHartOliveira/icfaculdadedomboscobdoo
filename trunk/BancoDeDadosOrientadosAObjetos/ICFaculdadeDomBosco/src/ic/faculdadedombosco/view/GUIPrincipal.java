@@ -493,15 +493,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_itemDeMenuRelatorioDeRequisitanteActionPerformed
 
-    public void Calendario(){
-        if((guicalendar == null) || (!guicalendar.isVisible())){
-            guicalendar = new GUICalendario();
-            desktopPane.add(guicalendar);
-            guicalendar.setPosicao();
-            guicalendar.setVisible(true);
-        }
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem itemDeMenuAgendamento;
@@ -534,7 +525,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private GUIRecurso guicadrec;
     private GUIRequisitante guirequisitante;
     private GUISobre guisobre;
-    private GUICalendario guicalendar;
     private GUIGradeDisciplina guigradedisciplina;
     private GUIUsuario guiusuario;
 
