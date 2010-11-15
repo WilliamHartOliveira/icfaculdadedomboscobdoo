@@ -1,10 +1,14 @@
 package ic.faculdadedombosco.dao;
 
 import com.db4o.ObjectSet;
+import com.db4o.query.Constraint;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.model.Agendamento;
 import ic.faculdadedombosco.model.GradeDisciplina;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class AgendamentoDao {
@@ -32,19 +36,20 @@ public class AgendamentoDao {
 
         Query query = oConexao.getDb().query();
         query.constrain(Agendamento.class);
-        query.descend("oGradeDisciplina").constrain(agendamento.getDisciplina());
+        query.descend("oGradeDisciplina").constrain(agendamento.getoGradeDisciplinaAgendamento());
 
         Agendamento agend = (Agendamento) query.execute().get(0);
 
-        agend.setDisciplina(agendamento.getDisciplina());
-        agend.setUsuario(agendamento.getUsuario());
-        agend.setRecurso(agendamento.getRecurso());
-        agend.setDataInicial(agendamento.getDataInicial());
-        agend.setDataFinal(agendamento.getDataFinal());
-        agend.setHoraInicial(agendamento.getHoraInicial());
-        agend.setHoraFinal(agendamento.getHoraFinal());
-        agend.setObservacao(agendamento.getObservacao());
-        //agend.setEquipamento(agendamento.getListaEquipamento());
+
+        agend.setoGradeDisciplinaAgendamento(agendamento.getoGradeDisciplinaAgendamento());
+        agend.setoRequisitanteAgendamento(agendamento.getoRequisitanteAgendamento());
+        agend.setoRecursoAgendamento(agendamento.getoRecursoAgendamento());
+        agend.setdDataInicialAgendamento(agendamento.getdDataInicialAgendamento());
+        agend.setdDataFinalAgendamento(agendamento.getdDataFinalAgendamento());
+        agend.sethHoraInicialAgendamento(agendamento.gethHoraInicialAgendamento());
+        agend.sethHoraFinalAgendamento(agendamento.gethHoraFinalAgendamento());
+        agend.setsObservacaoAgendamento(agendamento.getsObservacaoAgendamento());
+        agend.setListEquipamentoAgendamento(agendamento.getListEquipamentoAgendamento());
 
         oConexao.getDb().store(agend);
         oConexao.getDb().commit();
@@ -110,6 +115,28 @@ public class AgendamentoDao {
         query.constrain(Agendamento.class);
         query.descend("dDataInicial").orderAscending();
         ObjectSet<Agendamento> lista = query.execute();
+
+        return lista;
+    }
+
+    public List<Agendamento> listarAgendamento(SimpleDateFormat dataInicial, SimpleDateFormat dataFinal)
+    {
+        oConexao = new Conexao();
+        List<Agendamento> lista=new ArrayList();
+        Query consulta= oConexao.getDb().query();
+        consulta.constrain(Agendamento.class);
+        Constraint oFirstConstraint = consulta.descend("dDataInicial").constrain(dataInicial).greater();
+        Constraint oSecondConstraint = consulta.descend("dDataFinal").constrain(dataFinal).smaller();
+        oFirstConstraint.and(oSecondConstraint);
+        
+        ObjectSet<Agendamento> resultado = consulta.execute();
+
+        System.out.println("Objetos encontrados: " + resultado.size());
+
+        while(resultado.hasNext())
+        {
+              lista.add((Agendamento)resultado.next());
+        }
 
         return lista;
     }
