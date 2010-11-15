@@ -54,6 +54,10 @@ public class GUILogin extends javax.swing.JFrame {
         lUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lUsuario.setText("Usuário:");
 
+        tfUsuario.setText("admin");
+
+        tfSenha.setText("admin");
+
         lSenha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lSenha.setText("Senha:");
 
@@ -192,6 +196,8 @@ public class GUILogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
+      
+        bOk.enable(true);
         /*usuario = new Usuario();
         usuarioService = new UsuarioService();
 

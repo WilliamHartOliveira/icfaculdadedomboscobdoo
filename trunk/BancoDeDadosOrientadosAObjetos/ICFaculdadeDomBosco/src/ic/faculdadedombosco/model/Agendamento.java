@@ -11,95 +11,108 @@ import ic.faculdadedombosco.model.Equipamento;
  */
 public class Agendamento implements Serializable{
 
-    private GradeDisciplina oGradeDisciplina;
-    private Requisitante oRequisitante;
-    private Recurso oRecurso;
-    private java.util.Date dDataInicial;
-    private java.util.Date dDataFinal;
-    private String hHoraInicial;
-    private String hHoraFinal;
-    private String sObservacao;
-    private ArrayList<String> listaEquipamentosAntesAgendamento = new ArrayList<String>();
-    private ArrayList<String> listaEquipamentosDepoisAgendamento = new ArrayList<String>();
-    private ArrayList<Equipamento> listEquipamento = new ArrayList<Equipamento>();
+    private int codigoAgendamento;
+    private String statusAgendamento;
+    private GradeDisciplina oGradeDisciplinaAgendamento;
+    private Requisitante oRequisitanteAgendamento;
+    private Recurso oRecursoAgendamento;
+    private java.util.Date dDataInicialAgendamento;
+    private java.util.Date dDataFinalAgendamento;
+    private String hHoraInicialAgendamento;
+    private String hHoraFinalAgendamento;
+    private String sObservacaoAgendamento;
+    private ArrayList<Equipamento> listEquipamentoAgendamento = new ArrayList<Equipamento>();
 
-    public Date getDataFinal() {
-        return dDataFinal;
+    public int getCodigoAgendamento() {
+        return codigoAgendamento;
     }
 
-    public void setDataFinal(Date dDataFinal) {
-        this.dDataFinal = dDataFinal;
+    public void setCodigoAgendamento(int codigoAgendamento) {
+        this.codigoAgendamento = codigoAgendamento;
     }
 
-    public Date getDataInicial() {
-        return dDataInicial;
+    public Date getdDataFinalAgendamento() {
+        return dDataFinalAgendamento;
     }
 
-    public void setDataInicial(Date dDataInicial) {
-        this.dDataInicial = dDataInicial;
+    public void setdDataFinalAgendamento(Date dDataFinalAgendamento) {
+        this.dDataFinalAgendamento = dDataFinalAgendamento;
     }
 
-    public GradeDisciplina getDisciplina() {
-        return oGradeDisciplina;
+    public Date getdDataInicialAgendamento() {
+        return dDataInicialAgendamento;
     }
 
-    public void setDisciplina(GradeDisciplina oGradeDisciplina) {
-        this.oGradeDisciplina = oGradeDisciplina;
+    public void setdDataInicialAgendamento(Date dDataInicialAgendamento) {
+        this.dDataInicialAgendamento = dDataInicialAgendamento;
     }
 
-    public String getHoraFinal() {
-        return hHoraFinal;
+    public String gethHoraFinalAgendamento() {
+        return hHoraFinalAgendamento;
     }
 
-    public void setHoraFinal(String hHoraFinal) {
-        this.hHoraFinal = hHoraFinal;
+    public void sethHoraFinalAgendamento(String hHoraFinalAgendamento) {
+        this.hHoraFinalAgendamento = hHoraFinalAgendamento;
     }
 
-    public String getHoraInicial() {
-        return hHoraInicial;
+    public String gethHoraInicialAgendamento() {
+        return hHoraInicialAgendamento;
     }
 
-    public void setHoraInicial(String hHoraInicial) {
-        this.hHoraInicial = hHoraInicial;
+    public void sethHoraInicialAgendamento(String hHoraInicialAgendamento) {
+        this.hHoraInicialAgendamento = hHoraInicialAgendamento;
     }
 
-    public String getObservacao() {
-        return sObservacao;
+    public GradeDisciplina getoGradeDisciplinaAgendamento() {
+        return oGradeDisciplinaAgendamento;
     }
 
-    public void setObservacao(String sObservacao) {
-        this.sObservacao = sObservacao;
+    public void setoGradeDisciplinaAgendamento(GradeDisciplina oGradeDisciplinaAgendamento) {
+        this.oGradeDisciplinaAgendamento = oGradeDisciplinaAgendamento;
     }
 
-    public Recurso getRecurso() {
-        return oRecurso;
+    public Recurso getoRecursoAgendamento() {
+        return oRecursoAgendamento;
     }
 
-    public void setRecurso(Recurso oRecurso) {
-        this.oRecurso = oRecurso;
+    public void setoRecursoAgendamento(Recurso oRecursoAgendamento) {
+        this.oRecursoAgendamento = oRecursoAgendamento;
     }
 
-    public Requisitante getUsuario() {
-        return oRequisitante;
+    public Requisitante getoRequisitanteAgendamento() {
+        return oRequisitanteAgendamento;
     }
 
-    public void setUsuario(Requisitante oRequisitante) {
-        this.oRequisitante = oRequisitante;
+    public void setoRequisitanteAgendamento(Requisitante oRequisitanteAgendamento) {
+        this.oRequisitanteAgendamento = oRequisitanteAgendamento;
     }
 
-    public ArrayList<String> getListaEquipamentosAntesAgendamento() {
-        return listaEquipamentosAntesAgendamento;
+    public String getsObservacaoAgendamento() {
+        return sObservacaoAgendamento;
     }
 
-    public void setListaEquipamentosAntesAgendamento(ArrayList<String> listaEquipamentosAntesAgendamento) {
-        this.listaEquipamentosAntesAgendamento = listaEquipamentosAntesAgendamento;
+    public void setsObservacaoAgendamento(String sObservacaoAgendamento) {
+        this.sObservacaoAgendamento = sObservacaoAgendamento;
     }
 
-    public ArrayList<String> getListaEquipamentosDepoisAgendamento() {
-        return listaEquipamentosDepoisAgendamento;
+    public String getStatusAgendamento() {
+        return statusAgendamento;
     }
 
-    public void setListaEquipamentosDepoisAgendamento(ArrayList<String> listaEquipamentosDepoisAgendamento) {
-        this.listaEquipamentosDepoisAgendamento = listaEquipamentosDepoisAgendamento;
+    public void setStatusAgendamento(String statusAgendamento) {
+        this.statusAgendamento = statusAgendamento;
     }
+
+    public ArrayList<Equipamento> getListEquipamentoAgendamento() {
+        return listEquipamentoAgendamento;
+    }
+
+    public void setListEquipamentoAgendamento(ArrayList<Equipamento> listEquipamentoAgendamento) {
+        this.listEquipamentoAgendamento = listEquipamentoAgendamento;
+    }
+
+    public void setEquipamentoItem(Equipamento oEquipamento) {
+       this.listEquipamentoAgendamento.add(0, oEquipamento);
+    }
+
 }
