@@ -34,8 +34,6 @@ public class EquipamentoService {
 
     public Equipamento buscar(String codigo)
     {
-        System.out.println("Código passado: "+ codigo);
-
         EquipamentoDao oEquipamentoDao = new EquipamentoDao();
 
         return oEquipamentoDao.buscar(codigo);

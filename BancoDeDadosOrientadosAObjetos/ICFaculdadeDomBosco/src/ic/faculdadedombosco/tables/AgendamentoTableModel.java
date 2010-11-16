@@ -45,10 +45,10 @@ public class AgendamentoTableModel extends AbstractTableModel{
                 value = agendamento.gethHoraFinalAgendamento();
                 break;
             case 4:
-                value = agendamento.getoGradeDisciplinaAgendamento().getDisciplina_gradeDisciplina();
+                value = agendamento.getoGradeDisciplinaAgendamento().getDisciplina_gradeDisciplina().toString();
                 break;
             case 5:
-                value = agendamento.getoRequisitanteAgendamento().getRequisitante_nome();
+                value = agendamento.getoRequisitanteAgendamento().getRequisitante_nome().toString();
                 break;
             default:
                 break;

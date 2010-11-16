@@ -87,7 +87,6 @@ public class GUICalendario extends javax.swing.JInternalFrame {
 
     public void pegarDataSetada(){
         setDate(jcCalendar.getCalendar().getTime());
-        //System.out.println("Data setada: " + new SimpleDateFormat("dd/MM/yyyy").format(getDate()));
     }
 
     public Date getDate() {
@@ -101,5 +100,4 @@ public class GUICalendario extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private com.toedter.calendar.JCalendar jcCalendar;
     // End of variables declaration//GEN-END:variables
-
 }

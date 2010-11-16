@@ -33,14 +33,14 @@ public class AgendamentoDao {
     public Agendamento atualizar(Agendamento agendamento)
     {
         oConexao = new Conexao();
-
         Query query = oConexao.getDb().query();
         query.constrain(Agendamento.class);
-        query.descend("oGradeDisciplina").constrain(agendamento.getoGradeDisciplinaAgendamento());
+        query.descend("oGradeDisciplinaAgendamento").constrain(agendamento.getoGradeDisciplinaAgendamento());
 
         Agendamento agend = (Agendamento) query.execute().get(0);
 
-
+        agend.setCodigoAgendamento(agendamento.getCodigoAgendamento());
+        agend.setStatusAgendamento(agendamento.getStatusAgendamento());
         agend.setoGradeDisciplinaAgendamento(agendamento.getoGradeDisciplinaAgendamento());
         agend.setoRequisitanteAgendamento(agendamento.getoRequisitanteAgendamento());
         agend.setoRecursoAgendamento(agendamento.getoRecursoAgendamento());
@@ -69,7 +69,7 @@ public class AgendamentoDao {
         return agendamento;
     }
 
-    public Agendamento buscar(String dataInicial, String dataFinal)
+    public Agendamento buscar(SimpleDateFormat dataInicial, SimpleDateFormat dataFinal)
     {
         oConexao = new Conexao();
 
@@ -94,7 +94,7 @@ public class AgendamentoDao {
 
         Query query = oConexao.getDb().query();
         query.constrain(Agendamento.class);
-        query.descend("oGradeDisciplina").constrain(gradeDisciplina);
+        query.descend("oGradeDisciplinaAgendamento").constrain(gradeDisciplina);
 
         ObjectSet lista = query.execute();
 
@@ -113,7 +113,7 @@ public class AgendamentoDao {
 
         Query query = oConexao.getDb().query();
         query.constrain(Agendamento.class);
-        query.descend("dDataInicial").orderAscending();
+        query.descend("dDataInicialAgendamento").orderAscending();
         ObjectSet<Agendamento> lista = query.execute();
 
         return lista;
@@ -125,8 +125,8 @@ public class AgendamentoDao {
         List<Agendamento> lista=new ArrayList();
         Query consulta= oConexao.getDb().query();
         consulta.constrain(Agendamento.class);
-        Constraint oFirstConstraint = consulta.descend("dDataInicial").constrain(dataInicial).greater();
-        Constraint oSecondConstraint = consulta.descend("dDataFinal").constrain(dataFinal).smaller();
+        Constraint oFirstConstraint = consulta.descend("dDataInicialAgendamento").constrain(dataInicial).greater();
+        Constraint oSecondConstraint = consulta.descend("dDataFinalAgendamento").constrain(dataFinal).smaller();
         oFirstConstraint.and(oSecondConstraint);
         
         ObjectSet<Agendamento> resultado = consulta.execute();
