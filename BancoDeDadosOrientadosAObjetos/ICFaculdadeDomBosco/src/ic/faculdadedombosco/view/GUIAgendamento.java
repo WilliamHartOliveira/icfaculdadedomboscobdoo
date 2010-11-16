@@ -239,13 +239,14 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
             }
         ));
         tabelaAgendamento.setColumnSelectionAllowed(true);
+        tabelaAgendamento.getTableHeader().setReorderingAllowed(false);
         tabelaAgendamento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaAgendamentoMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tabelaAgendamento);
-        tabelaAgendamento.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tabelaAgendamento.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Data Inicial:");
