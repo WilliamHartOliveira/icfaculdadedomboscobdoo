@@ -282,6 +282,7 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
 
             }
         ));
+        tabela_GradeDisciplina.getTableHeader().setReorderingAllowed(false);
         tabela_GradeDisciplina.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabela_GradeDisciplinaMouseClicked(evt);
@@ -415,7 +416,7 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
