@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -69,6 +70,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     private ArrayList<String> comboIdProfessor = new ArrayList<String>();
     private ArrayList<String> listaEquipamentosAntes = new ArrayList<String>();
     private ArrayList<String> listaEquipamentosDepois = new ArrayList<String>();
+    private ArrayList<Equipamento> lEquipamento = new ArrayList<Equipamento>();
 
     public GUIAgendamento()
     {
@@ -94,45 +96,68 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
 
     private void limparCampos()
     {
-        cbDisciplinaAgendamento.setSelectedItem(null);
-        cbUsuarioAgendamento.setSelectedItem(null);
-        cbRecursoAgendamento.setSelectedItem(null);
+        txtCodigoAgendamento.setText(null);
+        cbStatusAgendamento.setSelectedItem("Selecione...");
+        cbDisciplinaAgendamento.setSelectedIndex(0);
+        cbUsuarioAgendamento.setSelectedIndex(0);
+        cbRecursoAgendamento.setSelectedIndex(0);
         txDataInicialAgendamento.setText("00/00/0000");
         txDataFinalAgendamento.setText("00/00/0000");
         cbHoraInicialAgendamento.setSelectedItem("Selecione...");
         cbHoraFinalAgendamento.setSelectedItem("Selecione...");
         taObservacaoAgendamento.setText(null);
+        cbEquipamentosAgendamento.setSelectedIndex(0);
         txDataInicialPesquisaAgendamento.setText("00/00/0000");
         txDataFinalPesquisaAgendamento.setText("00/00/0000");
+        jlEquipamentosAgendamentos.setModel(new DefaultListModel());
         this.tabelaAgendamento.setModel(new AgendamentoTableModel(new ArrayList<Agendamento>()));
     }
 
     private Agendamento capturaDados()
     {
+        oGradeDisciplinaService = new GradeDisciplinaService();
+        oRequisitanteService = new RequisitanteService();
+        oRecursoService = new RecursoService();
+
         //oAgendamento.setCodigoAgendamento()
         oAgendamento.setStatusAgendamento(cbStatusAgendamento.getSelectedItem().toString());
         oAgendamento.setoGradeDisciplinaAgendamento(oGradeDisciplinaService.buscar(cbDisciplinaAgendamento.getSelectedItem().toString()));
         oAgendamento.setoRequisitanteAgendamento(oRequisitanteService.buscar(cbUsuarioAgendamento.getSelectedItem().toString()));
         oAgendamento.setoRecursoAgendamento(oRecursoService.buscar(cbRecursoAgendamento.getSelectedItem().toString()));
-        //oAgendamento.setDisciplina(pesquisaDisciplina(cbDisciplinaAgendamento.getSelectedItem().toString()));
-        //oAgendamento.setUsuario(pesquisaRequisitante(cbUsuarioAgendamento.getSelectedItem().toString()));
-        //oAgendamento.setRecurso(pesquisaRecurso(cbRecursoAgendamento.getSelectedItem().toString()));
-        oAgendamento.setdDataInicialAgendamento(new Date(txDataInicialAgendamento.getText()));
+
+        //oAgendamento.setoGradeDisciplinaAgendamento(pesquisaDisciplina(cbDisciplinaAgendamento.getSelectedItem().toString()));
+        //oAgendamento.setoRequisitanteAgendamento(pesquisaRequisitante(cbUsuarioAgendamento.getSelectedItem().toString()));
+        //oAgendamento.setoRecursoAgendamento(pesquisaRecurso(cbRecursoAgendamento.getSelectedItem().toString()));
+        oAgendamento.setdDataInicialAgendamento(new SimpleDateFormat(txDataInicialAgendamento.getText()));
         oAgendamento.sethHoraInicialAgendamento(cbHoraInicialAgendamento.getSelectedItem().toString());
-        oAgendamento.setdDataFinalAgendamento(new Date(txDataFinalAgendamento.getText()));
+        oAgendamento.setdDataFinalAgendamento(new SimpleDateFormat(txDataFinalAgendamento.getText()));
         oAgendamento.sethHoraFinalAgendamento(cbHoraFinalAgendamento.getSelectedItem().toString());
         oAgendamento.setsObservacaoAgendamento(taObservacaoAgendamento.getText());
+        oAgendamento.setListEquipamentoAgendamento(this.lEquipamento);
 
         return oAgendamento;
     }
 
     private void carregarFormulario (Agendamento agendamento) {
+
+        Date dataInicial = new Date();
+        Date dataFinal = new Date();
+        SimpleDateFormat dataInicialSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dataFinalSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        dataInicial.parse(agendamento.getdDataInicialAgendamento().toString());
+        dataInicialSimpleDateFormat.format(dataInicial);
+
+        dataFinal.parse(agendamento.getdDataFinalAgendamento().toString());
+        dataFinalSimpleDateFormat.format(dataFinal);
+
+        cbStatusAgendamento.setSelectedItem(agendamento.getStatusAgendamento());
         cbDisciplinaAgendamento.setSelectedItem(agendamento.getoGradeDisciplinaAgendamento().getDisciplina_gradeDisciplina());
         cbUsuarioAgendamento.setSelectedItem(agendamento.getoRequisitanteAgendamento().getRequisitante_nome());
         cbRecursoAgendamento.setSelectedItem(agendamento.getoRecursoAgendamento().getDs_recurso());
-        txDataInicialAgendamento.setText(agendamento.getdDataInicialAgendamento().toString());
+        txDataInicialAgendamento.setText(dataInicialSimpleDateFormat.format("dd/MM/yyyy"));
         cbHoraInicialAgendamento.setSelectedItem(agendamento.gethHoraInicialAgendamento());
-        txDataFinalAgendamento.setText(agendamento.getdDataFinalAgendamento().toString());
+        txDataFinalAgendamento.setText(dataFinalSimpleDateFormat.format("dd/MM/yyyy"));
         cbHoraFinalAgendamento.setSelectedItem(agendamento.gethHoraFinalAgendamento());
         taObservacaoAgendamento.setText(agendamento.getsObservacaoAgendamento());
         jlEquipamentosAgendamentos.setListData(agendamento.getListEquipamentoAgendamento().toArray());
@@ -212,6 +237,11 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar - Agendamento"));
 
         btPesqusarAgendamento.setText("Pesquisar");
+        btPesqusarAgendamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesqusarAgendamentoActionPerformed(evt);
+            }
+        });
 
         tabelaAgendamento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tabelaAgendamento.setFont(new java.awt.Font("Tahoma", 0, 14));
@@ -485,10 +515,8 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(bDataFinal, 0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txDataFinalAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel6))))
+                        .addComponent(txDataFinalAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                        .addComponent(jLabel6))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(cbHoraFinalAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -674,7 +702,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -715,7 +743,6 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btSalvarAgendamentoActionPerformed
 
     private void btAdicionarEquipamentoAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarEquipamentoAgendamentoActionPerformed
-        //System.out.println(oEquipamentoService.buscar(this.cbEquipamentosAgendamento.getSelectedItem().toString()));
         this.listaEquipamentosDepois.add(
             this.listaEquipamentosAntes.get(
 
@@ -723,10 +750,12 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
 
             )
         );
-        oAgendamento.setEquipamentoItem(oEquipamentoService.buscar(this.cbEquipamentosAgendamento.getSelectedItem().toString()));
+        oEquipamentoService = new EquipamentoService();
+        oEquipamento = oEquipamentoService.buscar(this.cbEquipamentosAgendamento.getSelectedItem().toString());
+        lEquipamento.add(oEquipamento);
+        System.out.println("passou aqui");
+
         this.jlEquipamentosAgendamentos.setListData(listaEquipamentosDepois.toArray());
-        
-        //oAgendamento.setEquipamentoItem(oEquipamentoService.buscar(this.cbEquipamentosAgendamento.getSelectedItem().toString()));
 
         this.listaEquipamentosAntes.remove(this.cbEquipamentosAgendamento.getSelectedIndex());
         this.cbEquipamentosAgendamento.removeItemAt(this.cbEquipamentosAgendamento.getSelectedIndex());
@@ -786,10 +815,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbDisciplinaAgendamentoMouseClicked
 
     private void btRelatorioAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioAgendamentoActionPerformed
-
         AgendamentoDao agendamentoDao = new AgendamentoDao();
-
-        SimpleDateFormat datasSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         String fileName="./REPORTS/reportAgendamento.jasper";
 
@@ -817,7 +843,43 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btRelatorioAgendamentoActionPerformed
 
-    /*public GradeDisciplina pesquisaDisciplina(String descGradeDisciplina){
+    private void btPesqusarAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesqusarAgendamentoActionPerformed
+        Date dataInicial = new Date();
+        Date dataFinal = new Date();
+        SimpleDateFormat dataInicialSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dataFinalSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        oAgendamento = new Agendamento();
+        oAgendamentoService = new AgendamentoService();
+
+        dataInicial.parse(this.txDataInicialPesquisaAgendamento.getText());
+        dataInicialSimpleDateFormat.format(dataInicial);
+
+        dataFinal.parse(this.txDataFinalPesquisaAgendamento.getText());
+        dataFinalSimpleDateFormat.format(dataFinal);
+
+
+        oAgendamento = oAgendamentoService.buscar(dataInicialSimpleDateFormat, dataFinalSimpleDateFormat);
+
+        if(oGradeDisciplina != null){
+             JOptionPane.showMessageDialog(null, "Agendamento encontrado", "Pesquisa Agendamento", JOptionPane.INFORMATION_MESSAGE);
+             txtCodigoAgendamento.setText(""+oAgendamento.getCodigoAgendamento());
+             cbStatusAgendamento.setSelectedItem(""+oAgendamento.getStatusAgendamento());
+             cbDisciplinaAgendamento.setSelectedItem(""+oAgendamento.getoGradeDisciplinaAgendamento().getDisciplina_gradeDisciplina());
+             cbUsuarioAgendamento.setSelectedItem(""+oAgendamento.getoRequisitanteAgendamento().getRequisitante_nome());
+             cbRecursoAgendamento.setSelectedItem(""+oAgendamento.getoRecursoAgendamento().getDs_recurso());
+             txDataInicialAgendamento.setText(""+oAgendamento.getdDataInicialAgendamento());
+             cbHoraInicialAgendamento.setSelectedItem(""+oAgendamento.gethHoraInicialAgendamento());
+             txDataFinalAgendamento.setText(""+oAgendamento.getdDataFinalAgendamento());
+             cbHoraFinalAgendamento.setSelectedItem(""+oAgendamento.gethHoraFinalAgendamento());
+             taObservacaoAgendamento.setText(""+oAgendamento.getsObservacaoAgendamento());
+             jlEquipamentosAgendamentos.setToolTipText(""+oAgendamento.getListEquipamentoAgendamento().toArray().toString());
+          }else{
+              JOptionPane.showMessageDialog(null, "Agendamento não encontrado", "Pesquisa Agendamento", JOptionPane.INFORMATION_MESSAGE);
+         }
+    }//GEN-LAST:event_btPesqusarAgendamentoActionPerformed
+
+    public GradeDisciplina pesquisaDisciplina(String descGradeDisciplina){
         this.oConexao = new Conexao();
         Query query = this.oConexao.getDb().query();
         query.constrain(GradeDisciplina.class);
@@ -868,8 +930,6 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
 
         return recurso;
     }
-
-    */ //TESTAR DEPOIS DESCARTAR -> FOI CHAMADO A CAMADA SERVICE, ELIMINANDO ASSIM REDUNDÂNCIAS DE MÉTODOS
     private void inicializarCombosBoxs()
     {
         this.comboIdDisciplina.clear();
@@ -887,7 +947,6 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
 
         this.inicializarDisciplina();
         this.inicializarProfessor();
-        //this.inicializarProfessor(oGradeDisciplinaService.buscar(cbUsuarioAgendamento.getSelectedItem().toString()));
         this.inicializarRecurso();
         this.inicializarEquipamento();
     }
@@ -953,7 +1012,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         {
             Equipamento equipamento = lista.next();
             this.cbEquipamentosAgendamento.addItem((equipamento.getCdEquipamento()));
-            //this.listaEquipamentosAntes.add((equipamento.getCdEquipamento()));
+            this.listaEquipamentosAntes.add((equipamento.getCdEquipamento()));
 
             //this.cbEquipamentosAgendamento.addItem((equipamento.getCdEquipamento() +" - "+equipamento.getDsEquipamento()));
             //this.listaEquipamentosAntes.add((equipamento.getCdEquipamento() +" - "+equipamento.getDsEquipamento()));

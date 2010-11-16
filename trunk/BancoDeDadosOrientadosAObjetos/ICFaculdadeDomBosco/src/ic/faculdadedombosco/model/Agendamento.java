@@ -2,8 +2,8 @@ package ic.faculdadedombosco.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import ic.faculdadedombosco.model.Equipamento;
+import java.text.SimpleDateFormat;
 
 /*
  * @author Anderson
@@ -16,8 +16,8 @@ public class Agendamento implements Serializable{
     private GradeDisciplina oGradeDisciplinaAgendamento;
     private Requisitante oRequisitanteAgendamento;
     private Recurso oRecursoAgendamento;
-    private java.util.Date dDataInicialAgendamento;
-    private java.util.Date dDataFinalAgendamento;
+    private SimpleDateFormat dDataInicialAgendamento = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat dDataFinalAgendamento = new SimpleDateFormat("dd/MM/yyyy");
     private String hHoraInicialAgendamento;
     private String hHoraFinalAgendamento;
     private String sObservacaoAgendamento;
@@ -31,19 +31,19 @@ public class Agendamento implements Serializable{
         this.codigoAgendamento = codigoAgendamento;
     }
 
-    public Date getdDataFinalAgendamento() {
+    public SimpleDateFormat getdDataFinalAgendamento() {
         return dDataFinalAgendamento;
     }
 
-    public void setdDataFinalAgendamento(Date dDataFinalAgendamento) {
+    public void setdDataFinalAgendamento(SimpleDateFormat dDataFinalAgendamento) {
         this.dDataFinalAgendamento = dDataFinalAgendamento;
     }
 
-    public Date getdDataInicialAgendamento() {
+    public SimpleDateFormat getdDataInicialAgendamento() {
         return dDataInicialAgendamento;
     }
 
-    public void setdDataInicialAgendamento(Date dDataInicialAgendamento) {
+    public void setdDataInicialAgendamento(SimpleDateFormat dDataInicialAgendamento) {
         this.dDataInicialAgendamento = dDataInicialAgendamento;
     }
 
@@ -112,7 +112,7 @@ public class Agendamento implements Serializable{
     }
 
     public void setEquipamentoItem(Equipamento oEquipamento) {
-       this.listEquipamentoAgendamento.add(0, oEquipamento);
+       this.listEquipamentoAgendamento.add(oEquipamento);
     }
 
 }
