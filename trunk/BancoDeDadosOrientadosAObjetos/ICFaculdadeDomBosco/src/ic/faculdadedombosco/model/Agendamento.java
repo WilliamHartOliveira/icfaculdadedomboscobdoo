@@ -3,7 +3,7 @@ package ic.faculdadedombosco.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import ic.faculdadedombosco.model.Equipamento;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /*
  * @author Anderson
@@ -16,8 +16,8 @@ public class Agendamento implements Serializable{
     private GradeDisciplina oGradeDisciplinaAgendamento;
     private Requisitante oRequisitanteAgendamento;
     private Recurso oRecursoAgendamento;
-    private SimpleDateFormat dDataInicialAgendamento = new SimpleDateFormat("dd/MM/yyyy");
-    private SimpleDateFormat dDataFinalAgendamento = new SimpleDateFormat("dd/MM/yyyy");
+    private Date dDataInicialAgendamento;
+    private Date dDataFinalAgendamento;
     private String hHoraInicialAgendamento;
     private String hHoraFinalAgendamento;
     private String sObservacaoAgendamento;
@@ -31,22 +31,22 @@ public class Agendamento implements Serializable{
         this.codigoAgendamento = codigoAgendamento;
     }
 
-    public SimpleDateFormat getdDataFinalAgendamento() {
+    public Date getdDataFinalAgendamento() {
         return dDataFinalAgendamento;
     }
 
-    public void setdDataFinalAgendamento(SimpleDateFormat dDataFinalAgendamento) {
+    public void setdDataFinalAgendamento(Date dDataFinalAgendamento) {
         this.dDataFinalAgendamento = dDataFinalAgendamento;
     }
 
-    public SimpleDateFormat getdDataInicialAgendamento() {
+    public Date getdDataInicialAgendamento() {
         return dDataInicialAgendamento;
     }
 
-    public void setdDataInicialAgendamento(SimpleDateFormat dDataInicialAgendamento) {
+    public void setdDataInicialAgendamento(Date dDataInicialAgendamento) {
         this.dDataInicialAgendamento = dDataInicialAgendamento;
     }
-
+  
     public String gethHoraFinalAgendamento() {
         return hHoraFinalAgendamento;
     }

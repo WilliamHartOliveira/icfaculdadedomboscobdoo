@@ -124,13 +124,9 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         oAgendamento.setoGradeDisciplinaAgendamento(oGradeDisciplinaService.buscar(cbDisciplinaAgendamento.getSelectedItem().toString()));
         oAgendamento.setoRequisitanteAgendamento(oRequisitanteService.buscar(cbUsuarioAgendamento.getSelectedItem().toString()));
         oAgendamento.setoRecursoAgendamento(oRecursoService.buscar(cbRecursoAgendamento.getSelectedItem().toString()));
-
-        //oAgendamento.setoGradeDisciplinaAgendamento(pesquisaDisciplina(cbDisciplinaAgendamento.getSelectedItem().toString()));
-        //oAgendamento.setoRequisitanteAgendamento(pesquisaRequisitante(cbUsuarioAgendamento.getSelectedItem().toString()));
-        //oAgendamento.setoRecursoAgendamento(pesquisaRecurso(cbRecursoAgendamento.getSelectedItem().toString()));
-        oAgendamento.setdDataInicialAgendamento(new SimpleDateFormat(txDataInicialAgendamento.getText()));
+        oAgendamento.setdDataInicialAgendamento(new Date(txDataInicialAgendamento.getText().toString()));
         oAgendamento.sethHoraInicialAgendamento(cbHoraInicialAgendamento.getSelectedItem().toString());
-        oAgendamento.setdDataFinalAgendamento(new SimpleDateFormat(txDataFinalAgendamento.getText()));
+        oAgendamento.setdDataFinalAgendamento(new Date(txDataFinalAgendamento.getText().toString()));
         oAgendamento.sethHoraFinalAgendamento(cbHoraFinalAgendamento.getSelectedItem().toString());
         oAgendamento.setsObservacaoAgendamento(taObservacaoAgendamento.getText());
         oAgendamento.setListEquipamentoAgendamento(this.lEquipamento);
@@ -139,25 +135,13 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     }
 
     private void carregarFormulario (Agendamento agendamento) {
-
-        Date dataInicial = new Date();
-        Date dataFinal = new Date();
-        SimpleDateFormat dataInicialSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat dataFinalSimpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-        dataInicial.parse(agendamento.getdDataInicialAgendamento().toString());
-        dataInicialSimpleDateFormat.format(dataInicial);
-
-        dataFinal.parse(agendamento.getdDataFinalAgendamento().toString());
-        dataFinalSimpleDateFormat.format(dataFinal);
-
         cbStatusAgendamento.setSelectedItem(agendamento.getStatusAgendamento());
         cbDisciplinaAgendamento.setSelectedItem(agendamento.getoGradeDisciplinaAgendamento().getDisciplina_gradeDisciplina());
         cbUsuarioAgendamento.setSelectedItem(agendamento.getoRequisitanteAgendamento().getRequisitante_nome());
         cbRecursoAgendamento.setSelectedItem(agendamento.getoRecursoAgendamento().getDs_recurso());
-        txDataInicialAgendamento.setText(dataInicialSimpleDateFormat.format("dd/MM/yyyy"));
+        txDataInicialAgendamento.setText(new SimpleDateFormat("dd/MM/yyyy").format((agendamento.getdDataInicialAgendamento())));
         cbHoraInicialAgendamento.setSelectedItem(agendamento.gethHoraInicialAgendamento());
-        txDataFinalAgendamento.setText(dataFinalSimpleDateFormat.format("dd/MM/yyyy"));
+        txDataFinalAgendamento.setText(new SimpleDateFormat("dd/MM/yyyy").format((agendamento.getdDataFinalAgendamento())));
         cbHoraFinalAgendamento.setSelectedItem(agendamento.gethHoraFinalAgendamento());
         taObservacaoAgendamento.setText(agendamento.getsObservacaoAgendamento());
         jlEquipamentosAgendamentos.setListData(agendamento.getListEquipamentoAgendamento().toArray());
@@ -311,7 +295,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1078, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -455,28 +439,28 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbStatusAgendamento, 0, 177, Short.MAX_VALUE))
+                        .addComponent(cbStatusAgendamento, 0, 180, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(txDataFinalAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                            .addComponent(txDataInicialAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                            .addComponent(txDataFinalAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(txDataInicialAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(bDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(bDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbHoraFinalAgendamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbHoraInicialAgendamento, 0, 113, Short.MAX_VALUE)))
-                    .addComponent(cbDisciplinaAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 312, Short.MAX_VALUE)
-                    .addComponent(cbUsuarioAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 312, Short.MAX_VALUE)
-                    .addComponent(cbRecursoAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 312, Short.MAX_VALUE))
+                    .addComponent(cbDisciplinaAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 315, Short.MAX_VALUE)
+                    .addComponent(cbUsuarioAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 315, Short.MAX_VALUE)
+                    .addComponent(cbRecursoAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 315, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -632,30 +616,30 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addComponent(btLimparAgendamento)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btLimparAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btListarAgendamento)
+                .addComponent(btListarAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btAtualizarAgendamento)
+                .addComponent(btAtualizarAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btExcluirAgendamento)
+                .addComponent(btExcluirAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSalvarAgendamento)
-                .addContainerGap())
+                .addComponent(btSalvarAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addGap(33, 33, 33))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSalvarAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btExcluirAgendamento)
                     .addComponent(btAtualizarAgendamento)
                     .addComponent(btListarAgendamento)
-                    .addComponent(btLimparAgendamento))
-                .addContainerGap())
+                    .addComponent(btLimparAgendamento)
+                    .addComponent(btSalvarAgendamento))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -702,7 +686,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();

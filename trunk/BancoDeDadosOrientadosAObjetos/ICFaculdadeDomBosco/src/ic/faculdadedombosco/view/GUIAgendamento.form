@@ -35,7 +35,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,7 +104,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" pref="1075" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="1078" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -305,24 +305,24 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel13" min="-2" pref="51" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cbStatusAgendamento" pref="177" max="32767" attributes="0"/>
+                              <Component id="cbStatusAgendamento" pref="180" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="2" attributes="0">
-                                  <Component id="txDataFinalAgendamento" alignment="2" pref="113" max="32767" attributes="0"/>
-                                  <Component id="txDataInicialAgendamento" alignment="2" pref="113" max="32767" attributes="0"/>
+                                  <Component id="txDataFinalAgendamento" alignment="2" pref="114" max="32767" attributes="0"/>
+                                  <Component id="txDataInicialAgendamento" alignment="2" pref="114" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="bDataInicial" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel1" pref="47" max="32767" attributes="1"/>
+                                      <Component id="jLabel1" pref="49" max="32767" attributes="1"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="bDataFinal" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel3" pref="47" max="32767" attributes="1"/>
+                                      <Component id="jLabel3" pref="49" max="32767" attributes="1"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -331,9 +331,9 @@
                                   <Component id="cbHoraInicialAgendamento" alignment="0" pref="113" max="32767" attributes="1"/>
                               </Group>
                           </Group>
-                          <Component id="cbDisciplinaAgendamento" alignment="1" pref="312" max="32767" attributes="1"/>
-                          <Component id="cbUsuarioAgendamento" alignment="1" pref="312" max="32767" attributes="1"/>
-                          <Component id="cbRecursoAgendamento" alignment="1" pref="312" max="32767" attributes="1"/>
+                          <Component id="cbDisciplinaAgendamento" alignment="1" pref="315" max="32767" attributes="1"/>
+                          <Component id="cbUsuarioAgendamento" alignment="1" pref="315" max="32767" attributes="1"/>
+                          <Component id="cbRecursoAgendamento" alignment="1" pref="315" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -725,33 +725,33 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="57" max="32767" attributes="0"/>
-                      <Component id="btLimparAgendamento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btListarAgendamento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btAtualizarAgendamento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btExcluirAgendamento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btSalvarAgendamento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="btLimparAgendamento" pref="63" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="btListarAgendamento" pref="59" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="btAtualizarAgendamento" pref="75" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="btExcluirAgendamento" pref="63" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="btSalvarAgendamento" pref="75" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btSalvarAgendamento" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="btExcluirAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btAtualizarAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btListarAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btLimparAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btSalvarAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
