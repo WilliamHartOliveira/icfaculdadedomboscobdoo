@@ -2,6 +2,7 @@
 package ic.faculdadedombosco.tables;
 
 import ic.faculdadedombosco.model.Agendamento;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -33,13 +34,13 @@ public class AgendamentoTableModel extends AbstractTableModel{
 
         switch (columnIndex) {
             case 0:
-                value = agendamento.getdDataInicialAgendamento();
+                value = new SimpleDateFormat("dd/MM/yyyy").format(( agendamento.getdDataInicialAgendamento()));
                 break;
             case 1:
                 value = agendamento.gethHoraInicialAgendamento();
                 break;
             case 2:
-                value = agendamento.getdDataFinalAgendamento();
+                value = new SimpleDateFormat("dd/MM/yyyy").format(( agendamento.getdDataFinalAgendamento()));
                 break;
             case 3:
                 value = agendamento.gethHoraFinalAgendamento();
