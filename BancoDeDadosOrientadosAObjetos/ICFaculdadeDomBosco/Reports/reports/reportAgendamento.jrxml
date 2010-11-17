@@ -8,23 +8,23 @@
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
-	<field name="dDataInicial" class="java.lang.String">
-		<fieldDescription><![CDATA[dDataInicial]]></fieldDescription>
+	<field name="dDataInicialAgendamento" class="java.util.Date">
+		<fieldDescription><![CDATA[dDataInicialAgendamento]]></fieldDescription>
 	</field>
-	<field name="hHoraInicial" class="java.lang.String">
-		<fieldDescription><![CDATA[hHoraInicial]]></fieldDescription>
+	<field name="hHoraInicialAgendamento" class="java.lang.String">
+		<fieldDescription><![CDATA[hHoraInicialAgendamento]]></fieldDescription>
 	</field>
-	<field name="dDataFinal" class="java.lang.String">
-		<fieldDescription><![CDATA[dDataFinal]]></fieldDescription>
+	<field name="dDataFinalAgendamento" class="java.util.Date">
+		<fieldDescription><![CDATA[dDataFinalAgendamento]]></fieldDescription>
 	</field>
-	<field name="hHoraFinal" class="java.lang.String">
-		<fieldDescription><![CDATA[hHoraFinal]]></fieldDescription>
+	<field name="hHoraFinalAgendamento" class="java.lang.String">
+		<fieldDescription><![CDATA[hHoraFinalAgendamento]]></fieldDescription>
 	</field>
-	<field name="oGradeDisciplina.disciplina_gradeDisciplina" class="java.lang.String">
-		<fieldDescription><![CDATA[oGradeDisciplina.disciplina_gradeDisciplina]]></fieldDescription>
+	<field name="oGradeDisciplinaAgendamento.disciplina_gradeDisciplina" class="java.lang.String">
+		<fieldDescription><![CDATA[oGradeDisciplinaAgendamento.disciplina_gradeDisciplina]]></fieldDescription>
 	</field>
-	<field name="oRequisitante.requisitante_nome" class="java.lang.String"/>
-	<field name="oRecurso.ds_recurso" class="java.lang.String"/>
+	<field name="oRequisitanteAgendamento.requisitante_nome" class="java.lang.String"/>
+	<field name="oRecursoAgendamento.ds_recurso" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -188,7 +188,7 @@ Dom Bosco de Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{dDataInicial}]]></textFieldExpression>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{dDataInicialAgendamento}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
 				<reportElement key="textField-2" x="100" y="3" width="80" height="20" forecolor="#000000"/>
@@ -201,7 +201,7 @@ Dom Bosco de Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{hHoraInicial}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{hHoraInicialAgendamento}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-3" x="191" y="2" width="80" height="20" forecolor="#000000"/>
@@ -214,7 +214,7 @@ Dom Bosco de Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{dDataFinal}]]></textFieldExpression>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{dDataFinalAgendamento}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
 				<reportElement key="textField-4" x="286" y="3" width="80" height="20" forecolor="#000000"/>
@@ -227,7 +227,7 @@ Dom Bosco de Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{hHoraFinal}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{hHoraFinalAgendamento}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
 				<reportElement key="textField-5" x="377" y="3" width="162" height="20" forecolor="#000000"/>
@@ -240,7 +240,7 @@ Dom Bosco de Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{oGradeDisciplina.disciplina_gradeDisciplina}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{oGradeDisciplinaAgendamento.disciplina_gradeDisciplina}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
 				<reportElement key="textField-6" x="552" y="3" width="133" height="20" forecolor="#000000"/>
@@ -253,7 +253,7 @@ Dom Bosco de Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{oRequisitante.requisitante_nome}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{oRequisitanteAgendamento.requisitante_nome}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
 				<reportElement key="textField-7" x="700" y="3" width="70" height="20" forecolor="#000000"/>
@@ -266,7 +266,7 @@ Dom Bosco de Porto Alegre]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="Verdana" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{oRecurso.ds_recurso}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{oRecursoAgendamento.ds_recurso}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
