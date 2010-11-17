@@ -145,6 +145,8 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         cbHoraFinalAgendamento.setSelectedItem(agendamento.gethHoraFinalAgendamento());
         taObservacaoAgendamento.setText(agendamento.getsObservacaoAgendamento());
         jlEquipamentosAgendamentos.setListData(agendamento.getListEquipamentoAgendamento().toArray());
+
+        //jlEquipamentosAgendamentos.setModel(agendamento.getListEquipamentoAgendamento());
     }
 
     public void chamarCalendario(JTextField jtf)
@@ -687,7 +689,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -804,7 +806,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
 
         String fileName="./REPORTS/reportAgendamento.jasper";
 
-        List<Agendamento> list = agendamentoDao.listarAgendamento(null, null);
+        List<Agendamento> list = agendamentoDao.listarAgendamentoRelatorio();
         JRDataSource datos = new JRBeanCollectionDataSource(list);
 
         JasperViewer ver = null;
