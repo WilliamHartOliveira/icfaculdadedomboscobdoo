@@ -104,8 +104,25 @@ public class AgendamentoDao {
             return null;
         }
     }
+     
+     
+    public List<Agendamento> listarAgendamentoRelatorio()
+    {
+        oConexao = new Conexao();
+        List<Agendamento> lista=new ArrayList();
+        Query consulta= oConexao.getDb().query();
+        consulta.constrain(Agendamento.class);
+        consulta.descend("dDataInicialAgendamento").orderAscending();
 
+        ObjectSet resultado=consulta.execute();
 
+        while(resultado.hasNext())
+        {
+              lista.add((Agendamento)resultado.next());
+        }
+
+        return lista;
+    }
 
     public ObjectSet<Agendamento> montarTabelaAgendamento()
     {
