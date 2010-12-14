@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 public class AgendamentoTableModel extends AbstractTableModel{
 
     private List<Agendamento> agendamentos;
-    private String[] columnNames = {"Data Inicial", "Hora Inicial", "Data Final", "Hora Final", "Disciplina", "Usuário"};
+    private String[] columnNames = {"Código","Data Inicial", "Hora Inicial", "Data Final", "Hora Final", "Recurso", "Usuário"};
 
     public AgendamentoTableModel(List<Agendamento> agendamentos) {
         this.agendamentos = agendamentos;
@@ -34,21 +34,24 @@ public class AgendamentoTableModel extends AbstractTableModel{
 
         switch (columnIndex) {
             case 0:
-                value = new SimpleDateFormat("dd/MM/yyyy").format(( agendamento.getdDataInicialAgendamento()));
+                value = agendamento.getCodigoAgendamento();
                 break;
             case 1:
-                value = agendamento.gethHoraInicialAgendamento();
+                value = new SimpleDateFormat("dd/MM/yyyy").format(( agendamento.getdDataInicialAgendamento()));
                 break;
             case 2:
-                value = new SimpleDateFormat("dd/MM/yyyy").format(( agendamento.getdDataFinalAgendamento()));
+                value = agendamento.gethHoraInicialAgendamento();
                 break;
             case 3:
-                value = agendamento.gethHoraFinalAgendamento();
+                value = new SimpleDateFormat("dd/MM/yyyy").format(( agendamento.getdDataFinalAgendamento()));
                 break;
             case 4:
-                value = agendamento.getoGradeDisciplinaAgendamento().getDisciplina_gradeDisciplina().toString();
+                value = agendamento.gethHoraFinalAgendamento();
                 break;
             case 5:
+                value = agendamento.getoRecursoAgendamento().getDs_recurso();
+                break;
+            case 6:
                 value = agendamento.getoRequisitanteAgendamento().getRequisitante_nome().toString();
                 break;
             default:

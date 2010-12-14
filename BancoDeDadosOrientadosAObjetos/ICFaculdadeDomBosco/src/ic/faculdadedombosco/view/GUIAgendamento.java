@@ -76,6 +76,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     {
         initComponents();
         inicializarCombosBoxs();
+        btExcluirAgendamento.setEnabled(false);
     }
 
     public void setPosicao()
@@ -119,7 +120,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
         oRequisitanteService = new RequisitanteService();
         oRecursoService = new RecursoService();
 
-        //oAgendamento.setCodigoAgendamento()
+        oAgendamento.setCodigoAgendamento(Integer.parseInt(txtCodigoAgendamento.getText().toString()));
         oAgendamento.setStatusAgendamento(cbStatusAgendamento.getSelectedItem().toString());
         oAgendamento.setoGradeDisciplinaAgendamento(oGradeDisciplinaService.buscar(cbDisciplinaAgendamento.getSelectedItem().toString()));
         oAgendamento.setoRequisitanteAgendamento(oRequisitanteService.buscar(cbUsuarioAgendamento.getSelectedItem().toString()));
@@ -135,6 +136,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     }
 
     private void carregarFormulario (Agendamento agendamento) {
+        txtCodigoAgendamento.setText(String.valueOf(agendamento.getCodigoAgendamento()));
         cbStatusAgendamento.setSelectedItem(agendamento.getStatusAgendamento());
         cbDisciplinaAgendamento.setSelectedItem(agendamento.getoGradeDisciplinaAgendamento().getDisciplina_gradeDisciplina());
         cbUsuarioAgendamento.setSelectedItem(agendamento.getoRequisitanteAgendamento().getRequisitante_nome());
@@ -338,10 +340,10 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
                                 .addComponent(btPesqusarAgendamento))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(bDataFinalPesquisa, javax.swing.GroupLayout.Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txDataInicialPesquisaAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                .addComponent(txDataInicialPesquisaAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel9)
-                                    .addComponent(jComboBox1)
                                     .addComponent(jLabel14))
                                 .addComponent(bDataInicialPesquisa, 0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -697,7 +699,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();

@@ -35,7 +35,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -144,10 +144,10 @@
                                   </Group>
                                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="bDataFinalPesquisa" alignment="1" min="0" pref="0" max="32767" attributes="1"/>
-                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                          <Component id="txDataInicialPesquisaAgendamento" alignment="1" pref="20" max="32767" attributes="1"/>
+                                      <Component id="txDataInicialPesquisaAgendamento" alignment="1" pref="20" max="32767" attributes="1"/>
+                                      <Component id="jComboBox1" alignment="1" max="32767" attributes="1"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox1" alignment="1" max="32767" attributes="1"/>
                                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="bDataInicialPesquisa" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
