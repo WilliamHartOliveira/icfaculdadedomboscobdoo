@@ -23,6 +23,13 @@ public class Agendamento implements Serializable{
     private String sObservacaoAgendamento;
     private ArrayList<Equipamento> listEquipamentoAgendamento = new ArrayList<Equipamento>();
 
+    public Agendamento() {
+    }
+
+    public Agendamento(int codigoAgendamento) {
+        this.codigoAgendamento = codigoAgendamento;
+    }
+
     public int getCodigoAgendamento() {
         return codigoAgendamento;
     }
@@ -46,7 +53,7 @@ public class Agendamento implements Serializable{
     public void setdDataInicialAgendamento(Date dDataInicialAgendamento) {
         this.dDataInicialAgendamento = dDataInicialAgendamento;
     }
-  
+
     public String gethHoraFinalAgendamento() {
         return hHoraFinalAgendamento;
     }
@@ -61,6 +68,14 @@ public class Agendamento implements Serializable{
 
     public void sethHoraInicialAgendamento(String hHoraInicialAgendamento) {
         this.hHoraInicialAgendamento = hHoraInicialAgendamento;
+    }
+
+    public ArrayList<Equipamento> getListEquipamentoAgendamento() {
+        return listEquipamentoAgendamento;
+    }
+
+    public void setListEquipamentoAgendamento(ArrayList<Equipamento> listEquipamentoAgendamento) {
+        this.listEquipamentoAgendamento = listEquipamentoAgendamento;
     }
 
     public GradeDisciplina getoGradeDisciplinaAgendamento() {
@@ -101,18 +116,6 @@ public class Agendamento implements Serializable{
 
     public void setStatusAgendamento(String statusAgendamento) {
         this.statusAgendamento = statusAgendamento;
-    }
-
-    public ArrayList<Equipamento> getListEquipamentoAgendamento() {
-        return listEquipamentoAgendamento;
-    }
-
-    public void setListEquipamentoAgendamento(ArrayList<Equipamento> listEquipamentoAgendamento) {
-        this.listEquipamentoAgendamento = listEquipamentoAgendamento;
-    }
-
-    public void setEquipamentoItem(Equipamento oEquipamento) {
-       this.listEquipamentoAgendamento.add(oEquipamento);
     }
 
 }

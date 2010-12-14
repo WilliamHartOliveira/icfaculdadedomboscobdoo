@@ -4,22 +4,27 @@ import com.db4o.ObjectSet;
 import com.db4o.query.Constraint;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.Conexao;
+import ic.faculdadedombosco.framework.GerarCodigoAgendamento;
 import ic.faculdadedombosco.model.Agendamento;
 import ic.faculdadedombosco.model.GradeDisciplina;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 public class AgendamentoDao {
 
     private Conexao oConexao;
+    GerarCodigoAgendamento gerarCodigoAgendamento = new GerarCodigoAgendamento();
+    //Calendar cal = Calendar.getInstance();
+    //int year = cal.get(Calendar.YEAR);
 
     public Agendamento incluir(Agendamento agendamento)
     {
         oConexao = new Conexao();
-
         try{
+            agendamento.setCodigoAgendamento(gerarCodigoAgendamento.codigoProximoInserido());
             oConexao.getDb().store(agendamento);
             oConexao.getDb().commit();
             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Informar", JOptionPane.INFORMATION_MESSAGE);
@@ -35,7 +40,7 @@ public class AgendamentoDao {
         oConexao = new Conexao();
         Query query = oConexao.getDb().query();
         query.constrain(Agendamento.class);
-        query.descend("oGradeDisciplinaAgendamento").constrain(agendamento.getoGradeDisciplinaAgendamento());
+        query.descend("codigoAgendamento").constrain(agendamento.getCodigoAgendamento());
 
         Agendamento agend = (Agendamento) query.execute().get(0);
 
@@ -112,7 +117,7 @@ public class AgendamentoDao {
         List<Agendamento> lista=new ArrayList();
         Query consulta= oConexao.getDb().query();
         consulta.constrain(Agendamento.class);
-        consulta.descend("dDataInicialAgendamento").orderAscending();
+        consulta.descend("codigoAgendamento").orderAscending();
 
         ObjectSet resultado=consulta.execute();
 
@@ -130,7 +135,7 @@ public class AgendamentoDao {
 
         Query query = oConexao.getDb().query();
         query.constrain(Agendamento.class);
-        query.descend("dDataInicialAgendamento").orderAscending();
+        query.descend("codigoAgendamento").orderAscending();
         ObjectSet<Agendamento> lista = query.execute();
 
         return lista;
