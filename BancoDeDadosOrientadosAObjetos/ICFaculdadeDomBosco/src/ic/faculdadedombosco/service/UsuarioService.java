@@ -39,10 +39,10 @@ public class UsuarioService {
         if(oUsuarioDao.buscar(nome, senha)!=null){
             
             return oUsuarioDao.buscar(nome, senha);
-        }else{
-            JOptionPane.showMessageDialog(null, "O usuário ou a senha estão incorretos. Tente novamente.", "Atenção!!!", JOptionPane.ERROR_MESSAGE);
-        }
+        }else
+            System.out.println("Existe");
 
-        return oUsuarioDao.buscar(nome, senha);      
+        return oUsuarioDao.buscar(nome, senha);
+
     }
 }

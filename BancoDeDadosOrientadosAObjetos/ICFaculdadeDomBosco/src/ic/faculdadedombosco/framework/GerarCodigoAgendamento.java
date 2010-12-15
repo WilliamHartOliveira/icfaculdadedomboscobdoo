@@ -29,7 +29,7 @@ public class GerarCodigoAgendamento {
         if (posicaoUltimo == -1) {
             return 1;
         } else {
-            int codigoUltimo = lista.get(posicaoUltimo).getCodigoAgendamento();
+            int codigoUltimo = lista.get(posicaoUltimo).getCodigoGeraAgendamento();
             return codigoUltimo + 1;
         }
     }

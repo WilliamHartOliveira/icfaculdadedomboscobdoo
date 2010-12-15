@@ -2,6 +2,7 @@ package ic.faculdadedombosco.view;
 
 import com.db4o.ObjectSet;
 import ic.faculdadedombosco.dao.RecursoDao;
+import ic.faculdadedombosco.framework.LimitarTamanhoTexto;
 import ic.faculdadedombosco.model.Recurso;
 import ic.faculdadedombosco.service.RecursoService;
 import ic.faculdadedombosco.tables.RecursoTableModel;
@@ -21,6 +22,9 @@ public class GUIRecurso extends javax.swing.JInternalFrame {
    
     public GUIRecurso() {
         initComponents();
+        tfDescricao.setDocument(new LimitarTamanhoTexto(52));
+        tfDescricaoPesquisaRecurso.setDocument(new LimitarTamanhoTexto(52));
+        tfQuantidadeOcupRecurso.setDocument(new LimitarTamanhoTexto(3));
     }
 
     public void setPosicao(){

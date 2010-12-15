@@ -3,6 +3,7 @@ package ic.faculdadedombosco.view;
 
 import com.db4o.ObjectSet;
 import ic.faculdadedombosco.dao.EquipamentoDao;
+import ic.faculdadedombosco.framework.LimitarTamanhoTexto;
 import ic.faculdadedombosco.model.Equipamento;
 import ic.faculdadedombosco.service.EquipamentoService;
 import ic.faculdadedombosco.tables.EquipamentoTableModel;
@@ -18,6 +19,9 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     public GUIEquipamento() {
         initComponents();
+        tfCodigoEquipamento.setDocument(new LimitarTamanhoTexto(7));
+        tfDescricaoEquipamento.setDocument(new LimitarTamanhoTexto(50));
+        tfPesquisaCodigoEquipamento.setDocument(new LimitarTamanhoTexto(7));
     }
 
      public void setPosicao()
@@ -87,18 +91,18 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfPesquisaCodigoEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bPesquisarEquipamento)
-                .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfPesquisaCodigoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bPesquisarEquipamento)
+                .addContainerGap(238, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,8 +220,8 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
                         .addComponent(lUtilizaRede, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbRedeEquipamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(tfCodigoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDescricaoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDescricaoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCodigoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -260,7 +264,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();

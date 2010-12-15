@@ -56,11 +56,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lImagemLogin" min="-2" pref="257" max="-2" attributes="0"/>
+                  <Component id="lImagemLogin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jPanel1" max="32767" attributes="1"/>
-                      <Component id="pLogindados" alignment="0" max="32767" attributes="1"/>
+                      <Component id="pLogindados" alignment="1" max="32767" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -68,15 +68,15 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lImagemLogin" alignment="0" pref="266" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="pLogindados" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="lImagemLogin" alignment="0" min="-2" pref="261" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -104,13 +104,13 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tfUsuario" alignment="0" pref="202" max="32767" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="bOk" min="-2" pref="96" max="-2" attributes="0"/>
+                              <Component id="bOk" min="-2" pref="96" max="-2" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="bTrocarSenha" pref="100" max="32767" attributes="0"/>
                           </Group>
                           <Component id="tfSenha" alignment="0" pref="202" max="32767" attributes="1"/>
-                          <Component id="tfUsuario" alignment="0" pref="202" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -147,14 +147,8 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfUsuario">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="admin"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="tfSenha">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="admin"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lSenha">
               <Properties>

@@ -4,6 +4,7 @@ import com.db4o.ObjectSet;
 import com.db4o.query.Query;
 import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.dao.GradeDisciplinaDao;
+import ic.faculdadedombosco.framework.LimitarTamanhoTexto;
 import ic.faculdadedombosco.model.GradeDisciplina;
 import ic.faculdadedombosco.model.Recurso;
 import ic.faculdadedombosco.model.Requisitante;
@@ -30,6 +31,8 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
     public GUIGradeDisciplina() {
         initComponents();
         inicializarCombosBoxs();
+        tf_disciplina_GradeDisciplina.setDocument(new LimitarTamanhoTexto(34));
+        tfPesquisaGradeDisciplina.setDocument(new LimitarTamanhoTexto(34));
     }
 
     public void setPosicao(){

@@ -81,7 +81,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         itemDeMenuRelatorioDeRecurso = new javax.swing.JMenuItem();
         itemDeMenuRelatorioDeRequisitante = new javax.swing.JMenuItem();
         itemDeMenuRelatorioDeUsuario = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        menuUsuario = new javax.swing.JMenu();
         itemDeMenuGerenciadorUsuario = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         itemDeMenuSobre = new javax.swing.JMenuItem();
@@ -219,7 +219,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuRelatorio);
 
-        jMenu1.setText("Usuário");
+        menuUsuario.setText("Usuário");
 
         itemDeMenuGerenciadorUsuario.setText("Gerenciador");
         itemDeMenuGerenciadorUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -227,9 +227,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 itemDeMenuGerenciadorUsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(itemDeMenuGerenciadorUsuario);
+        menuUsuario.add(itemDeMenuGerenciadorUsuario);
 
-        menuBar.add(jMenu1);
+        menuBar.add(menuUsuario);
 
         menuAjuda.setText("Ajuda");
 
@@ -276,8 +276,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void itemDeMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuSairActionPerformed
         oConexao.fecharConexao();
         System.exit(0);
-
-
     }//GEN-LAST:event_itemDeMenuSairActionPerformed
 
     private void itemDeMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuUsuarioActionPerformed
@@ -344,7 +342,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         } catch (JRException ex) {
             ex.printStackTrace();
         }
-
     }//GEN-LAST:event_itemDeMenuRelatorioDeEquipamentoActionPerformed
 
     private void itemDeMenuRelatorioDeGradeDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeMenuRelatorioDeGradeDisciplinaActionPerformed
@@ -493,6 +490,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_itemDeMenuRelatorioDeRequisitanteActionPerformed
 
+    public void desabilitarMenuUsuario(){
+        this.menuUsuario.setEnabled(false);
+    }
+
+    public void habilitarMenuUsuario(){
+        this.menuUsuario.setEnabled(true);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem itemDeMenuAgendamento;
@@ -511,13 +516,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator itemSeparador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lHora;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuRelatorio;
+    private javax.swing.JMenu menuUsuario;
     // End of variables declaration//GEN-END:variables
 
     private GUIEquipamento guicadequip;
@@ -528,6 +533,4 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private GUIGradeDisciplina guigradedisciplina;
     private GUIUsuario guiusuario;
 
-
-   
 }
