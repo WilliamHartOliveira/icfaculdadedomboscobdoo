@@ -2,6 +2,7 @@ package ic.faculdadedombosco.view;
 
 import com.db4o.ObjectSet;
 import ic.faculdadedombosco.dao.UsuarioDao;
+import ic.faculdadedombosco.framework.LimitarTamanhoTexto;
 import ic.faculdadedombosco.model.Usuario;
 import ic.faculdadedombosco.service.UsuarioService;
 import ic.faculdadedombosco.tables.UsuarioTableModel;
@@ -23,6 +24,10 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
     public GUIUsuario()
     {
         initComponents();
+        tfnomeGerenciamento.setDocument(new LimitarTamanhoTexto(35));
+        tfusuarioGerenciamento.setDocument(new LimitarTamanhoTexto(10));
+        pfsenhaGerenciamento.setDocument(new LimitarTamanhoTexto(10));
+        txtNomePesquisaUsuario.setDocument(new LimitarTamanhoTexto(35));
     }
 
     public void setPosicao()
@@ -104,6 +109,10 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Usuário:");
+
+        tfusuarioGerenciamento.setToolTipText("Usuário com máximo de 10 dígitos");
+
+        pfsenhaGerenciamento.setToolTipText("Senha com máximo de 10 dígitos");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Senha:");
@@ -308,7 +317,7 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();

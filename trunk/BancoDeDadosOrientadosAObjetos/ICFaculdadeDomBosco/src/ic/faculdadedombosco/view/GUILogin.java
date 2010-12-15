@@ -1,6 +1,8 @@
 package ic.faculdadedombosco.view;
 
+import ic.faculdadedombosco.Conexao;
 import ic.faculdadedombosco.dao.UsuarioDao;
+import ic.faculdadedombosco.framework.LimitarTamanhoTexto;
 import ic.faculdadedombosco.model.Usuario;
 import ic.faculdadedombosco.service.UsuarioService;
 import javax.swing.JOptionPane;
@@ -13,16 +15,21 @@ public class GUILogin extends javax.swing.JFrame {
 
     private String user;
     private String password;
-    static GUILogin guilogin;
 
+    //Conexao oConexao;
     Usuario usuario;
     UsuarioService usuarioService;
     UsuarioDao usuarioDao;
+    GUIPrincipal guiPrincipal;
 
     public GUILogin() {
         initComponents();
         setLocationRelativeTo(null);
         this.setVisible(true);
+        //oConexao = new Conexao();
+        //oConexao.abrirConexao();
+        tfUsuario.setDocument(new LimitarTamanhoTexto(10));
+        tfSenha.setDocument(new LimitarTamanhoTexto(10));
     }
 
     @SuppressWarnings("unchecked")
@@ -54,10 +61,6 @@ public class GUILogin extends javax.swing.JFrame {
         lUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lUsuario.setText("Usuário:");
 
-        tfUsuario.setText("admin");
-
-        tfSenha.setText("admin");
-
         lSenha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lSenha.setText("Senha:");
 
@@ -86,12 +89,12 @@ public class GUILogin extends javax.swing.JFrame {
                     .addComponent(lSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pLogindadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                     .addGroup(pLogindadosLayout.createSequentialGroup()
                         .addComponent(bOk, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bTrocarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                    .addComponent(tfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(tfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                    .addComponent(tfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pLogindadosLayout.setVerticalGroup(
@@ -155,9 +158,9 @@ public class GUILogin extends javax.swing.JFrame {
             pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pLoginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lImagemLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lImagemLogin)
                 .addGap(20, 20, 20)
-                .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pLogindados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -167,11 +170,11 @@ public class GUILogin extends javax.swing.JFrame {
             .addGroup(pLoginLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lImagemLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                     .addGroup(pLoginLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(pLogindados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pLogindados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lImagemLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -196,46 +199,44 @@ public class GUILogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
-      
-        bOk.enable(true);
-        /*usuario = new Usuario();
-        usuarioService = new UsuarioService();
-
-        if(usuarioService.buscar(tfUsuario.getText(),tfSenha.getText()) != null){
-            GUIPrincipal guiPrincipal = new GUIPrincipal();//cria uma instância de GUIPrincipal
-            guiPrincipal.setLocationRelativeTo(null);//posicionam essa instância no centro do desktop
-            guiPrincipal.setVisible(true);//exibem a instância
-            this.setVisible(false);
-        }else{
-            System.out.println(tfUsuario.getText());
-            System.out.println(tfSenha.getText());
-            tfUsuario.setText(null);
-            tfSenha.setText(null);
-            tfUsuario.requestFocus();
-        }
-        */
         usuario = new Usuario();
         usuarioDao = new UsuarioDao();
         usuarioService = new UsuarioService();
 
-        user = new String (tfUsuario.getText());
-        password = new String(tfSenha.getPassword());
+        user = tfUsuario.getText();
+        password = String.valueOf(tfSenha.getPassword());
 
-        //usuarioService.buscar(user, user);
-        //user.equals("admin") && password.equals("admin")
         if(user.equals("admin") && password.equals("admin")){
-            GUIPrincipal guiPrincipal = new GUIPrincipal();//cria uma instância de GUIPrincipal
-            guiPrincipal.setLocationRelativeTo(null);//posicionam essa instância no centro do desktop
-            guiPrincipal.setVisible(true);//exibem a instância
+            guiPrincipal = new GUIPrincipal();
+            guiPrincipal.habilitarMenuUsuario();
+            guiPrincipal.setLocationRelativeTo(null);
+            guiPrincipal.setVisible(true);
             this.setVisible(false);
-        }else{
-            System.out.println(user);
-            System.out.println(password);
-            JOptionPane.showMessageDialog(null, "O usuário ou a senha estão incorretos. Tente novamente.", "Atenção!!!", JOptionPane.ERROR_MESSAGE);
+        }
+        /* CÓDIGO PARA VALIDAÇÃO DO LOGIN 
+        usuario = usuarioService.buscar(user, password);
+        
+        if(user.equals(usuario.getUsuario_usuario())&&password.equals(usuario.getSenha_usuario())){
+            if(usuario.getAdminstrador_usuario().equals("Sim")){
+                guiPrincipal = new GUIPrincipal();
+                guiPrincipal.habilitarMenuUsuario();
+                guiPrincipal.setLocationRelativeTo(null);
+                guiPrincipal.setVisible(true);
+                this.setVisible(false);
+            }else{
+                guiPrincipal = new GUIPrincipal();
+                guiPrincipal.desabilitarMenuUsuario();
+                guiPrincipal.setLocationRelativeTo(null);
+                guiPrincipal.setVisible(true);
+                this.setVisible(false);
+            }
+        }*/else {
+            JOptionPane.showMessageDialog(null, "O usuário ou a senha estão incorretos. Tente novamente.", "Login - Atenção!!!", JOptionPane.WARNING_MESSAGE);
             tfUsuario.setText(null);
             tfSenha.setText(null);
             tfUsuario.requestFocus();
         }
+
     }//GEN-LAST:event_bOkActionPerformed
 
     private void bTrocarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTrocarSenhaActionPerformed

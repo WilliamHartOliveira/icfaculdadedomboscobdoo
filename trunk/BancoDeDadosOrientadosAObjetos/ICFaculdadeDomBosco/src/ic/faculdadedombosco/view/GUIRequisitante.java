@@ -2,6 +2,7 @@ package ic.faculdadedombosco.view;
 
 import com.db4o.ObjectSet;
 import ic.faculdadedombosco.dao.RequisitanteDao;
+import ic.faculdadedombosco.framework.LimitarTamanhoTexto;
 import ic.faculdadedombosco.model.Requisitante;
 import ic.faculdadedombosco.service.RequisitanteService;
 import ic.faculdadedombosco.tables.RequisitanteTableModel;
@@ -21,6 +22,8 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
     
     public GUIRequisitante() {
         initComponents();
+        tfNomeRequisitante.setDocument(new LimitarTamanhoTexto(47));
+        tfNomePesqRequisitante.setDocument(new LimitarTamanhoTexto(47));
     }
 
     public void setPosicao(){
@@ -342,7 +345,7 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();

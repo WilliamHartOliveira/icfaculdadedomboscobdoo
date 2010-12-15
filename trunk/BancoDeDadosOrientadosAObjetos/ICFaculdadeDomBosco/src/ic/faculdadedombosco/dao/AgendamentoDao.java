@@ -17,14 +17,16 @@ public class AgendamentoDao {
 
     private Conexao oConexao;
     GerarCodigoAgendamento gerarCodigoAgendamento = new GerarCodigoAgendamento();
-    //Calendar cal = Calendar.getInstance();
-    //int year = cal.get(Calendar.YEAR);
+    Calendar cal = Calendar.getInstance();
+    int year = cal.get(Calendar.YEAR);
 
     public Agendamento incluir(Agendamento agendamento)
     {
         oConexao = new Conexao();
         try{
-            agendamento.setCodigoAgendamento(gerarCodigoAgendamento.codigoProximoInserido());
+            int geraCodigo = gerarCodigoAgendamento.codigoProximoInserido();
+            agendamento.setCodigoGeraAgendamento(geraCodigo);
+            agendamento.setCodigoAgendamento(year+"-"+geraCodigo);
             oConexao.getDb().store(agendamento);
             oConexao.getDb().commit();
             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Informar", JOptionPane.INFORMATION_MESSAGE);
@@ -68,7 +70,7 @@ public class AgendamentoDao {
 
         ObjectSet<Agendamento> lista = oConexao.getDb().get(agendamento);
         Agendamento agend = lista.next();
-        oConexao.getDb().delete(agend);
+        oConexao.getDb().delete(agend);//
         oConexao.getDb().commit();
 
         return agendamento;

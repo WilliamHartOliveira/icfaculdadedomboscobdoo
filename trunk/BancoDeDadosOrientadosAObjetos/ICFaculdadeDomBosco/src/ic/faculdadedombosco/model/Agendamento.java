@@ -11,7 +11,8 @@ import java.util.Date;
  */
 public class Agendamento implements Serializable{
 
-    private int codigoAgendamento;
+    private int codigoGeraAgendamento;
+    private String codigoAgendamento;
     private String statusAgendamento;
     private GradeDisciplina oGradeDisciplinaAgendamento;
     private Requisitante oRequisitanteAgendamento;
@@ -26,16 +27,24 @@ public class Agendamento implements Serializable{
     public Agendamento() {
     }
 
-    public Agendamento(int codigoAgendamento) {
-        this.codigoAgendamento = codigoAgendamento;
+    public Agendamento(int codigoGeraAgendamento) {
+        this.codigoGeraAgendamento = codigoGeraAgendamento;
     }
 
-    public int getCodigoAgendamento() {
+    public String getCodigoAgendamento() {
         return codigoAgendamento;
     }
 
-    public void setCodigoAgendamento(int codigoAgendamento) {
+    public void setCodigoAgendamento(String codigoAgendamento) {
         this.codigoAgendamento = codigoAgendamento;
+    }
+
+    public int getCodigoGeraAgendamento() {
+        return codigoGeraAgendamento;
+    }
+
+    public void setCodigoGeraAgendamento(int codigoGeraAgendamento) {
+        this.codigoGeraAgendamento = codigoGeraAgendamento;
     }
 
     public Date getdDataFinalAgendamento() {
