@@ -345,16 +345,16 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvarRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarRequisitanteActionPerformed
+        this.tfMatriculaRequisitante.requestFocus();
         requisitante = new Requisitante();
         requisitanteService = new RequisitanteService();
-
         requisitante = capturaDados();
         requisitanteService.incluir(requisitante);
         montarTabela();
@@ -362,6 +362,7 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bSalvarRequisitanteActionPerformed
 
     private void bExcluirRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirRequisitanteActionPerformed
+        this.tfMatriculaRequisitante.requestFocus();
         requisitante = new Requisitante();
         requisitanteService = new RequisitanteService();
 
@@ -377,10 +378,9 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bExcluirRequisitanteActionPerformed
 
     private void bAtualizarRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarRequisitanteActionPerformed
-
+       this.tfMatriculaRequisitante.requestFocus();
        requisitante = new Requisitante();
        requisitanteService = new RequisitanteService();
-
        requisitante = capturaDados();
        requisitanteService.atualizar(requisitante);
        montarTabela();
@@ -388,25 +388,28 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
 
     private void bListarRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bListarRequisitanteActionPerformed
         montarTabela();
+        this.tfMatriculaRequisitante.requestFocus();
     }//GEN-LAST:event_bListarRequisitanteActionPerformed
 
     private void bLimparRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimparRequisitanteActionPerformed
+        this.tfMatriculaRequisitante.requestFocus();
         limparCampos();
     }//GEN-LAST:event_bLimparRequisitanteActionPerformed
 
     private void tabelaRequisitanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaRequisitanteMouseClicked
-         if (this.tabelaRequisitante.getSelectedRow() != -1) {
+        this.tfMatriculaRequisitante.requestFocus();
+        if (this.tabelaRequisitante.getSelectedRow() != -1) {
             RequisitanteTableModel requisitanteTableModel = (RequisitanteTableModel)this.tabelaRequisitante.getModel();
             this.carregarFormulario(requisitanteTableModel.getRequisitante().get(this.tabelaRequisitante.getSelectedRow()));
         }
-        this.tfNomeRequisitante.requestFocus();
     }//GEN-LAST:event_tabelaRequisitanteMouseClicked
 
     private void bPesquisarRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarRequisitanteActionPerformed
+        this.tfNomePesqRequisitante.requestFocus();
         requisitante = new Requisitante();
         requisitanteService = new RequisitanteService();
 
-        requisitante = requisitanteService.buscar(tfNomePesqRequisitante.getText());
+        requisitante = requisitanteService.buscar(tfNomePesqRequisitante.getText().toUpperCase());
 
         if(requisitante != null){
             JOptionPane.showMessageDialog(null, "Requisitante encontrado", "Pesquisa Requisitante", JOptionPane.INFORMATION_MESSAGE);

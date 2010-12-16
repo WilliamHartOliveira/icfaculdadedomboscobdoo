@@ -321,7 +321,7 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
         equipamento = new Equipamento();
         equipamentoService = new EquipamentoService();
 
-        equipamento = equipamentoService.buscar(tfPesquisaCodigoEquipamento.getText());
+        equipamento = equipamentoService.buscar(tfPesquisaCodigoEquipamento.getText().toUpperCase());
         
         if(equipamento != null){
             JOptionPane.showMessageDialog(null, "Equipamento encontrado", "Pesquisa Equipamento", JOptionPane.INFORMATION_MESSAGE);

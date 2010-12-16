@@ -483,7 +483,7 @@ public class GUIGradeDisciplina extends javax.swing.JInternalFrame {
         oGradeDisciplina = new GradeDisciplina();
         oGradeDisciplinaService = new GradeDisciplinaService();
 
-        oGradeDisciplina = oGradeDisciplinaService.buscar(tfPesquisaGradeDisciplina.getText());
+        oGradeDisciplina = oGradeDisciplinaService.buscar(tfPesquisaGradeDisciplina.getText().toUpperCase());
 
         if(oGradeDisciplina != null){
              JOptionPane.showMessageDialog(null, "Disciplina encontrada", "Pesquisa Disciplina", JOptionPane.INFORMATION_MESSAGE);

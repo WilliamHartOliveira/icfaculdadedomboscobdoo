@@ -13,21 +13,15 @@ import javax.swing.JOptionPane;
  */
 public class GUILogin extends javax.swing.JFrame {
 
-    private String user;
-    private String password;
-
-    //Conexao oConexao;
-    Usuario usuario;
+    Conexao oConexao;
+    Usuario usuarioValida;
     UsuarioService usuarioService;
-    UsuarioDao usuarioDao;
     GUIPrincipal guiPrincipal;
 
     public GUILogin() {
         initComponents();
         setLocationRelativeTo(null);
         this.setVisible(true);
-        //oConexao = new Conexao();
-        //oConexao.abrirConexao();
         tfUsuario.setDocument(new LimitarTamanhoTexto(10));
         tfSenha.setDocument(new LimitarTamanhoTexto(10));
     }
@@ -199,25 +193,32 @@ public class GUILogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
-        usuario = new Usuario();
-        usuarioDao = new UsuarioDao();
-        usuarioService = new UsuarioService();
+        oConexao = new Conexao();
+        oConexao.abrirConexao();
 
-        user = tfUsuario.getText();
-        password = String.valueOf(tfSenha.getPassword());
+        //usuarioValida = new Usuario();
+        //usuarioService = new UsuarioService();
 
-        if(user.equals("admin") && password.equals("admin")){
-            guiPrincipal = new GUIPrincipal();
-            guiPrincipal.habilitarMenuUsuario();
-            guiPrincipal.setLocationRelativeTo(null);
-            guiPrincipal.setVisible(true);
-            this.setVisible(false);
+        if(tfUsuario.getText().equals("admin") && tfSenha.getText().equals("admin")){
+                guiPrincipal = new GUIPrincipal();
+                guiPrincipal.habilitarMenuUsuario();
+                guiPrincipal.setLocationRelativeTo(null);
+                guiPrincipal.setVisible(true);
+                this.setVisible(false);
+        }else {
+            JOptionPane.showMessageDialog(null, "O usuário ou a senha estão incorretos. Tente novamente.", "Login - Atenção!!!", JOptionPane.WARNING_MESSAGE);
+            tfUsuario.setText(null);
+            tfSenha.setText(null);
+            tfUsuario.requestFocus();
         }
-        /* CÓDIGO PARA VALIDAÇÃO DO LOGIN 
-        usuario = usuarioService.buscar(user, password);
         
-        if(user.equals(usuario.getUsuario_usuario())&&password.equals(usuario.getSenha_usuario())){
-            if(usuario.getAdminstrador_usuario().equals("Sim")){
+
+        // Tentativa de Validação
+        
+        /*usuarioValida = usuarioService.buscar(tfUsuario.toString(), tfSenha.toString());
+
+        if(tfUsuario.getText().equals(usuarioValida.getUsuario_usuario()) && tfSenha.getText().equals(usuarioValida.getSenha_usuario())){
+            if(usuarioValida.getAdminstrador_usuario().equals("Sim")){
                 guiPrincipal = new GUIPrincipal();
                 guiPrincipal.habilitarMenuUsuario();
                 guiPrincipal.setLocationRelativeTo(null);
@@ -230,12 +231,12 @@ public class GUILogin extends javax.swing.JFrame {
                 guiPrincipal.setVisible(true);
                 this.setVisible(false);
             }
-        }*/else {
+        }else {
             JOptionPane.showMessageDialog(null, "O usuário ou a senha estão incorretos. Tente novamente.", "Login - Atenção!!!", JOptionPane.WARNING_MESSAGE);
             tfUsuario.setText(null);
             tfSenha.setText(null);
             tfUsuario.requestFocus();
-        }
+        }*/
 
     }//GEN-LAST:event_bOkActionPerformed
 
