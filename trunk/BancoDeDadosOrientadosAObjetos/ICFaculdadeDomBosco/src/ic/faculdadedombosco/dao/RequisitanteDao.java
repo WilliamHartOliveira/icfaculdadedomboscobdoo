@@ -81,6 +81,24 @@ public class RequisitanteDao {
 
     }
 
+        public Requisitante buscarMatricula(String matricula)
+    {
+        oConexao = new Conexao();
+
+        Query query = oConexao.getDb().query();
+        query.constrain(Requisitante.class);
+        query.descend("requisitante_matricula").constrain(matricula);
+
+        ObjectSet lista = query.execute();
+
+        if(lista.hasNext()){
+            return (Requisitante) lista.get(0);
+        }else{
+            return null;
+        }
+
+    }
+
     public ObjectSet<Requisitante> montarTabelaRequisitante()
     {
         oConexao = new Conexao();

@@ -44,11 +44,11 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
 
     private Requisitante capturaDados()
     {
-        requisitante.setRequisitante_matricula(tfMatriculaRequisitante.getText());
+        requisitante.setRequisitante_matricula(tfMatriculaRequisitante.getText().toUpperCase());
         requisitante.setRequisitante_status(cbStatusRequisitante.getSelectedItem().toString());
-        requisitante.setRequisitante_nome(tfNomeRequisitante.getText());
+        requisitante.setRequisitante_nome(tfNomeRequisitante.getText().toUpperCase());
         requisitante.setRequisitante_tipo(cbTipoRequisitante.getSelectedItem().toString());
-        requisitante.setRequisitante_telefone(tfTelefoneRequisitante.getText());
+        requisitante.setRequisitante_telefone(tfTelefoneRequisitante.getText().toUpperCase());
         return requisitante;
     }
 
@@ -345,7 +345,7 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -405,7 +405,6 @@ public class GUIRequisitante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabelaRequisitanteMouseClicked
 
     private void bPesquisarRequisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarRequisitanteActionPerformed
-        this.tfNomePesqRequisitante.requestFocus();
         requisitante = new Requisitante();
         requisitanteService = new RequisitanteService();
 

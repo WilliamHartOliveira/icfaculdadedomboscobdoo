@@ -83,6 +83,42 @@ public class UsuarioDao {
 
     }
 
+    public Usuario buscarNome(String nome)
+    {
+        oConexao = new Conexao();
+        oConexao.abrirConexao();
+
+        Query query = oConexao.getDb().query();
+        query.constrain(Usuario.class);
+        query.descend("nome_usuario").constrain(nome);
+
+        ObjectSet lista = query.execute();
+
+        if(lista.hasNext()){
+            return (Usuario) lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+      public Usuario buscarUsuario(String usuario)
+    {
+        oConexao = new Conexao();
+        oConexao.abrirConexao();
+
+        Query query = oConexao.getDb().query();
+        query.constrain(Usuario.class);
+        query.descend("usuario_usuario").constrain(usuario);
+
+        ObjectSet lista = query.execute();
+
+        if(lista.hasNext()){
+            return (Usuario) lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
     public ObjectSet<Usuario> montarTabelaUsuario()
     {
         oConexao = new Conexao();
