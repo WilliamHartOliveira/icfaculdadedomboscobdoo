@@ -3,6 +3,9 @@
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuArquivo">
           <Properties>
@@ -216,26 +219,26 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="desktopPane" alignment="0" pref="1254" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" pref="902" max="32767" attributes="0"/>
+          <Component id="desktopPane" alignment="0" pref="1029" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="716" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lHora" min="-2" pref="291" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="desktopPane" pref="745" max="32767" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="desktopPane" pref="753" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="lHora" pref="36" max="32767" attributes="1"/>
-                  <Component id="jLabel1" alignment="1" pref="36" max="32767" attributes="1"/>
+                  <Component id="jLabel1" pref="44" max="32767" attributes="1"/>
+                  <Component id="lHora" alignment="1" pref="44" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace min="13" pref="13" max="13" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -262,7 +265,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="0" y="0" width="1250" height="740" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="0" y="0" width="1250" height="760" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -273,7 +276,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
-        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder/>
@@ -283,8 +286,11 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Patrocinado pela Faculdade Dom Bosco - Rua Marechal Jos&#xe9; In&#xe1;cio da Silva, n&#xba; 355 Bairro Passo d&apos;Areia Porto Alegre, RS - Telefones/Fax: (0xx51) 3361.6700 (0xx51) 3345.3668"/>
+        <Property name="text" type="java.lang.String" value="Patrocinado pela Faculdade Dom Bosco de Porto Alegre - Site: http://www.faculdadedombosco.edu.br"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder/>

@@ -95,16 +95,19 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        jLabel2.setBounds(0, 0, 1250, 740);
+        jLabel2.setBounds(0, 0, 1250, 760);
         desktopPane.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        lHora.setFont(new java.awt.Font("Tahoma", 1, 18));
-        lHora.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lHora.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lHora.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Patrocinado pela Faculdade Dom Bosco - Rua Marechal José Inácio da Silva, nº 355 Bairro Passo d'Areia Porto Alegre, RS - Telefones/Fax: (0xx51) 3361.6700 (0xx51) 3345.3668");
+        jLabel1.setText("Patrocinado pela Faculdade Dom Bosco de Porto Alegre - Site: http://www.faculdadedombosco.edu.br");
         jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        menuBar.setEnabled(false);
 
         menuArquivo.setText("Arquivo");
         menuArquivo.add(itemSeparador);
@@ -251,23 +254,23 @@ public class GUIPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1029, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lHora, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lHora, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-                .addGap(13, 13, 13))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(lHora, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();

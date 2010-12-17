@@ -282,8 +282,8 @@ public class GUIEquipamento extends javax.swing.JInternalFrame {
 
     private Equipamento capturaDados()
     {
-        equipamento.setCdEquipamento(tfCodigoEquipamento.getText());
-        equipamento.setDsEquipamento(tfDescricaoEquipamento.getText());
+        equipamento.setCdEquipamento(tfCodigoEquipamento.getText().toUpperCase());
+        equipamento.setDsEquipamento(tfDescricaoEquipamento.getText().toUpperCase());
         equipamento.setStEquipamento(cbStatusEquipamento.getSelectedItem().toString());
         equipamento.setInCaboRede(cbRedeEquipamento.getSelectedItem().toString());
         return equipamento;
