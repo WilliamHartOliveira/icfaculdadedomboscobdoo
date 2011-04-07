@@ -249,6 +249,11 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
         jLabel5.setText("Nome:");
 
         bPesquisarGerencUsuario.setText("Pesquisar");
+        bPesquisarGerencUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPesquisarGerencUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -317,7 +322,7 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -368,6 +373,24 @@ public class GUIUsuario extends javax.swing.JInternalFrame {
         }
         this.tfnomeGerenciamento.requestFocus();
     }//GEN-LAST:event_tabelaUsuarioMouseClicked
+
+    private void bPesquisarGerencUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarGerencUsuarioActionPerformed
+        oUsuario = new Usuario();
+        oUsuarioService = new UsuarioService();
+
+        oUsuario = oUsuarioService.buscar(txtNomePesquisaUsuario.getText().toUpperCase(), pfsenhaGerenciamento.getText());
+
+        if(oUsuario != null){
+            JOptionPane.showMessageDialog(null, "Usuário encontrado", "Pesquisa Usuário", JOptionPane.INFORMATION_MESSAGE);
+            tfnomeGerenciamento.setText(""+oUsuario.getNome_usuario());
+            tfusuarioGerenciamento.setText(""+oUsuario.getUsuario_usuario());
+            pfsenhaGerenciamento.setText(""+oUsuario.getSenha_usuario());
+            cbadministradorGerenciamento.setSelectedItem(""+oUsuario.getAdminstrador_usuario());
+
+        }else{
+             JOptionPane.showMessageDialog(null, "Usuário não encontrado", "Pesquisa Usuário", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_bPesquisarGerencUsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAtualizarGerencUsuario;

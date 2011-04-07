@@ -4,14 +4,16 @@ import ic.faculdadedombosco.dao.RequisitanteDao;
 import ic.faculdadedombosco.model.Requisitante;
 import javax.swing.JOptionPane;
 
-/*
- * @author Anderson
- */
 public class RequisitanteService {
 
-    public Requisitante incluir(Requisitante oRequisitante)
-    {
-        Requisitante validaRequisitante = new Requisitante();
+    public Requisitante incluir(Requisitante oRequisitante){
+        RequisitanteDao oRequisitanteDao = new RequisitanteDao();
+        return oRequisitanteDao.incluir(oRequisitante);
+
+        //William arranquei as regras de negócio... porque era ali que estava dando pau, temos que ver bem isso.
+       //O erro é porque está retornando null quando ele vai fazer a busca no banco e dai estoura "Exception in thread "AWT-EventQueu-0" java.lang.NullPointerException"
+
+        /*Requisitante validaRequisitante = new Requisitante();
         Requisitante validaMatriculaRequisitante = new Requisitante();
         RequisitanteDao oRequisitanteDao = new RequisitanteDao();
 
@@ -25,31 +27,21 @@ public class RequisitanteService {
         else{
             return oRequisitanteDao.incluir(oRequisitante);
         }
-        return oRequisitante;
+        return oRequisitante;*/
     }
 
-    public Requisitante atualizar(Requisitante oRequisitante)
-    {
-
-       RequisitanteDao oRequisitanteDao = new RequisitanteDao();
-
-       return oRequisitanteDao.atualizar(oRequisitante);
+    public Requisitante atualizar(Requisitante oRequisitante){
+        RequisitanteDao oRequisitanteDao = new RequisitanteDao();
+        return oRequisitanteDao.atualizar(oRequisitante);
     }
 
-    public Requisitante excluir(Requisitante oRequisitante)
-    {
-
-       RequisitanteDao oRequisitanteDao = new RequisitanteDao();
-
-       return oRequisitanteDao.excluir(oRequisitante);
+    public Requisitante excluir(Requisitante oRequisitante){
+        RequisitanteDao oRequisitanteDao = new RequisitanteDao();
+        return oRequisitanteDao.excluir(oRequisitante);
     }
 
-    public Requisitante buscar(String nome)
-    {
-
-       RequisitanteDao oRequisitanteDao = new RequisitanteDao();
-
-       return oRequisitanteDao.buscar(nome);
+    public Requisitante buscar(String nome){
+        RequisitanteDao oRequisitanteDao = new RequisitanteDao();
+        return oRequisitanteDao.buscar(nome);
     }
-
 }

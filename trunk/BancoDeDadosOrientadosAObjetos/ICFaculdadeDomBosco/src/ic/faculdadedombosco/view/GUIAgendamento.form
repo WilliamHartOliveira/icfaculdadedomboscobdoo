@@ -35,7 +35,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -134,18 +134,14 @@
                           <Component id="txDataInicialPesquisaAgendamento" pref="23" max="32767" attributes="1"/>
                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                               <Component id="bDataFinalPesquisa" alignment="1" min="0" pref="0" max="32767" attributes="1"/>
-                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                      <Component id="cbStatusPesquisa_Agendamento" alignment="3" max="32767" attributes="1"/>
-                                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="bDataInicialPesquisa" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="btPesqusarAgendamento" alignment="1" max="32767" attributes="1"/>
-                                  <Component id="btRelatorioAgendamento" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="cbStatusPesquisa_Agendamento" alignment="3" max="32767" attributes="1"/>
+                                  <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bDataInicialPesquisa" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
+                              <Component id="btPesqusarAgendamento" alignment="1" max="32767" attributes="1"/>
+                              <Component id="btRelatorioAgendamento" alignment="1" max="32767" attributes="1"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                               <Component id="txDataFinalPesquisaAgendamento" alignment="3" pref="23" max="32767" attributes="1"/>
