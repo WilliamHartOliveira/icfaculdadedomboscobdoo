@@ -15,7 +15,7 @@ public class Conexao {
 
     public void abrirConexao(){
         try {
-            oObjectContainer = Db4o.openFile("facdombosco.dbo");
+            oObjectContainer = Db4o.openFile("faculdadedombosco.dbo");
             sb.append("Conexão Realizada com Sucesso.");
         }catch(Exception ex){
             sb.append("Erro ao abrir conexão: "+ex);

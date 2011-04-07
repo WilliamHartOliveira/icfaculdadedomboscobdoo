@@ -104,9 +104,12 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
     {
         txtCodigoAgendamento.setText(null);
         cbStatusAgendamento.setSelectedItem("Selecione...");
-        cbDisciplinaAgendamento.setSelectedIndex(0);
-        cbUsuarioAgendamento.setSelectedIndex(0);
-        cbRecursoAgendamento.setSelectedIndex(0);
+        cbDisciplinaAgendamento.setSelectedItem("Selecione...");
+        cbUsuarioAgendamento.setSelectedItem("Selecione...");
+        cbRecursoAgendamento.setSelectedItem("Selecione...");
+        //cbDisciplinaAgendamento.setSelectedIndex(0);
+        //cbUsuarioAgendamento.setSelectedIndex(0);
+        //cbRecursoAgendamento.setSelectedIndex(0);
         txDataInicialAgendamento.setText("00/00/0000");
         txDataFinalAgendamento.setText("00/00/0000");
         cbHoraInicialAgendamento.setSelectedItem("Selecione...");
@@ -343,15 +346,13 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
                     .addComponent(txDataInicialPesquisaAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(bDataFinalPesquisa, javax.swing.GroupLayout.Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbStatusPesquisa_Agendamento)
-                                .addComponent(jLabel14)))
-                        .addComponent(bDataInicialPesquisa, 0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btPesqusarAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btRelatorioAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cbStatusPesquisa_Agendamento)
+                            .addComponent(jLabel14))
+                        .addComponent(jLabel9)
+                        .addComponent(bDataInicialPesquisa, 0, 0, Short.MAX_VALUE)
+                        .addComponent(btPesqusarAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btRelatorioAgendamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txDataFinalPesquisaAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                         .addComponent(jLabel10)))
@@ -701,7 +702,7 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -725,8 +726,8 @@ public class GUIAgendamento extends javax.swing.JInternalFrame {
 
     private void btLimparAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparAgendamentoActionPerformed
         limparCampos();
-        btAtualizarAgendamento.setEnabled(false);
-        btSalvarAgendamento.setEnabled(true);
+        //btAtualizarAgendamento.setEnabled(false);
+        //btSalvarAgendamento.setEnabled(true);
     }//GEN-LAST:event_btLimparAgendamentoActionPerformed
 
     private void btListarAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarAgendamentoActionPerformed
